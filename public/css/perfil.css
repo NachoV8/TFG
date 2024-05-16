@@ -1,0 +1,44 @@
+.perfil{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-perfil{
+    width: 98%;
+    margin-top: 2%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info-perfil img{
+    width: 4%;
+}
+
+.infoP-1, .infoP-2{
+    width: 98%;
+    margin: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
+.info-personal, .info-torneos{
+    width: 47%;
+    margin-right: 2%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+}
+
+.info-partidos, .info-clases{
+    width: 47%;
+    margin-left: 2%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+}
+
+h3, p{
+    margin-top: 2%;
+    margin-left: 2%;
+}

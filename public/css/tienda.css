@@ -1,0 +1,53 @@
+.tienda{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.filtros{
+    width: 14%;
+    margin-left: 1%;
+    border-right: black solid 2px;
+}
+
+.productos{
+    width: 80%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+.productosL{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2%;
+}
+
+.producto{
+    width: 20%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black solid 1px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+}
+
+.producto h2{
+    width: 90%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.producto button{
+    margin-bottom: 4%;
+}
+
+.producto img{
+    width: 80%;
+}

@@ -1,0 +1,40 @@
+.clases{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h2{
+    margin-left: 2%;
+}
+
+.clasesF{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.clase{
+    width: 40%;
+    margin: 1.5%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: rgb(255, 255, 255);
+}
+
+.clase h4{
+    margin: 2%;
+}
+
+.clase p{
+    padding: 2%;
+}
+
+.clase button{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgba(255, 255, 0, 0.537);
+}
+

@@ -1,0 +1,101 @@
+.todo{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+}
+
+.info-1{
+    margin: 2%;
+    width: 54%;
+    margin-bottom: 4%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+}
+
+.info-1 h2{
+    margin-top: 2%;
+    text-align: center;
+}
+
+.info-1 h4{
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.info-1 p{
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2.5%;
+    text-align: justify;
+}
+
+.info-c{
+    margin-bottom: 2%;
+}
+
+.info-a, .info-b{
+    margin-bottom: 5%;
+}
+
+
+.info-2{
+    margin-top: 2%;
+    margin-right: 2%;
+    width: 40%;
+    height: 100%;
+}
+
+
+.info-d{
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+}
+
+.info-2 h2{
+    padding-top: 2%;
+    text-align: center;
+}
+
+.mapouter{
+    position: relative;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 90%;
+    height: 50vh;
+}
+
+.gmap_canvas{
+    overflow: hidden;
+    background: none !important;
+    height: 90%;
+    width: 100%;
+}
+
+.info-e{
+    width: 99.5%;
+    margin-top: 2%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    margin-bottom: 10%;
+}
+
+.info-e label{
+    margin-left: 2%;
+}
+
+.info-e input, .info-e textarea {
+    width: 90%;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.botonE{
+    width: 10%;
+    margin-bottom: 3%;
+}
+
+
+
+
+

@@ -1,0 +1,99 @@
+.cuerpo{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+    /*background-color: rgba(0, 196, 255, 0.42);*/
+}
+
+
+h2{
+}
+
+
+.info-I1{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+
+.info-Ia, .info-Ib{
+    width: 85%;
+    margin: 2%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
+}
+
+
+.info-Ia h2, .info-Ib h2{
+    margin: 2%;
+}
+
+.info-Ia p, .info-Ib p{
+    margin-left: 2%;
+    margin-bottom: 1%;
+}
+
+.info-Ia .boton, .info-Ib .boton{
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 10px; /* margen superior */
+    margin-bottom: 10px; /* margen inferior */
+}
+
+.info-Ia .boton button, .info-Ib .boton button{
+    background-color: rgb(11, 119, 11);
+    color: white;
+}
+
+.info-I2{
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    height: 30%;
+    margin: 2%;
+    margin-bottom: 4%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
+
+}
+
+.info-I2 h2{
+    margin: 2%;
+}
+
+.clasesI{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5%;
+}
+
+.clase-I1, .clase-I2, .clase-I3{
+    width: 30%;
+    margin: 1.5%;
+    border: black solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: rgb(255, 255, 255);
+}
+
+.clase-I1 h4, .clase-I2 h4, .clase-I3 h4{
+    margin: 2%;
+}
+
+.clase-I1 p, .clase-I2 p, .clase-I3 p{
+    padding: 2%;
+}
+
+.clase-I1 button, .clase-I2 button, .clase-I3 button{
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: rgba(255, 255, 0, 0.537);
+}
+
+
+
