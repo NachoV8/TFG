@@ -2,14 +2,13 @@
 
 @section('contenido')
 
-
     @if(Auth::check() && Auth::user()->rol == 3)
 
-        <div class="admin-">
+        <div class="admin-pistas">
 
             <h2>Gestión de pistas</h2>
 
-            <a href="{{route('pistas.create')}}"><button>Nueva Pista</button></a>
+            <a href="{{route('pistas.create')}}"><button class="nueva-pista">Nueva Pista</button></a>
 
             <table>
                 <tr>
@@ -29,14 +28,21 @@
                         <td>{{$pista->hora_inicio}}</td>
                         <td>{{$pista->hora_fin}}</td>
                         <td>{{$pista->usuario ? $pista->usuario->name : 'Sin usuario'}}</td>
-                        <td>
-                            <a href="{{ route('pistas.show', $pista->id_pista) }}">Editar</a>
-                            <form action="{{route("pistas.destroy", $pista->id_pista)}}" method="POST">
-                                @csrf
-                                @method("DELETE")
-                                <button type="submit">Eliminar</button>
-                            </form>
+                        <td class="td-actions">
+                            <div class="left-action">
+                                <a href="{{ route('pistas.show', $pista->id_pista) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
+                            </div>
+                            <div class="right-action">
+                                <form action="{{route("pistas.destroy", $pista->id_pista)}}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="delete-btn">
+                                        <img src="{{ asset('imagenes/index/borrar.png') }}" alt="Eliminar">
+                                    </button>
+                                </form>
+                            </div>
                         </td>
+
                     </tr>
                 @endforeach
             </table>
@@ -98,8 +104,25 @@
             </div>
         </div>
 
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Mostrar la alerta si hay un mensaje de sesión
+                @if(session('info'))
+                Swal.fire({
+                    icon: "success",
+                    title: "¡Sesión reservada correctamente!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                @endif
+            });
+
+        </script>
+
 
     @endif
+
+
 
 
 @endsection

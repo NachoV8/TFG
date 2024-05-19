@@ -6,11 +6,9 @@ use App\Models\Clase;
 use App\Models\Pista;
 use App\Http\Requests\StorePistaRequest;
 use App\Http\Requests\UpdatePistaRequest;
-use App\Models\Sesion;
 use App\Models\Torneo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 
 class PistaController extends Controller
@@ -143,6 +141,16 @@ class PistaController extends Controller
      */
     public function destroy(Pista $pista)
     {
+
+        if ($pista->clase) {
+            // Eliminar la clase asociada
+            $pista->clase->delete();
+        }
+        // Establecer el id_usuario como null
+        $pista->id_usuario = null;
+        $pista->estado = 0;
+        $pista->save(); // Guardar los cambios en la pista
+
         $pista->delete();
 
         // Obtener las pistas de cada pista específica para mostrarlas en la vista
@@ -187,17 +195,6 @@ class PistaController extends Controller
         }
     }
 
-    public function mostrarPerfil()
-    {
-        // Obtener las sesiones de pistas reservadas por el usuario
-        $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
-
-        // Obtener las clases reservadas por el usuario
-        $reservasClases = Clase::where('id_alumno', Auth::id())->get();
-
-        // Devolver la vista con los datos obtenidos
-        return view('perfil', compact('reservasPistas', 'reservasClases'));
-    }
 
     public function cancelarReserva($id)
     {
@@ -205,8 +202,6 @@ class PistaController extends Controller
         $pista->id_usuario = null;
         $pista->estado = 0;
         $pista->save();
-
-        $userId = Auth::id();
 
         // Obtener las sesiones de pistas reservadas por el usuario
         $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
@@ -304,12 +299,7 @@ class PistaController extends Controller
                 }
             }
         }
-        /*
-        $pistas = Pista::all();
-        $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->get();
-        $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->get();
 
-        return view("pistas.index", compact("pistas", "pistasPista1", "pistasPista2"));*/
     }
 
 

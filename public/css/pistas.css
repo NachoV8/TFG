@@ -20,21 +20,6 @@
     /*border-collapse: collapse;*/
 }
 
-/*th:nth-child(1) {
-    background-color: #5cb85c;
-}
-
-
-/*th:nth-child(2) {
-    background-color: #fff400;
-}
-
-
-th:nth-child(3) {
-    background-color: #d9534f;
-} */
-
-
 
 
 .tabla-pista button.reservarP {
@@ -49,6 +34,217 @@ th:nth-child(3) {
 
 .tabla-pista button.reservarP:hover {
     background-color: #45a049;
+}
+
+
+
+/* Tabla administrador */
+.admin-pistas {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-pistas h2{
+    margin: 0;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.admin-pistas a{
+    width: 120px;
+}
+
+.admin-pistas .nueva-pista{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    width: 120px;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.admin-pistas table {
+    border-collapse: collapse;
+    border: none;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.admin-pistas th, .admin-pistas td {
+    padding: 8px;
+    border: none;
+    text-align: left;
+}
+
+.admin-pistas th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.admin-pistas tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.admin-pistas tr:hover {
+    background-color: #ddd;
+}
+
+
+.td-actions {
+    width: 60%;
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Alinea los elementos verticalmente */
+}
+
+.left-action,
+.right-action {
+    flex: 1; /* Ocupa el espacio disponible */
+}
+
+.left-action {
+    text-align: left; /* Alinea el contenido a la izquierda */
+}
+
+.left-action a img{
+    width: 20px;
+}
+
+.right-action {
+    text-align: right; /* Alinea el contenido a la derecha */
+}
+
+.right-action button img{
+    width: 20px;
+}
+
+
+
+
+
+
+
+
+
+/* Formulario editar */
+
+.formulario-editar-pistas {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-editar-pistas label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario-editar-pistas input[type="text"],
+.formulario-editar-pistas input[type="number"],
+.formulario-editar-pistas input[type="date"],
+.formulario-editar-pistas input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.formulario-editar-pistas button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-editar-pistas button:hover {
+    background-color: #0056b3;
+}
+
+.x-input-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+/* Formulario CREAR */
+
+.formulario-crear-pista {
+    margin-left: 30%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.formulario-crear-pista label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.formulario-crear-pista input[type="number"],
+.formulario-crear-pista input[type="date"],
+.formulario-crear-pista input[type="time"],
+.formulario-crear-pista input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.formulario-crear-pista button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.formulario-crear-pista button:hover {
+    background-color: #0056b3;
+}
+
+.x-input-error {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
 }
 
 
