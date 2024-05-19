@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TorneoController;
@@ -13,7 +15,7 @@ use \App\Http\Controllers\ContactanosController;
 
 
 Route::get('/', function () {
-    return view('main');
+    return view('index');
 });
 
 Route::get('/sobre-nosotros', function () {
@@ -37,6 +39,10 @@ Route::get('/register', function () {
 });
 
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
+
+
+Route::resource('users', UserController::class);
 
 Route::resource('torneos', TorneoController::class);
 
@@ -64,11 +70,12 @@ Route::post('pistas/reservar/{id_pista}', [PistaController::class, 'reservarPist
 
 
 
-Route::get('/perfil', [PistaController::class, 'mostrarPerfil'])->name('perfil.mostrar');
+
+
+Route::get('/perfil', [ProfileController::class, 'index'])->name('perfil.mostrar');
 
 
 Route::patch('/perfil/{id}', [ProfileController::class, 'cancelar'])->name('perfil.cancelar');
-
 
 
 

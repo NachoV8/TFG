@@ -1,3 +1,6 @@
+
+/* FUENTES */
+
 @font-face {
     font-family: 'Altone Trial-Regular';
     src: url('/font/Altone Trial-Regular.ttf');
@@ -8,9 +11,25 @@
     src: url('/font/RegencieLight.ttf');
 }
 
+/* ------------------------------------------------------------ */
 
+
+/* Uso de la fuente en toda la página */
 *{
     font-family:'RegencieLight';
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .header {
@@ -22,58 +41,182 @@
     left: 0;
     background-color: rgb(255, 255, 255);
     height: 10vh;
-    padding: 10px 0;
+    padding: 20px 0;
     z-index: 1000; /* Asegura que el encabezado esté por encima de otros elementos */
     border-bottom: black solid 2px;
 }
 
 
 .logo {
-    width: 20%;
-    margin-left: 2%;
+    width: 10%;
+    margin-right: 20%;
     margin-top: 1%;
+    margin-bottom: 1%;
 }
 
 .logo img{
-    width: 100px;
+    width: 80%;
 }
 
+
+
 .nav {
-    width: 80%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center; /* Centrar verticalmente los elementos hijos */
 }
 
 a {
-    width: 10%;
     display: flex;
     justify-content: center;
+    align-items: center; /* Centrar verticalmente el contenido dentro del ancla */
     text-decoration: none;
     color: black;
+    font-size: 18px;
+    font-weight: bolder;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    height: 40px; /* Ajusta la altura según tus necesidades */
 }
 
-.logout{
-    background-color: rgba(255, 0, 0, 0.68);
+
+.nombre a {
+    display: flex;
+    flex-direction: column; /* Coloca los hijos (imagen y párrafo) en una columna */
+    align-items: center;    /* Centra horizontalmente los hijos */
+    text-decoration: none;  /* Elimina el subrayado del enlace */
+    color: black;           /* Color del texto */
 }
+
+.nombre img {
+    max-width: 40px; /* Ajusta este valor según tus necesidades */
+    height: auto;     /* Mantiene la proporción de la imagen */
+}
+
+.nombre p {
+    margin: 10px 0 0; /* Margen superior para separar el texto de la imagen */
+    font-size: 18px;  /* Ajusta el tamaño de la fuente según tus necesidades */
+    font-weight: bolder; /* Aplica negrita al texto */
+}
+
+
+.button-login {
+   appearance: button;
+   background-color: #000;
+   background-image: none;
+   border: 1px solid #000;
+   border-radius: 4px;
+   box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+   box-sizing: border-box;
+   color: #fff;
+   cursor: pointer;
+   display: inline-block;
+   font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+   font-size: 14px;
+   font-weight: bold;
+   line-height: 20px;
+   margin: 0 5px 10px 0;
+   overflow: visible;
+   padding: 10px 30px;
+   text-align: center;
+   text-transform: none;
+   touch-action: manipulation;
+   user-select: none;
+   -webkit-user-select: none;
+   vertical-align: middle;
+   white-space: nowrap;
+}
+
+.button-login:focus {
+    text-decoration: none;
+}
+
+.button-login:hover {
+    text-decoration: none;
+}
+
+.button-login:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.button-login:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+.button-logout {
+    appearance: button;
+    background-color: rgba(255, 0, 0, 0.79);
+    background-image: none;
+    border: 1px solid #000;
+    border-radius: 4px;
+    box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0 5px 10px 0;
+    overflow: visible;
+    padding: 10px 30px;
+    text-align: center;
+    text-transform: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.button-logout:focus {
+    text-decoration: none;
+}
+
+.button-logout:hover {
+    text-decoration: none;
+    background-color: red;
+}
+
+.button-logout:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+}
+
+.button-logout:not([disabled]):active {
+    box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+    transform: translate(2px, 2px);
+}
+
+
+
+
+/*@media (min-width: 768px) {
+    .button-50 {
+        padding: 12px 50px;
+    }
+}*/
+
+
 
 
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 5%;
+    flex-shrink: 0;
     background-color: #333;
-    color: white;
     text-align: center;
-    /*padding: 2px 0;*/
+    color: white;
 }
 
-body{
-    margin: 0;
-}
+
+
+
+
+
+
 
 

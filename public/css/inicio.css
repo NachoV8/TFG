@@ -1,4 +1,4 @@
-.cuerpo{
+.cuerpo {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -6,94 +6,212 @@
     /*background-color: rgba(0, 196, 255, 0.42);*/
 }
 
-
-h2{
+h2 {
 }
 
-
-.info-I1{
+.info-I1 {
     display: flex;
     flex-direction: row;
-    height: 100%;
+    height: 45%;
+    margin-top: 0;
 }
 
-
-.info-Ia, .info-Ib{
+.info-Ia, .info-Ib {
     width: 85%;
     margin: 2%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
     background-color: white;
+    padding: 1%;
 }
 
-
-.info-Ia h2, .info-Ib h2{
+.info-Ia h2, .info-Ib h2 {
     margin: 2%;
+    font-weight: bolder;
+    text-align: left;
 }
 
-.info-Ia p, .info-Ib p{
+.info-Ia .texto {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinea los elementos al inicio */
+}
+
+.info-Ia .left, .info-Ia .right {
+    width: 47%; /* Ajusta el ancho de cada columna */
+}
+
+.info-Ia .left {
+    text-align: left;
+}
+
+.info-Ia .right {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los items al final */
+}
+
+.info-Ia .right .first {
+    margin-bottom: 20px; /* Ajusta este valor para la altura del pódium */
+    font-weight: bold;
+}
+
+.info-Ia .right .second {
+    margin-bottom: 10px; /* Ajusta este valor para la altura del pódium */
+}
+
+.info-Ia .right .third {
+    margin-bottom: 0; /* Último elemento no necesita margen */
+}
+
+.info-Ia p, .info-Ib p {
     margin-left: 2%;
     margin-bottom: 1%;
 }
 
-.info-Ia .boton, .info-Ib .boton{
-    width: 20%;
-    margin-left: 40%;
-    margin-top: 10px; /* margen superior */
-    margin-bottom: 10px; /* margen inferior */
+.info-Ia .boton {
+    text-align: left;
+    margin-left: 2%;
 }
 
-.info-Ia .boton button, .info-Ib .boton button{
-    background-color: rgb(11, 119, 11);
-    color: white;
+/* Boton Torneo */
+
+.button-torneo {
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: 0;
+    font-weight: bolder;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-.info-I2{
+.button-torneo:after {
+    content: "";
+    background-color: rgba(0, 128, 0, 0.49);
+    width: 100%;
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+}
+
+.button-torneo:hover:after {
+    top: 0px;
+    left: 0px;
+}
+
+@media (min-width: 768px) {
+    .button-torneo {
+        padding: 13px 50px 13px;
+    }
+}
+
+/* Botón Clases */
+
+.button-clases{
+    font-size: 16px;
+    letter-spacing: 1px;
+    outline: 0;
+    font-weight: bolder;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-clases:after {
+    content: "";
+    background-color: rgba(0, 128, 0, 0.49);
+    width: 100%;
+    z-index: 20;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+}
+
+.button-clases:hover:after {
+    top: 0px;
+    left: 0px;
+}
+
+.clase-I1 button, .clase-I2 button, .clase-I3 button {
+    width: auto; /* Ajustar automáticamente al contenido */
+    padding: 10px 20px; /* Espaciado interno */
+    background-color: rgba(255, 255, 0, 0);
+    border: 1px solid black;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .button-clases {
+        padding: 13px 50px 13px;
+    }
+}
+
+/* ------------------------------------------------- */
+
+.info-I2 {
     display: flex;
     flex-direction: column;
-    width: 96%;
-    height: 30%;
-    margin: 2%;
+    width: 94%;
+    height: auto; /* Ajustar automáticamente al contenido */
+    margin-top: 2%;
+    margin-left: 2%;
     margin-bottom: 4%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
     background-color: white;
-
+    padding: 1%;
 }
 
-.info-I2 h2{
-    margin: 2%;
+.info-I2 h2 {
+    margin-left: 2%;
 }
 
-.clasesI{
+.clasesI {
     display: flex;
     flex-direction: row;
-    margin-bottom: 5%;
+    justify-content: space-between;
+    height: auto;
 }
 
-.clase-I1, .clase-I2, .clase-I3{
-    width: 30%;
-    margin: 1.5%;
+.clase-I1, .clase-I2, .clase-I3 {
+    width: 32%; /* Ajuste para asegurar que caben dentro del contenedor padre */
+    margin: 1%; /* Espaciado entre los contenedores */
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
     background-color: rgb(255, 255, 255);
-}
-
-.clase-I1 h4, .clase-I2 h4, .clase-I3 h4{
-    margin: 2%;
-}
-
-.clase-I1 p, .clase-I2 p, .clase-I3 p{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 2%;
 }
 
-.clase-I1 button, .clase-I2 button, .clase-I3 button{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: rgba(255, 255, 0, 0.537);
+.clase-I1 h4, .clase-I2 h4, .clase-I3 h4 {
+    margin: 2%;
 }
 
+.clase-I1 p, .clase-I2 p, .clase-I3 p {
+    padding: 2%;
+}
+
+.clase-I1 .boton, .clase-I2 .boton, .clase-I3 .boton {
+    text-align: center; /* Centrar el botón */
+    margin: 0; /* Eliminar márgenes superiores e inferiores */
+}
 
 

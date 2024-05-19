@@ -2,7 +2,53 @@
 
 @section('contenido')
 
-    <div class="tienda">
+    @if(Auth::check() && Auth::user()->rol == 3)
+
+        <div class="admin-productos">
+
+            <h2>Gestión de Productos</h2>
+            <a href="{{route('productos.create')}}"><button class="nuevo-producto">Nuevo Producto</button></a>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Precio</th>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($productosAll as $producto)
+                    <tr>
+                        <td>{{ $producto->precio }}</td>
+                        <td>{{ $producto->nombre }}</td>
+                        <td>{{ $producto->cantidad }}</td>
+                        <td>{{ $producto->tipo }}</td>
+                        <td class="td-actions">
+                            <div class="left-action">
+                                <a href="{{ route('productos.show', $producto->id_producto) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
+                            </div>
+                            <div class="right-action">
+                                <form action="{{route("productos.destroy", $producto->id_producto)}}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="delete-btn">
+                                        <img src="{{ asset('imagenes/index/borrar.png') }}" alt="Eliminar">
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
+    @else
+
+        <div class="tienda">
         <div class="filtros">
             <h3>Filtrar por tipo:</h3><br>
             <input type="checkbox" id="pala" name="producto" value="pala">
@@ -32,41 +78,6 @@
         </div>
     </div>
 
-    @if(Auth::check() && Auth::user()->rol == 3)
-
-        <a href="{{route('productos.create')}}"><button>Nuevo Producto</button></a>
-
-    <table border="1">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Precio</th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Tipo</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach ($productosAll as $producto)
-            <tr>
-                <td>{{ $producto->id_producto }}</td>
-                <td>{{ $producto->precio }}</td>
-                <td>{{ $producto->nombre }}</td>
-                <td>{{ $producto->cantidad }}</td>
-                <td>{{ $producto->tipo }}</td>
-                <td>
-                    <a href="{{ route('productos.show', $producto->id_producto) }}">Editar</a>
-                    <form action="{{ route('productos.destroy', $producto->id_producto) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
 
     @endif
 

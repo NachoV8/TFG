@@ -57,7 +57,15 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        return view("productos.edit", compact("producto"));
+        $tiposProductos = [
+            'pala' => 'palas',
+            'pelota' => 'pelotas',
+            'grip' => 'grips',
+            'cinta' => 'cintas',
+            'mochila' => 'mochilas',
+        ];
+
+        return view("productos.edit", compact("producto", 'tiposProductos'));
     }
 
     /**

@@ -8,10 +8,23 @@
 <body>
 <h1>Editar Torneo</h1>
 
+<div class="container">
 <form action="{{ route('pistas.update', $pista->id_pista) }}" method="POST">
     @csrf
     @method('PUT')
 
+    <div class="form-row">
+        <div class="input-data">
+            <input type="text" required>
+            <div class="underline"></div>
+            <label for="">Nombre</label>
+        </div>
+        <div class="input-data">
+            <input type="text" required>
+            <div class="underline"></div>
+            <label for="">Last Name</label>
+        </div>
+    </div>
     <label for="nombre">Nombre:</label><br>
     <input type="text" id="nombre" name="nombre" value="{{ $torneo->nombre }}"><br>
 
@@ -39,6 +52,52 @@
     <button type="submit">Actualizar</button>
 
 </form>
-
+</div>
 </body>
 </html>
+
+
+<div class="container">
+    <div class="text">
+        Contact us Form
+    </div>
+    <form action="#">
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" required>
+                <div class="underline"></div>
+                <label for="">First Name</label>
+            </div>
+            <div class="input-data">
+                <input type="text" required>
+                <div class="underline"></div>
+                <label for="">Last Name</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" required>
+                <div class="underline"></div>
+                <label for="">Email Address</label>
+            </div>
+            <div class="input-data">
+                <input type="text" required>
+                <div class="underline"></div>
+                <label for="">Website Name</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data textarea">
+                <textarea rows="8" cols="80" required></textarea>
+                <br />
+                <div class="underline"></div>
+                <label for="">Write your message</label>
+                <br />
+                <div class="form-row submit-btn">
+                    <div class="input-data">
+                        <div class="inner"></div>
+                        <input type="submit" value="submit">
+                    </div>
+                </div>
+    </form>
+</div>
