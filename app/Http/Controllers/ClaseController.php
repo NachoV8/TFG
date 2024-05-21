@@ -63,12 +63,8 @@ class ClaseController extends Controller
         $clase->hora_inicio = $pista->hora_inicio; // Asignar la hora de inicio de la pista a la clase
         $clase->save();
 
-        $clases = Clase::all();
+        return redirect()->route('clases');
 
-        $clasesP1 = Clase::where('id_profesor', 8)->get();
-        $clasesP2 = Clase::where('id_profesor', 2)->get();
-
-        return view("clases.index", compact("clases", "clasesP1", "clasesP2"));
 
     }
 
@@ -81,10 +77,8 @@ class ClaseController extends Controller
         // Obtener todas las pistas disponibles (estado = 0)
         $pistasDisponibles = Pista::where('estado', 0)->orderBy('pista')->orderBy('fecha')->orderBy('hora_inicio')->get();
 
-
         $profesores = User::where('rol', 2)->get();
 
-        // Devolver la vista del formulario de creación de clase junto con las pistas disponibles
         return view('clases.edit', compact('clase', 'profesores', 'pistasDisponibles'));
     }
 
@@ -101,14 +95,20 @@ class ClaseController extends Controller
      */
     public function update(UpdateClaseRequest $request, Clase $clase)
     {
-        $clase->update($request->input());//se ejecuta el update
 
-        $clases = Clase::all();
 
-        $clasesP1 = Clase::where('id_profesor', 8)->where('id_alumno', null)->get();
-        $clasesP2 = Clase::where('id_profesor', 2)->where('id_alumno', null)->get();
+        $validatedData = $request->validate([
+            'id_profesor' => 'required|exists:users,id',
+            'id_pista' => 'required|exists:pistas,id_pista',
+            'id_alumno' => 'nullable|exists:alumnos,id',
+            'descripcion' => 'required|string|max:255',
+            'precio' => 'required|numeric',
+        ]);
 
-        return view("clases.index", compact("clases", "clasesP1", "clasesP2"));
+
+        $clase->update($validatedData);
+
+        return redirect()->route('clases');
     }
 
     /**
@@ -126,16 +126,7 @@ class ClaseController extends Controller
         $pista->id_usuario = null; // Eliminar el id del usuario asociado
         $pista->save();
 
-        // Obtener todas las clases nuevamente
-        $clases = Clase::all();
-
-        // Obtener las clases para los diferentes profesores
-        $clasesP1 = Clase::where('id_profesor', 1)->where('id_alumno', null)->get();
-        $clasesP2 = Clase::where('id_profesor', 2)->where('id_alumno', null)->get();
-
-        // Redirigir o mostrar la vista
-        return view("clases.index", compact("clases", "clasesP1", "clasesP2"));
-
+        return redirect()->route('clases');
     }
 
     public function reservarClase($id_clase)
@@ -148,21 +139,14 @@ class ClaseController extends Controller
             Clase::where('id_clase', $id_clase)->update(['id_alumno' => $id_usuario]);
             // Asignar el id_alumno al id del usuario autenticado
 
-            $clases = Clase::all();
-
-            // Obtener las clases para los diferentes profesores
-            $clasesP1 = Clase::where('id_profesor', 8)->where('id_alumno', null)->get();
-            $clasesP2 = Clase::where('id_profesor', 2)->where('id_alumno', null)->get();
-
-            // Redirigir o mostrar la vista
-            return view("clases.index", compact("clases", "clasesP1", "clasesP2"));
+            return redirect()->route('clases');
         } else {
             // Redirigir al login si el usuario no está autenticado
-            return redirect()->route('login')->with('error', 'Debes iniciar sesión para reservar una clase.');
+            return redirect()->route('login');
         }
     }
 
-    public function cancelarClase($id)
+    /*public function cancelarClase($id)
     {
         $clase = Clase::findOrFail($id);
         $clase->id_alumno = null;
@@ -179,5 +163,5 @@ class ClaseController extends Controller
 
         // Devolver la vista con los datos obtenidos
         return view('perfil', compact('reservasPistas', 'reservasClases'));
-    }
+    }*/
 }

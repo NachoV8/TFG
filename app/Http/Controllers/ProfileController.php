@@ -25,6 +25,7 @@ class ProfileController extends Controller
         {
             $this->actualizarReservasPasadas();
 
+
             $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
 
             // Obtener las clases reservadas por el usuario

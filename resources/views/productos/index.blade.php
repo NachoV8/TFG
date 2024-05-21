@@ -68,9 +68,13 @@
                     @foreach($chunk as $producto)
                         <div class="producto" data-tipo="{{ $producto->tipo }}">
                             <img src="{{ asset('imagenes/tienda/Pala.png') }}" alt="Dibujo Pala Padel">
-                            <h2>{{ $producto->nombre }}</h2>
-                            <p>{{ $producto->precio }} €</p>
-                            <button>Reservar</button>
+                            <p>Cantidad disponible: {{ $producto->cantidad }}</p>
+                            <form action="{{ route('productos.reservar', $producto->id_producto) }}" method="POST">
+                                @csrf
+                                <label for="cantidad_{{ $producto->id_producto }}">Cantidad a reservar:</label>
+                                <input type="number" name="cantidad" id="cantidad_{{ $producto->id_producto }}" min="1" max="{{ $producto->cantidad }}">
+                                <button type="submit">Reservar</button>
+                            </form>
                         </div>
                     @endforeach
                 </div>

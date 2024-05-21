@@ -27,14 +27,12 @@ class PistaController extends Controller
 
         // Obtener todas las pistas ordenadas por fecha
         // Obtener todas las pistas ordenadas por fecha, hora de inicio y número de pista
-        //$pistas = Pista::orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
         $pistas = Pista::with('usuario')->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
 
-
-// Obtener las pistas de la pista 1 ordenadas por fecha, hora de inicio y número de pista
+        // Obtener las pistas de la pista 1 ordenadas por fecha, hora de inicio y número de pista
         $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
 
-// Obtener las pistas de la pista 2 ordenadas por fecha, hora de inicio y número de pista
+        // Obtener las pistas de la pista 2 ordenadas por fecha, hora de inicio y número de pista
         $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
 
 
@@ -78,22 +76,7 @@ class PistaController extends Controller
         $pista = new Pista($datos);
         $pista->save();
 
-        // Obtener todas las pistas para mostrarlas en la vista
-        $pistas = Pista::all();
-
-        // Obtener las pistas de cada pista específica para mostrarlas en la vista
-        $pistas = Pista::with('usuario')->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-
-// Obtener las pistas de la pista 1 ordenadas por fecha, hora de inicio y número de pista
-        $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-// Obtener las pistas de la pista 2 ordenadas por fecha, hora de inicio y número de pista
-        $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-
-        return view("pistas.index", compact("pistas", "pistasPista1", "pistasPista2"));
-
+        return redirect()->route('pistas');
     }
 
     /**
@@ -121,19 +104,7 @@ class PistaController extends Controller
 
         $pista->update($request->input());//se ejecuta el update
 
-        // Obtener las pistas de cada pista específica para mostrarlas en la vista
-        $pistas = Pista::with('usuario')->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-
-// Obtener las pistas de la pista 1 ordenadas por fecha, hora de inicio y número de pista
-        $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-// Obtener las pistas de la pista 2 ordenadas por fecha, hora de inicio y número de pista
-        $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-
-        return view("pistas.index", compact("pistas", "pistasPista1", "pistasPista2"));
-        //return view("pistas.index", compact("pistas"));
+        return redirect()->route('pistas');
     }
 
     /**
@@ -153,22 +124,11 @@ class PistaController extends Controller
 
         $pista->delete();
 
-        // Obtener las pistas de cada pista específica para mostrarlas en la vista
-        $pistas = Pista::with('usuario')->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-
-// Obtener las pistas de la pista 1 ordenadas por fecha, hora de inicio y número de pista
-        $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-// Obtener las pistas de la pista 2 ordenadas por fecha, hora de inicio y número de pista
-        $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-
-        return view("pistas.index", compact("pistas", "pistasPista1", "pistasPista2"));
+        return redirect()->route('pistas');
 
     }
 
-    public function mostrarPista1(){
+    /*public function mostrarPista1(){
         $Pista1 = Pista::where('pista', 1)->where('estado', 0)->get();
         return view("pistas.index", compact("Pista1"));
     }
@@ -176,7 +136,7 @@ class PistaController extends Controller
     public function mostrarPista2(){
         $Pista2 = Pista::where('pista', 2)->where('estado', 0)->get();
         return view("pistas.index", compact("Pista2"));
-    }
+    }*/
 
     public function reservarPista($id_pista) {
         // Verificar si el usuario está autenticado
@@ -203,14 +163,8 @@ class PistaController extends Controller
         $pista->estado = 0;
         $pista->save();
 
-        // Obtener las sesiones de pistas reservadas por el usuario
-        $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
+        return redirect()->route('perfil');
 
-        // Obtener las clases reservadas por el usuario
-        $reservasClases = Clase::where('id_alumno', Auth::id())->get();
-
-        // Devolver la vista con los datos obtenidos
-        return view('perfil', compact('reservasPistas', 'reservasClases'));
     }
 
     public function generarPista1Automatico()
@@ -251,13 +205,6 @@ class PistaController extends Controller
                 }
             }
         }
-
-        /*
-        $pistas = Pista::all();
-        $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->get();
-        $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->get();
-
-        return view("pistas.index", compact("pistas", "pistasPista1", "pistasPista2"));*/
     }
 
 
@@ -299,7 +246,6 @@ class PistaController extends Controller
                 }
             }
         }
-
     }
 
 

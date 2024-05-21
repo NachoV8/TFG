@@ -11,7 +11,13 @@ class Clase extends Model
 
     protected $table="clases"; // Tabla de base de datos
     protected $primaryKey = 'id_clase';
-    protected $fillable=['descripcion','fecha','precio','hora_inicio']; // Sirve para mandar un array para no ir
+    protected $fillable = [
+        'id_profesor',
+        'id_pista',
+        'id_alumno',
+        'descripcion',
+        'precio',
+    ];
 
     public $timestamps = false;
 

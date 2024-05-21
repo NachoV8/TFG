@@ -17,7 +17,6 @@ class CreatePistasTable extends Migration
             $table->time('hora_fin')->nullable();
             $table->unsignedInteger('id_usuario')->nullable();
 
-            // Foreign key
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('set null');
         });
     }

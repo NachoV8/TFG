@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -52,9 +53,12 @@ Route::resource('sesiones', SesionController::class);
 
 Route::resource('clases', ClaseController::class);
 
+Route::resource('productos', ProductoController::class);
+
+Route::post('productos/reservar/{producto}', [ReservaController::class, 'reservarProducto'])->name('productos.reservar');
+
 Route::post('clases/{id_clase}', [ClaseController::class, 'reservarClase'])->name('reservar.clase');
 
-Route::get('pistas', [PistaController::class, 'index'])->name('pistas.index');
 
 
 //Route::post('sesiones/reservar/{id_pista}', [SesionController::class, 'reservarSesion'])->name('sesiones.reservar');
@@ -68,11 +72,19 @@ Route::post('pistas/reservar/{id_pista}', [PistaController::class, 'reservarPist
     $controller->eliminarPistasAnteriores();
 })->name('pistas.automaticas');*/
 
+Route::get('/pistas', [PistaController::class, 'index'])->name('pistas');
+
+Route::get('/clases', [ClaseController::class, 'index'])->name('clases');
+
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
 
 
 
+//Route::get('/perfil', [ProfileController::class, 'index'])->name('perfil.mostrar');
 
-Route::get('/perfil', [ProfileController::class, 'index'])->name('perfil.mostrar');
+Route::get('/perfil', [ProfileController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('perfil');
 
 
 Route::patch('/perfil/{id}', [ProfileController::class, 'cancelar'])->name('perfil.cancelar');
@@ -80,7 +92,6 @@ Route::patch('/perfil/{id}', [ProfileController::class, 'cancelar'])->name('perf
 
 
 
-Route::resource('productos', ProductoController::class);
 
 
 

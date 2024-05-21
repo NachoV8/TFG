@@ -12,10 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $profesores = User::where('rol', 2)->get();
 
-        // Pasar los profesores a la vista
-        return view('index', compact('profesores'));
     }
 
     /**
@@ -23,7 +20,7 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        return view('users.create');
     }
 
     /**
@@ -31,7 +28,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos de entrada
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8',
+            'rol' => 'required|integer|in:1,2', // Suponiendo que 1 es Usuario y 2 es Profesor
+        ]);
+
+        // Crear un nuevo usuario
+        $user = new User();
+        $user->name = $request->input('nombre');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password')); // Cifrar la contraseña
+        $user->rol = $request->input('rol');
+
+        // Guardar el usuario en la base de datos
+        $user->save();
+
+        return redirect()->route('perfil');
     }
 
     /**
@@ -39,7 +54,7 @@ class UserController extends Controller
      */
     public function show(User $id)
     {
-        return view('users.edit', compact('id'));
+        //return view('users.edit', compact('id'));
     }
 
     /**
@@ -53,28 +68,31 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $id)
+    public function update(Request $request, User $user)
     {
 
-        $id->update($request->input());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'rol' => 'required|integer',
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->rol = $request->input('rol');
+        $user->save();
 
 
-        $profesores = User::where('rol', 2)->get();
-
-        // Pasar los profesores a la vista
-        return view('index', compact('profesores'));
+        return redirect()->route('perfil');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $id)
+    public function destroy(User $user)
     {
-        $user = User::find($id);
         $user->delete();
 
-        $profesores = User::where('rol', 2)->get();
-
-        return view('index', compact('profesores'));
+        return redirect()->route('perfil');
     }
 }

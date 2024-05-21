@@ -74,34 +74,6 @@
                     @endforeach
                 </div>
             @endforeach
-            <!--<div class="clasesF">
-                <div class="clase">
-                    <h4>Andreu</h4>
-                    <p>LLega uno de nuestros mejores jugadores a
-                        enseñarte sus mejores tácticas para ganar
-                        todos los puntos!
-                    </p>
-                    <p>Martes: 17:30 y Jueves: 19:00</p>
-                    <div class="boton"><button class="button-clases">Reserva</button></div>
-                </div>
-                <div class="clase">
-                    <h4>Jorge</h4>
-                    <p>Desde Zaragoza viene a dar sus mejores lecciones
-                        el campeón de Aragón 2023!
-                    </p>
-                    <p>Miercoles: 17:30 y Viernes: 20:30</p>
-                    <div class="boton"><button class="button-clases">Reserva</button></div>
-                </div>
-                <div class="clase">
-                    <h4>Andreu</h4>
-                    <p>LLega uno de nuestros mejores jugadores a
-                        enseñarte sus mejores tácticas para ganar
-                        todos los puntos!
-                    </p>
-                    <p>Lunes: 16:00 y Miercoles: 19:00</p>
-                    <div class="boton"><button class="button-clases">Reserva</button></div>
-                </div>
-            </div>-->
         </div>
     </div>
 

@@ -4,6 +4,9 @@
 
     @if(Auth::check() && Auth::user()->rol == 3)
 
+
+        <a href="{{route('users.create')}}"><button class="nuevo-usuario">Nuevo Usuario</button></a>
+
         <div class="lista">
             <div class="lista-profesores">
                 <h2>Profesores</h2>
@@ -57,7 +60,7 @@
                             <td>{{ $usuario->email }}</td>
                             <td class="td-actions">
                                 <div class="left-action">
-                                    <a href="{{ route('users.show', $usuario->id) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
+                                    <a href="{{ route('users.edit', $usuario->id) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
                                 </div>
                                 <div class="right-action">
                                     <form action="{{route("users.destroy", $usuario->id)}}" method="POST">
@@ -213,8 +216,8 @@
         }
     </style>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             const buttons = document.querySelectorAll('.cancelar-btn');
 

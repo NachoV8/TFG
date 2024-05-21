@@ -46,10 +46,7 @@ class ProductoController extends Controller
         $producto = new Producto($datos);
         $producto->save();
 
-        $productos = Producto::where('cantidad', '>', 0)->get();
-        $productosAll = Producto::all();
-
-        return view("productos.index", compact("productos", "productosAll"));
+        return redirect()->route('productos');
     }
 
     /**
@@ -83,10 +80,7 @@ class ProductoController extends Controller
     {
         $producto->update($request->input());//se ejecuta el update
 
-        $productos = Producto::where('cantidad', '>', 0)->get();
-        $productosAll = Producto::all();
-
-        return view("productos.index", compact("productos", "productosAll"));
+        return redirect()->route('productos');
     }
 
     /**
@@ -96,13 +90,11 @@ class ProductoController extends Controller
     {
         $producto->delete();
 
-        $productos = Producto::where('cantidad', '>', 0)->get();
-        $productosAll = Producto::all();
+        return redirect()->route('productos');
 
-        return view("productos.index", compact("productos", "productosAll"));
     }
 
-    public function filtrar(Request $request)
+    /*public function filtrar(Request $request)
     {
         // Obtener los tipos seleccionados del formulario
         $tiposSeleccionados = $request->input('producto');
@@ -112,7 +104,7 @@ class ProductoController extends Controller
 
         // Pasar los productos filtrados a la vista
         return view('productos.index', compact('productosFiltrados'));
-    }
+    }*/
 
 
 }
