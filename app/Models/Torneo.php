@@ -19,8 +19,15 @@ class Torneo extends Model
         'precio',
         'cant_max',
         'hora_inicio',
-        'hora_fin',
         'id_pista'
         // Agrega aquí los otros campos que deseas que sean asignables en masa
     ];
+
+    public $timestamps = false;
+
+    public function pistas()
+    {
+        return $this->belongsToMany(Pista::class, 'torneo_pista', 'id_torneo', 'id_pista');
+    }
+
 }

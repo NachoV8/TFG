@@ -9,6 +9,9 @@ class Reserva extends Model
 {
     use HasFactory;
 
+
+    protected $table="reservas"; // Tabla de base de datos
+    protected $primaryKey = 'id_reserva';
     protected $fillable = ['id_usuario', 'id_producto', 'cantidad'];
 
     public $timestamps = false;

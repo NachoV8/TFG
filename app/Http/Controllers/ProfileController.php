@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Clase;
+use App\Models\Inscripcion;
 use App\Models\Pista;
+use App\Models\Reserva;
+use App\Models\Torneo;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
@@ -21,26 +24,31 @@ class ProfileController extends Controller
 
     public function index()
     {
-        if (Auth::check() && Auth::user()->rol == 1 || Auth::user()->rol == 2)
-        {
-            $this->actualizarReservasPasadas();
-
-
-            $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
-
-            // Obtener las clases reservadas por el usuario
-            $reservasClases = Clase::where('id_alumno', Auth::id())->get();
-
-            // Devolver la vista con los datos obtenidos
-            return view('perfil', compact('reservasPistas', 'reservasClases'));
-
-        }else
+        if (Auth::check() && Auth::user()->rol == 3)
         {
             $profesores = User::where('rol', 2)->get();
 
             $usuarios = User::where('rol', 1)->get();
 
             return view('perfil', compact('profesores','usuarios'));
+
+        }else
+        {
+            $this->actualizarReservasPasadas();
+
+
+            $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
+
+            $reservasTorneo = Inscripcion::where('id_usuario', Auth::id())->get();
+
+            // Obtener las clases reservadas por el usuario
+            $reservasClases = Clase::where('id_alumno', Auth::id())->get();
+
+            $reservasProductos = Reserva::where('id_usuario', Auth::id())->get();
+
+
+            // Devolver la vista con los datos obtenidos
+            return view('perfil', compact('reservasPistas','reservasTorneo', 'reservasClases','reservasProductos'));
         }
     }
 

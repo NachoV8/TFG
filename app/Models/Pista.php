@@ -19,6 +19,11 @@ class Pista extends Model
         return $this->hasOne(Clase::class, 'id_pista');
     }
 
+    public function torneo()
+    {
+        return $this->belongsTo(Torneo::class, 'id_torneo');
+    }
+
     public function usuario()
     {
         return $this->belongsTo(User::class, 'id_usuario');

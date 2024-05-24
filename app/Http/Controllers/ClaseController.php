@@ -7,6 +7,7 @@ use App\Http\Requests\StoreClaseRequest;
 use App\Http\Requests\UpdateClaseRequest;
 use App\Models\Pista;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class ClaseController extends Controller
@@ -16,12 +17,21 @@ class ClaseController extends Controller
      */
     public function index()
     {
-        $clases = Clase::with('alumno')->with('profesor')->get();
+        $this->eliminarClasesAnteriores();
 
-        $clasesP1 = Clase::where('id_profesor', 8)->where('id_alumno', null)->get();
-        $clasesP2 = Clase::where('id_profesor', 2)->where('id_alumno', null)->get();
+        $clases = Clase::all();
+        // Obtener todos los profesores (usuarios con rol = 2)
+        $profesores = User::where('rol', 2)->get();
 
-        return view("clases.index", compact("clases", "clasesP1", "clasesP2"));
+        // Obtener las clases disponibles (donde id_alumno es null) de todos los profesores
+        $clasesDisponibles = Clase::whereIn('id_profesor', $profesores->pluck('id'))
+            ->where('id_alumno', null)
+            ->with('alumno', 'profesor')
+            ->orderBy('fecha')
+            ->orderBy('hora_inicio')
+            ->get();
+
+        return view("clases.index", compact("clases","clasesDisponibles"));
     }
 
     /**
@@ -30,7 +40,7 @@ class ClaseController extends Controller
     public function create()
     {
         // Obtener todas las pistas disponibles (estado = 0)
-        $pistasDisponibles = Pista::where('estado', 0)->get();
+        $pistasDisponibles = Pista::where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
 
         $profesores = User::where('rol', 2)->get();
 
@@ -95,21 +105,62 @@ class ClaseController extends Controller
      */
     public function update(UpdateClaseRequest $request, Clase $clase)
     {
-
-
         $validatedData = $request->validate([
             'id_profesor' => 'required|exists:users,id',
+            'id_alumno' => 'nullable|exists:users,email',
             'id_pista' => 'required|exists:pistas,id_pista',
-            'id_alumno' => 'nullable|exists:alumnos,id',
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric',
         ]);
 
+        // Guardar el id_pista anterior
+        $idPistaAnterior = $clase->id_pista;
 
-        $clase->update($validatedData);
+        // Actualizar la hora de inicio y la fecha si la pista ha cambiado
+        if ($idPistaAnterior != $validatedData['id_pista']) {
+            // Desocupar la pista anterior
+            $pistaAnterior = Pista::find($clase->id_pista);
+            $pistaAnterior->estado = 0;
+            $pistaAnterior->id_usuario = null;
+            $pistaAnterior->save();
+
+            // Ocupar la nueva pista con el profesor actual
+            $pistaNueva = Pista::find($validatedData['id_pista']);
+            $pistaNueva->estado = 1;
+            $pistaNueva->id_usuario = $validatedData['id_profesor'];
+            $pistaNueva->save();
+
+            // Actualizar la hora de inicio y la fecha de la clase con la nueva pista
+            $clase->hora_inicio = $pistaNueva->hora_inicio;
+            $clase->fecha = $pistaNueva->fecha;
+        }
+
+
+        if (!empty($validatedData['id_alumno'])) {
+            $alumno = User::where('email', $validatedData['id_alumno'])->first();
+            if ($alumno) {
+                $clase->id_alumno = $alumno->id;
+            } else {
+                // Si el correo electrónico del alumno no existe, mostrar un mensaje de error
+                return back()->withErrors(['id_alumno' => 'El correo electrónico proporcionado no existe']);
+            }
+        } else {
+            // Si el campo id_alumno está vacío, establecer el valor como null
+            $clase->id_alumno = null;
+        }
+
+        // Actualizar otros campos de la clase
+        $clase->id_profesor = $validatedData['id_profesor'];
+        $clase->id_pista = $validatedData['id_pista'];
+        $clase->descripcion = $validatedData['descripcion'];
+        $clase->precio = $validatedData['precio'];
+
+        // Guardar los cambios
+        $clase->save();
 
         return redirect()->route('clases');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -146,22 +197,72 @@ class ClaseController extends Controller
         }
     }
 
-    /*public function cancelarClase($id)
+    public function cancelarClase($id)
     {
         $clase = Clase::findOrFail($id);
         $clase->id_alumno = null;
         $clase->save();
 
-        $userId = Auth::id();
-
-        // Obtener las reservas del usuario logueado
-        // Obtener las sesiones de pistas reservadas por el usuario
-        $reservasPistas = Pista::where('id_usuario', $userId)->get();
-
-        // Obtener las clases reservadas por el usuario
-        $reservasClases = Clase::where('id_alumno', $userId)->get();
-
         // Devolver la vista con los datos obtenidos
-        return view('perfil', compact('reservasPistas', 'reservasClases'));
-    }*/
+        return redirect()->route('perfil');
+    }
+
+    public function mostrarClasesLibres()
+    {
+        // Obtener todos los profesores (usuarios con rol = 2)
+        $profesores = User::where('rol', 2)->get();
+
+        // Obtener las 3 clases disponibles (donde id_alumno es null) de todos los profesores,
+        // ordenadas por fecha y luego por hora_inicio
+        $clasesLibres = Clase::whereIn('id_profesor', $profesores->pluck('id'))
+            ->where('id_alumno', null)
+            ->orderBy('fecha')
+            ->orderBy('hora_inicio')
+            ->take(3)
+            ->with('alumno', 'profesor')
+            ->get();
+
+        // Pasar las clases libres a la vista
+        return view('index', compact('clasesLibres'));
+    }
+
+    public function eliminarClasesAnteriores()
+    {
+        // Obtener la fecha actual del sistema
+        $fechaActual = Carbon::now()->format('Y-m-d');
+        $horaActual = Carbon::now()->format('H:i');
+
+        // Inicializar un array para almacenar los IDs de las pistas asociadas a las clases que serán eliminadas
+        $pistasAEliminar = [];
+
+        // Obtener las clases con fecha anterior a la fecha actual y hora_inicio anterior a la hora actual
+        // Incluyendo tanto las clases con id_alumno no nulo como las clases sin alumno
+        $clases = Clase::where(function ($query) use ($fechaActual, $horaActual) {
+            $query->where('fecha', '<', $fechaActual)
+                ->orWhere(function ($query) use ($fechaActual, $horaActual) {
+                    $query->where('fecha', $fechaActual)
+                        ->where('hora_inicio', '<', $horaActual);
+                });
+        })
+            ->get();
+
+        // Procesar cada clase encontrada
+        foreach ($clases as $clase) {
+            // Si la clase tiene un alumno reservado
+            if (!is_null($clase->id_alumno)) {
+                // Pasar el id_alumno de la clase a null
+                $clase->id_alumno = null;
+                $clase->save();
+            }
+
+            // Guardar el ID de la pista asociada a la clase
+            $pistasAEliminar[] = $clase->id_pista;
+
+            // Eliminar la clase
+            $clase->delete();
+        }
+
+        // Eliminar las pistas asociadas a las clases eliminadas
+        Pista::whereIn('id_pista', $pistasAEliminar)->delete();
+    }
 }

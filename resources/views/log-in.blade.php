@@ -19,7 +19,7 @@
                 <h2>Inicio de Sesión</h2>
                 <form action="#" method="POST">
                     <label for="email">Correo Electrónico:</label><br>
-                    <input type="email" id="email" name="email" required><br><br>
+                    <input type="email" id="email" name="email" required>
 
                     <label for="password">Contraseña:</label><br>
                     <input type="password" id="password" name="password" required><br><br>

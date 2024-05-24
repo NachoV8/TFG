@@ -48,30 +48,21 @@
             <div class="info-I2">
                 <h2>Clases Disponibles</h2>
                 <div class="clasesI">
-                    <div class="clase-I1">
-                        <h3>Andreu</h3>
-                        <p>Llega uno de nuestros mejores jugadores a enseñarte sus mejores tácticas para ganar todos los puntos!</p>
-                        <p>Martes: 17:30 y Jueves: 19:00</p>
-                        <div class="boton">
-                            <a href="/clases"><button class="button-clases">Disponibilidad</button></a>
+                    @foreach($clasesLibres as $clase)
+                        <div class="clase-I1">
+                            <h2>{{ $clase->profesor->name }}</h2>
+                            <p>{{ $clase->descripcion }}</p>
+                            <div class="info-clase">
+                                <p>{{ $clase->precio }}€</p>
+                                <p>{{ $clase->fecha }}</p>
+                                <p>{{ $clase->hora_inicio }}</p>
+                            </div>
+                            <form action="{{ route('reservar.clase', $clase->id_clase) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="button-clases">Reservar</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="clase-I1">
-                        <h3>Jorge</h3>
-                        <p>Desde Zaragoza viene a dar sus mejores lecciones el campeón de Aragón 2023!</p>
-                        <p>Miércoles: 17:30 y Viernes: 20:30</p>
-                        <div class="boton">
-                            <a href="/clases"><button class="button-clases">Disponibilidad</button></a>
-                        </div>
-                    </div>
-                    <div class="clase-I1">
-                        <h3>Andreu</h3>
-                        <p>Llega uno de nuestros mejores jugadores a enseñarte sus mejores tácticas para ganar todos los puntos!</p>
-                        <p>Lunes: 16:00 y Miércoles: 19:00</p>
-                        <div class="boton">
-                            <a href="/clases"><button class="button-clases">Disponibilidad</button></a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

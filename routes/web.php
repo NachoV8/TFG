@@ -15,9 +15,7 @@ use \App\Mail\ContactosMail;
 use \App\Http\Controllers\ContactanosController;
 
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [ClaseController::class, 'mostrarClasesLibres'])->name("index");
 
 Route::get('/sobre-nosotros', function () {
     return view('sobre-nosotros');
@@ -65,18 +63,18 @@ Route::post('clases/{id_clase}', [ClaseController::class, 'reservarClase'])->nam
 
 Route::post('pistas/reservar/{id_pista}', [PistaController::class, 'reservarPista'])->name('pistas.reservar');
 
-/*Route::get('/pistas', function () {
-    $controller = app()->make(PistaController::class);
-    $controller->generarPista1Automatico();
-    $controller->generarPista2Automaticas();
-    $controller->eliminarPistasAnteriores();
-})->name('pistas.automaticas');*/
+Route::post('torneos/reservar/{id_torneo}', [TorneoController::class, 'reservarTorneo'])->name('torneos.reservar');
+
+
 
 Route::get('/pistas', [PistaController::class, 'index'])->name('pistas');
 
 Route::get('/clases', [ClaseController::class, 'index'])->name('clases');
 
 Route::get('/productos', [ProductoController::class, 'index'])->name('productos');
+
+Route::get('/torneos', [TorneoController::class, 'index'])->name('torneos');
+
 
 
 
@@ -89,7 +87,7 @@ Route::get('/perfil', [ProfileController::class, 'index'])
 
 Route::patch('/perfil/{id}', [ProfileController::class, 'cancelar'])->name('perfil.cancelar');
 
-
+Route::delete('productos/reserva/cancelar/{reserva}', [ReservaController::class, 'cancelarReservaProducto'])->name('reserva.producto.cancelar');
 
 
 

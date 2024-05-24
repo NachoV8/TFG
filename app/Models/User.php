@@ -36,6 +36,13 @@ class User extends Authenticatable
     ];
 
 
+    public static $rules = [
+        'name' => 'required|unique:users',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|min:8',
+    ];
+
+
     public function pistas()
     {
         return $this->hasMany(Pista::class);

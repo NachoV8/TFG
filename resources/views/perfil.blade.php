@@ -121,6 +121,28 @@
             <div class="infoP-2">
                 <div class="info-torneos">
                     <h3>TUS TORNEOS</h3>
+                    <table>
+                        <tr>
+                            <th>Torneo</th>
+                            <th>Fecha</th>
+                            <th>Hora inicio</th>
+                            <!-- Otros encabezados de la tabla según tus campos de pista -->
+                        </tr>
+                        @foreach ($reservasTorneo as $inscripcion)
+                            <tr>
+                                <td>{{ $inscripcion->torneo->nombre }}</td>
+                                <td>{{ $inscripcion->torneo->fecha }}</td>
+                                <td>{{ $inscripcion->torneo->hora_inicio }}</td>
+                                <td>
+                                    <form action="{{ route('perfil.cancelar', $inscripcion->id_torneo) }}" method="POST" class="cancelar-form">
+                                        @csrf
+                                        @method("PATCH")
+                                        <button type="button" class="cancelar-btn">Cancelar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
                 </div>
                 <div class="info-clases">
                     <h3>TUS CLASES</h3>
@@ -165,15 +187,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($reservasClases as $clase)
+                        @foreach ($reservasProductos as $productoReservado)
                             <tr>
-                                <td>{{ $clase->id_profesor }}</td>
-                                <td>{{ $clase->fecha }}</td>
-                                <td>{{ $clase->hora_inicio }}</td>
+                                <td>{{ $productoReservado->producto->nombre }}</td>
+                                <td>{{ $productoReservado->cantidad }}</td>
+                                <td>{{ $productoReservado->cantidad * $productoReservado->producto->precio }}</td>
                                 <td>
-                                    <form action="{{ route('perfil.cancelar', $clase->id_clase) }}" method="POST" class="cancelar-form">
+                                    <form action="{{ route('reserva.producto.cancelar', $productoReservado->id_reserva) }}" method="POST" class="cancelar-form">
                                         @csrf
-                                        @method("PATCH")
+                                        @method("DELETE")
                                         <button type="button" class="cancelar-btn">Cancelar</button>
                                     </form>
                                 </td>

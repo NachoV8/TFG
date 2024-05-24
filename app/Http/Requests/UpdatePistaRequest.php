@@ -27,7 +27,6 @@ class UpdatePistaRequest extends FormRequest
             'fecha' => 'required|date_format:Y-m-d',
             'hora_inicio' => 'required',
             'hora_fin' => 'required',
-            'id_usuario' => 'numeric'
         ];
     }
 }

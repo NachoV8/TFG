@@ -7,7 +7,9 @@ use App\Models\Pista;
 use App\Http\Requests\StorePistaRequest;
 use App\Http\Requests\UpdatePistaRequest;
 use App\Models\Torneo;
+use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -100,12 +102,35 @@ class PistaController extends Controller
      */
     public function update(UpdatePistaRequest $request, Pista $pista)
     {
-        //dd($request->input());
+        try {
+            // Verificar si el campo id_usuario está vacío
+            if (empty($request->input('id_usuario'))) {
+                // Si está vacío, establecer el valor de id_usuario como null
+                $pista->id_usuario = null;
+            } else {
+                // Obtener el ID del usuario asociado al correo electrónico proporcionado en el formulario
+                $usuario = User::where('email', $request->input('id_usuario'))->firstOrFail();
+                // Actualizar el id_usuario de la pista con el ID del usuario obtenido
+                $pista->id_usuario = $usuario->id;
+            }
 
-        $pista->update($request->input());//se ejecuta el update
+            // Actualizar otros campos de la pista
+            $pista->update([
+                'estado' => $request->input('estado'),
+                'pista' => $request->input('pista'),
+                'fecha' => $request->input('fecha'),
+                'hora_inicio' => $request->input('hora_inicio'),
+                'hora_fin' => $request->input('hora_fin'),
+            ]);
 
-        return redirect()->route('pistas');
+            return redirect()->route('pistas');
+
+        } catch (ModelNotFoundException $exception) {
+            // Si el correo electrónico proporcionado no existe, mostrar un mensaje de error
+            return back()->withErrors(['id_usuario' => 'El correo electrónico proporcionado no existe']);
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -258,19 +283,39 @@ class PistaController extends Controller
 
         // Obtener las pistas con estado igual a 0, fecha anterior a la fecha actual y hora_inicio anterior a la hora actual
         $pistas = Pista::where('estado', '0')
-            ->where('fecha', '<', $fechaActual)
-            ->orWhere(function ($query) use ($fechaActual, $horaActual) {
-                $query->where('fecha', $fechaActual)
-                    ->where('hora_inicio', '<', $horaActual);
+            ->where(function ($query) use ($fechaActual, $horaActual) {
+                $query->where('fecha', '<', $fechaActual)
+                    ->orWhere(function ($query) use ($fechaActual, $horaActual) {
+                        $query->where('fecha', $fechaActual)
+                            ->where('hora_inicio', '<', $horaActual);
+                    });
             })
-            ->whereNull('id_usuario')
             ->get();
 
-        // Eliminar las pistas encontradas
+        // Procesar cada pista encontrada
         foreach ($pistas as $pista) {
+            // Si la pista está reservada por un usuario
+            if (!is_null($pista->id_usuario)) {
+                // Obtener el usuario
+                $usuario = User::find($pista->id_usuario);
+
+                if ($usuario) {
+                    // Incrementar el número de partidos
+                    $usuario->num_partidos += 1;
+                    $usuario->save();
+                }
+
+                // Cambiar el estado de la pista a 0 y el id_usuario a null
+                $pista->estado = 0;
+                $pista->id_usuario = null;
+                $pista->save();
+            }
+
+            // Eliminar las clases asociadas a la pista
+            Clase::where('id_pista', $pista->id_pista)->delete();
+
+            // Finalmente, eliminar la pista
             $pista->delete();
         }
     }
-
-
 }

@@ -19,8 +19,8 @@
                 <h2>Registro</h2>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <label for="username">Nombre de Usuario:</label><br>
-                    <input type="text" id="username" name="username" required><br><br>
+                    <label for="name">Nombre de Usuario:</label><br>
+                    <input type="text" id="name" name="name" required><br><br>
 
                     <label for="email">Correo Electrónico:</label><br>
                     <input type="email" id="email" name="email" required><br><br>

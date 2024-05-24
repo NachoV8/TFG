@@ -17,6 +17,8 @@ class Clase extends Model
         'id_alumno',
         'descripcion',
         'precio',
+        'fecha',
+        'hora_inicio'
     ];
 
     public $timestamps = false;
@@ -36,9 +38,5 @@ class Clase extends Model
         return $this->belongsTo(User::class, 'id_profesor');
     }
 
-    public function num_pista()
-    {
-        return $this->belongsTo(Pista::class, 'id_pista');
-    }
 
 }

@@ -11,12 +11,21 @@
     src: url('/font/RegencieLight.ttf');
 }
 
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('/font/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: 'MontserratRegular';
+    src: url('/font/Montserrat-Regular.ttf');
+}
+
 /* ------------------------------------------------------------ */
 
 
 /* Uso de la fuente en toda la página */
 *{
-    font-family:'RegencieLight';
+    font-family:'MontserratRegular';
 }
 
 

@@ -5,6 +5,7 @@
     flex-direction: column; /* Coloca los elementos uno debajo del otro */
     justify-content: center; /* Centra verticalmente los elementos */
     align-items: center; /* Centra horizontalmente los elementos */
+    background-color: rgb(37,40,42);
 }
 
 .logo{
@@ -27,6 +28,8 @@
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
     margin-top: 5%;
     margin-bottom: 10%;
+    border-radius: 15px;
+    background-color: #30353C;
 
 }
 
@@ -34,6 +37,8 @@ h2{
     width: 100%;
     text-align: center;
     margin-top: 3%;
+    font-family: 'montserratbold';
+    color: white;
 }
 
 form{
@@ -43,8 +48,39 @@ form{
     margin-bottom: 10%;
 }
 
+label {
+    color: white;
+}
+
 input{
     width: 100%;
+}
+
+@font-face {
+    font-family: 'Altone Trial-Regular';
+    src: url('/font/Altone Trial-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RegencieLight';
+    src: url('/font/RegencieLight.ttf');
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('/font/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: 'MontserratRegular';
+    src: url('/font/Montserrat-Regular.ttf');
+}
+
+/* ------------------------------------------------------------ */
+
+
+/* Uso de la fuente en toda la página */
+*{
+    font-family:'MontserratRegular';
 }
 
 .botones {
@@ -55,22 +91,35 @@ input{
 .cancelar {
     height: 50px;
     align-self: flex-start; /* Coloca este botón en la esquina superior izquierda */
-    background-color: rgba(255, 0, 0, 0.572);
+    background-color: rgb(37, 40, 42);
+    font-family: 'montserratbold';
+    border-radius: 10px;
+    color: white;
+
 }
 
 .enviar {
     height: 50px;
     align-self: flex-end; /* Coloca este botón en la esquina inferior derecha */
-    background-color: rgba(0, 128, 0, 0.457);
+    background-color: #2a86ff;
+    font-family: 'montserratbold';
+    border-radius: 10px;
+    color: white;
+
+
+
 }
 
 
 .registrarse{
     width: 98%;
     margin-left: 2%;
+    color: white;
 }
 
 .registrarse a{
     text-decoration: none;
+    color: white;
+    font-family: 'montserratbold';
 }
 

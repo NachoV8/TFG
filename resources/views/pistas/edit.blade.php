@@ -13,7 +13,10 @@
 
 
                 <label for="estado">Estado</label>
-                <input type="number" name="estado" value="{{$pista->estado}}"/>
+                <select name="estado" id="estado">
+                    <option value="0" {{ $pista->estado == 0 ? 'selected' : '' }}>Libre</option>
+                    <option value="1" {{ $pista->estado == 1 ? 'selected' : '' }}>Ocupado</option>
+                </select>
                 <x-input-error class="mt-2" :messages="$errors->get('estado')"/><br>
 
                 <label for="pista">Pista</label>
@@ -33,6 +36,13 @@
                 <label for="hora_fin">Hora Fin</label>
                 <input type="time" name="hora_fin" value="{{$pista->hora_fin}}"/>
                 <x-input-error class="mt-2" :messages="$errors->get('hora_fin')"/><br>
+
+                <label for="id_usuario">Usuario</label>
+                <input type="email" name="id_usuario" value="{{ $pista->usuario->email ?? '' }}"/>
+                <x-input-error class="mt-2" :messages="$errors->get('id_usuario')"/><br>
+                @error('id_usuario')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
 
                 <button>Actualizar</button>

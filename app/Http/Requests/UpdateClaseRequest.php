@@ -24,7 +24,7 @@ class UpdateClaseRequest extends FormRequest
         return [
             'id_profesor' => 'required|exists:users,id',
             'id_pista' => 'required|exists:pistas,id_pista',
-            'id_alumno' => 'nullable|exists:alumnos,id', // Suponiendo que existe una tabla de alumnos
+            //'id_alumno' => 'nullable|exists:users,email',
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric',
         ];

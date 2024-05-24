@@ -207,6 +207,7 @@
 
 .formulario-editar-clase select,
 .formulario-editar-clase input[type="number"],
+.formulario-editar-clase input[type="email"],
 .formulario-editar-clase input[type="text"] {
     width: 100%;
     padding: 10px;

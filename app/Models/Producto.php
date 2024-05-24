@@ -12,4 +12,9 @@ class Producto extends Model
     protected $primaryKey = 'id_producto'; // Si el nombre de la clave primaria es diferente de 'id', especifícalo aquí
     protected $fillable=['nombre','precio','cantidad','tipo']; // Sirve para mandar un array para no ir campo a campo
     public $timestamps = false;
+
+    public function reservas()
+    {
+        return $this->hasMany(Reserva::class, 'id_producto', 'id_producto');
+    }
 }

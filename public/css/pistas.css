@@ -155,6 +155,7 @@
 .formulario-editar-pistas input[type="text"],
 .formulario-editar-pistas input[type="number"],
 .formulario-editar-pistas input[type="date"],
+.formulario-editar-pistas select,
 .formulario-editar-pistas input[type="time"] {
     width: 100%;
     padding: 10px;

@@ -94,17 +94,5 @@ class ProductoController extends Controller
 
     }
 
-    /*public function filtrar(Request $request)
-    {
-        // Obtener los tipos seleccionados del formulario
-        $tiposSeleccionados = $request->input('producto');
-
-        // Filtrar los productos según los tipos seleccionados
-        $productosFiltrados = Producto::whereIn('tipo', $tiposSeleccionados)->get();
-
-        // Pasar los productos filtrados a la vista
-        return view('productos.index', compact('productosFiltrados'));
-    }*/
-
 
 }

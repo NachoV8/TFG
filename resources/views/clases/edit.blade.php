@@ -9,7 +9,7 @@
                 @csrf
                 @method("PATCH")
 
-                <label for="id_profesor">Id Profesor</label>
+                <label for="id_profesor">Profesor</label>
                 <select name="id_profesor" id="id_profesor">
                     @foreach($profesores as $profesor)
                         <option value="{{ $profesor->id }}" {{ $clase->id_profesor == $profesor->id ? 'selected' : '' }}>
@@ -30,7 +30,7 @@
                 <x-input-error class="mt-2" :messages="$errors->get('id_pista')"/><br>
 
                 <label for="id_alumno">Alumno</label>
-                <input type="number" name="id_alumno" value="{{ $clase->id_alumno }}" placeholder="Si no tiene ningun alumno se deja vacio"/>
+                <input type="email" name="id_alumno" value="{{ $clase->usuario->email ?? '' }}" placeholder="Si no tiene ningun alumno se deja vacio"/>
                 <x-input-error class="mt-2" :messages="$errors->get('id_alumno')"/><br>
 
                 <label for="descripcion">Descripción:</label>

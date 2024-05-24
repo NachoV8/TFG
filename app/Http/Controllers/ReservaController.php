@@ -41,4 +41,22 @@ class ReservaController extends Controller
             return redirect()->route('login');
         }
     }
+
+    public function cancelarReservaProducto(Reserva $reserva)
+    {
+        // Verificar si el usuario autenticado es el propietario de la reserva
+        if ($reserva->id_usuario !== Auth::id()) {
+            return redirect()->route('productos');
+        }
+
+        // Incrementar la cantidad del producto
+        $producto = $reserva->producto;
+        $producto->cantidad += $reserva->cantidad;
+        $producto->save();
+
+        // Eliminar la reserva
+        $reserva->delete();
+
+        return redirect()->route('perfil');
+    }
 }

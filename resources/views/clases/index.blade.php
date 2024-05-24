@@ -12,7 +12,6 @@
 
             <table>
                 <tr>
-                    <th>Id_clase</th>
                     <th>Profesor</th>
                     <th>Pista</th>
                     <th>Descripcion</th>
@@ -24,9 +23,8 @@
                 </tr>
                 @foreach ($clases as $clase)
                     <tr>
-                        <td>{{ $clase->id_clase }}</td>
                         <td>{{ $clase->profesor->name }}</td>
-                        <td>{{ $clase->num_pista->pista }}</td>
+                        <td>{{ $clase->pista->pista }}</td>
                         <td>{{ $clase->descripcion }}</td>
                         <td>{{ $clase->precio }} €</td>
                         <td>{{ $clase->hora_inicio }}</td>
@@ -55,7 +53,7 @@
     <div class="usuario-clases">
         <h2>Clases Disponibles</h2>
         <div class="clases">
-            @foreach($clasesP1->chunk(3) as $chunk)
+            @foreach($clasesDisponibles->chunk(3) as $chunk)
                 <div class="clasesF">
                     @foreach($chunk as $clase)
                         <div class="clase">

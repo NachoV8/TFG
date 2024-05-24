@@ -1,44 +1,54 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Torneo</title>
-</head>
-<body>
+@extends("layouts.layout")
+
+@section("contenido")
+
 <h1>Crear Torneo</h1>
 
 <form action="{{ route('torneos.store') }}" method="POST">
     @csrf
 
-    <label for="nombre">Nombre:</label><br>
-    <input type="text" name="nombre"><br>
+    <!-- Nombre del torneo -->
+    <div>
+        <label for="nombre">Nombre del Torneo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    </div>
 
-    <label for="descripcion">Descripción:</label><br>
-    <input type="text"  name="descripcion"><br>
+    <!-- Descripción del torneo -->
+    <div>
+        <label for="descripcion">Descripción del Torneo:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+    </div>
 
-    <label for="premios">Premios:</label><br>
-    <input type="text" name="premios"><br>
+    <!-- Premios -->
+    <div>
+        <label for="premios">Premios</label>
+        <input type="text" id="premios" name="premios" required>
+    </div>
 
-    <label for="precio">Precio:</label><br>
-    <input type="number" name="precio"><br>
+    <!-- Precio de inscripción -->
+    <div>
+        <label for="precio">Precio de Inscripción:</label>
+        <input type="number" id="precio" name="precio" required>
+    </div>
 
-    <label for="cant_max">Cantidad Máxima de Jugadores:</label><br>
-    <input type="number" name="cant_max"><br>
+    <!-- Cantidad Máxima de Jugadores -->
+    <div>
+        <label for="cant_max">Cantidad Máxima de Jugadores:</label>
+        <input type="number" id="cant_max" name="cant_max" required>
+    </div>
 
-    <label for="hora_inicio">Fecha de Inicio:</label><br>
-    <input type="time"  name="hora_inicio"><br>
+    <!-- Selección de pistas -->
+    <div>
+        <label for="pistas">Selecciona las pistas para el torneo:</label>
+        <select name="pistas[]" id="pistas" multiple required>
+            @foreach($pistasLibres as $pista)
+                <option value="{{ $pista->id_pista }}">{{ $pista->pista }} - {{ $pista->fecha }} - {{ $pista->hora_inicio }}</option>
+            @endforeach
+        </select>
+    </div>
 
-    <label for="hora_fin">Fecha de Fin:</label><br>
-    <input type="time" name="hora_fin"><br>
-
-    <label for="pista">Pista:</label><br>
-    <input type="number" name="pista"><br>
-
-
-    <button type="submit">Crear</button>
-
+    <button type="submit">Crear Torneo</button>
 </form>
 
-</body>
-</html>
+
+@endsection

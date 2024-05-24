@@ -23,15 +23,14 @@
         <label for="cant_max">Cantidad Máxima de Jugadores:</label><br>
         <input type="number" id="cant_max" name="cant_max" value="{{ $torneo->cant_max }}"><br>
 
-        <label for="hora_inicio">Fecha de Inicio:</label><br>
-        <input type="time" id="hora_inicio" name="hora_inicio" value="{{ $torneo->hora_inicio }}"><br>
-
-        <label for="hora_fin">Fecha de Fin:</label><br>
-        <input type="time" id="hora_fin" name="hora_fin" value="{{ $torneo->hora_fin }}"><br>
-
-        <label for="pista">Pista:</label><br>
-        <input type="text" id="pista" name="pista" value="{{ $torneo->id_pista }}"><br>
-
+        <label for="pistas">Pistas:</label><br>
+        <select id="pistas" name="pistas[]" multiple>
+            @foreach( $pistasDisponibles as $pistaDisponible)
+                <option value="{{ $pistaDisponible->id_pista }}" {{ $torneo->id_pista == $pistaDisponible->id_pista ? 'selected' : '' }}>
+                    {{ $pistaDisponible->pista }} - {{ $pistaDisponible->fecha }} - {{ $pistaDisponible->hora_inicio }}
+                </option>
+            @endforeach
+        </select>
 
         <button type="submit">Actualizar</button>
 
