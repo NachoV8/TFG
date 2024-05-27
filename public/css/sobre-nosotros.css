@@ -1,21 +1,31 @@
+body{
+    margin: 0;
+    font-family: "Montserrat";
+}
+
 .todo{
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-top: 2%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
+    background-position: center; /* Centra la imagen de fondo */
 }
 
 .info-1{
     margin: 2%;
     width: 54%;
     margin-bottom: 4%;
+    background-color: white;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
 }
 
-.info-1 h2{
+.info-1 h2, .info-2 h2, .info-e h2{
     margin-top: 2%;
     text-align: center;
+    color: black;
+    font-family: montserratbold;
 }
 
 .info-1 h4{
@@ -50,6 +60,7 @@
 .info-d{
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
 }
 
 .info-2 h2{
@@ -78,21 +89,34 @@
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
     margin-bottom: 10%;
+    background-color: white;
 }
 
 .info-e label{
     margin-left: 2%;
+    font-weight: bolder;
 }
 
 .info-e input, .info-e textarea {
     width: 90%;
-    margin-top: 2%;
     margin-left: 2%;
 }
 
 .botonE{
-    width: 10%;
-    margin-bottom: 3%;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-bottom: 2%;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-weight: bolder;
+}
+
+.botonE:hover{
+    transform: translateY(-4px);
+    background-color: black;
 }
 
 

@@ -32,7 +32,8 @@ class ProfileController extends Controller
 
             return view('perfil', compact('profesores','usuarios'));
 
-        }else
+        }
+        else
         {
             $this->actualizarReservasPasadas();
 
@@ -41,7 +42,6 @@ class ProfileController extends Controller
 
             $reservasTorneo = Inscripcion::where('id_usuario', Auth::id())->get();
 
-            // Obtener las clases reservadas por el usuario
             $reservasClases = Clase::where('id_alumno', Auth::id())->get();
 
             $reservasProductos = Reserva::where('id_usuario', Auth::id())->get();
@@ -54,11 +54,15 @@ class ProfileController extends Controller
 
 
 
-    public function edit(Request $request): View
+    public function edit(Request $request)
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            return view('profile.edit', [
+                'user' => $request->user(),
+            ]);
+        }
     }
 
     /**

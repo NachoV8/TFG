@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Http\Requests\StoreProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
+use App\Models\Reserva;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductoController extends Controller
@@ -18,7 +20,9 @@ class ProductoController extends Controller
 
         $productosAll = Producto::all();
 
-        return view("productos.index", compact("productos", "productosAll"));
+        $reservas = Reserva::all();
+
+        return view("productos.index", compact("productos", "productosAll","reservas"));
     }
 
     /**
@@ -26,15 +30,19 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        $tiposProductos = [
-            'pala' => 'palas',
-            'pelota' => 'pelotas',
-            'grip' => 'grips',
-            'cinta' => 'cintas',
-            'mochila' => 'mochilas',
-        ];
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            $tiposProductos = [
+                'pala' => 'palas',
+                'pelota' => 'pelotas',
+                'grip' => 'grips',
+                'cinta' => 'cintas',
+                'mochila' => 'mochilas',
+            ];
 
-        return view('productos.create', compact('tiposProductos'));
+            return view('productos.create', compact('tiposProductos'));
+        }
     }
 
     /**
@@ -54,15 +62,19 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        $tiposProductos = [
-            'pala' => 'palas',
-            'pelota' => 'pelotas',
-            'grip' => 'grips',
-            'cinta' => 'cintas',
-            'mochila' => 'mochilas',
-        ];
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            $tiposProductos = [
+                'pala' => 'palas',
+                'pelota' => 'pelotas',
+                'grip' => 'grips',
+                'cinta' => 'cintas',
+                'mochila' => 'mochilas',
+            ];
 
-        return view("productos.edit", compact("producto", 'tiposProductos'));
+            return view("productos.edit", compact("producto", 'tiposProductos'));
+        }
     }
 
     /**

@@ -42,7 +42,6 @@
                                 </form>
                             </div>
                         </td>
-
                     </tr>
                 @endforeach
             </table>
@@ -54,55 +53,42 @@
         <div class="pistas">
             <div class="pista">
                 <h2>PISTA 1</h2>
+                @foreach($pistasPista1->chunk(4) as $chunk)
                 <div class="horasP">
-                    <table class="tabla-pista">
-                        <tr>
-                            <th>Estado</th>
-                            <th>Pista</th>
-                            <th>Fecha</th>
-                        </tr>
-                        @foreach($pistasPista1 as $pista)
-                            <tr>
-                                <td>{{$pista->fecha}}</td>
-                                <td>{{$pista->hora_inicio}}</td>
-                                <td>{{$pista->hora_fin}}</td>
-                                <td>
-                                    <form action="{{route("pistas.reservar", $pista->id_pista)}}" method="POST">
-                                        @csrf
-                                        <button class="reservarP" type="submit">Reservar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
+                    @foreach($chunk as $pista)
+                        <form action="{{route("pistas.reservar", $pista->id_pista)}}" method="POST">
+                            @csrf
+                            <button class="reservarP" type="submit">
+                                <div class="info-pista">
+                                    <p>{{ $pista->fecha }}</p>
+                                    <p>{{ $pista->hora_inicio }}</p>
+                                </div>
+                            </button>
+                        </form>
+                    @endforeach
                 </div>
+                @endforeach
             </div>
             <div class="pista">
                 <h2>PISTA 2</h2>
+                @foreach($pistasPista2->chunk(4) as $chunk)
                 <div class="horasP">
-                    <table class="tabla-pista">
-                        <tr>
-                            <th>Estado</th>
-                            <th>Pista</th>
-                            <th>Fecha</th>
-                        </tr>
-                        @foreach($pistasPista2 as $pista)
-                            <tr>
-                                <td>{{$pista->fecha}}</td>
-                                <td>{{$pista->hora_inicio}}</td>
-                                <td>{{$pista->hora_fin}}</td>
-                                <td>
-                                    <form action="{{route("pistas.reservar", $pista->id_pista)}}" method="POST">
-                                        @csrf
-                                        <button class="reservarP" type="submit">Reservar</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
+                    @foreach($chunk as $pista)
+                        <form action="{{route("pistas.reservar", $pista->id_pista)}}" method="POST">
+                            @csrf
+                            <button class="reservarP" type="submit">
+                                <div class="info-pista">
+                                    <p>{{ $pista->fecha }}</p>
+                                    <p>{{ $pista->hora_inicio }}</p>
+                                </div>
+                            </button>
+                        </form>
+                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
+
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -112,17 +98,21 @@
                     icon: "success",
                     title: "¡Sesión reservada correctamente!",
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
+                });
+
+                @elseif(session('errorLimite'))
+                Swal.fire({
+                    icon: "warning",
+                    title: "¡Has alcanzado el limite de reservas para ese día!",
+                    showConfirmButton: false,
+                    timer: 3000
                 });
                 @endif
             });
 
         </script>
 
-
     @endif
-
-
-
-
 @endsection
+

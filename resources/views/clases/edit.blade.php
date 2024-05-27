@@ -1,7 +1,6 @@
 @extends("layouts.layout")
 
 @section("contenido")
-
     <div>
         <h3>Modificar Clase</h3>
         <div class="formulario-editar-clase">
@@ -29,7 +28,7 @@
                 </select>
                 <x-input-error class="mt-2" :messages="$errors->get('id_pista')"/><br>
 
-                <label for="id_alumno">Alumno</label>
+                <label for="id_alumno">Correo Alumno</label>
                 <input type="email" name="id_alumno" value="{{ $clase->usuario->email ?? '' }}" placeholder="Si no tiene ningun alumno se deja vacio"/>
                 <x-input-error class="mt-2" :messages="$errors->get('id_alumno')"/><br>
 
@@ -41,8 +40,15 @@
                 <input type="number" name="precio" value="{{ $clase->precio }}"/>
                 <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
 
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                 <button>Actualizar</button>
             </form>
         </div>
     </div>
+
 @endsection

@@ -1,23 +1,31 @@
 .cuerpo {
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding-top: 2%;
-    /*background-color: rgba(0, 196, 255, 0.42);*/
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
+    background-position: center; /* Centra la imagen de fondo */
 }
 
-h2 {
+h1{
+    font-family: "montserratbold";
+    color: white;
 }
 
+/* Torneoa */
 .info-I1 {
     display: flex;
     flex-direction: row;
     height: 45%;
+    width: 100%;
     margin-top: 0;
 }
 
-.info-Ia, .info-Ib {
-    width: 85%;
+.info-Ia {
+    width: 50%;
     margin: 2%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
@@ -25,10 +33,13 @@ h2 {
     padding: 1%;
 }
 
-.info-Ia h2, .info-Ib h2 {
-    margin: 2%;
+.info-Ia h3{
     font-weight: bolder;
-    text-align: left;
+    width: 100%;
+    text-align: center;
+    font-family: "montserratbold";
+    font-size: 25px;
+    margin-top: 0;
 }
 
 .info-Ia .texto {
@@ -37,12 +48,23 @@ h2 {
     align-items: flex-start; /* Alinea los elementos al inicio */
 }
 
-.info-Ia .left, .info-Ia .right {
-    width: 47%; /* Ajusta el ancho de cada columna */
+.info-Ia .left {
+    width: 70%; /* Ajusta el ancho de cada columna */
+}
+
+.info-Ia .right {
+    width: 30%; /* Ajusta el ancho de cada columna */
 }
 
 .info-Ia .left {
     text-align: left;
+}
+
+.info-Ia .left .inscritos{
+    width: 50%;
+    padding: 1%;
+    background-color: rgba(0, 128, 0, 0.49);
+    font-weight: bolder;
 }
 
 .info-Ia .right {
@@ -57,27 +79,27 @@ h2 {
     font-weight: bold;
 }
 
-.info-Ia .right .second {
-    margin-bottom: 10px; /* Ajusta este valor para la altura del pódium */
-}
-
-.info-Ia .right .third {
-    margin-bottom: 0; /* Último elemento no necesita margen */
-}
-
 .info-Ia p, .info-Ib p {
     margin-left: 2%;
     margin-bottom: 1%;
 }
 
-.info-Ia .boton {
-    text-align: left;
-    margin-left: 2%;
+.info-Ia .inscripciones{
+    width: 30%;
+    font-weight: bold;
+    background-color: rgba(0, 128, 0, 0.41);
+    padding: 1%;
+    margin-bottom: 1.5%;
 }
+
+
 
 /* Boton Torneo */
 
 .button-torneo {
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
     font-size: 16px;
     letter-spacing: 1px;
     outline: 0;
@@ -114,7 +136,10 @@ h2 {
     }
 }
 
-/* Botón Clases */
+
+
+
+/* Clases */
 
 .button-clases{
     font-size: 16px;
@@ -162,7 +187,6 @@ h2 {
     }
 }
 
-/* ------------------------------------------------- */
 
 .info-I2 {
     display: flex;
@@ -170,16 +194,15 @@ h2 {
     width: 94%;
     height: auto; /* Ajustar automáticamente al contenido */
     margin-top: 2%;
-    margin-left: 2%;
     margin-bottom: 4%;
-    border: black solid 2px;
-    box-shadow: 5px 8px 15px rgb(42, 42, 42);
-    background-color: white;
+    //box-shadow: 8px 8px 15px rgb(250, 250, 255);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     padding: 1%;
 }
 
 .info-I2 h2 {
-    margin-left: 2%;
+    color: white;
+    font-size: 30px;
 }
 
 .clasesI {
@@ -189,7 +212,7 @@ h2 {
     height: auto;
 }
 
-.clase-I1, .clase-I2, .clase-I3 {
+.clase-I1 {
     width: 32%; /* Ajuste para asegurar que caben dentro del contenedor padre */
     margin: 1%; /* Espaciado entre los contenedores */
     border: black solid 2px;
@@ -198,18 +221,30 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2%;
+    padding: 1%;
 }
 
-.clase-I1 h4, .clase-I2 h4, .clase-I3 h4 {
-    margin: 2%;
+.clase-I1 h3 {
+    text-align: center;
+    font-family: "montserratbold";
+    font-size: 22px;
+    margin-top: 0;
 }
 
-.clase-I1 p, .clase-I2 p, .clase-I3 p {
-    padding: 2%;
+.clase-I1 .info-clase{
+    width: 100%;
+    margin: 0;
 }
 
-.clase-I1 .boton, .clase-I2 .boton, .clase-I3 .boton {
+
+
+.clase-I1 .info-clase p{
+    margin-left: 0;
+    margin-bottom: 4%;
+    width: 33%;
+    text-align: center;
+}
+.clase-I1 .boton {
     text-align: center; /* Centrar el botón */
     margin: 0; /* Eliminar márgenes superiores e inferiores */
 }

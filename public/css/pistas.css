@@ -1,41 +1,65 @@
-.pistas{
+body{
+    margin: 0;
+}
+
+.pistas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
+    background-position: center; /* Centra la imagen de fondo */
+}
+
+.pista {
+    width: 49%; /* 25% del ancho del contenedor principal y resta el espacio del margen */
+    margin-top: 2%;
+    margin-bottom: 3%; /* Espacio entre las filas */
+    text-align: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+}
+
+h2{
+    color: white;
+    font-weight: bolder;
+}
+
+.horasP {
     width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
-.pista{
-    width: 50%;
-    text-align: center;
-    border-left: black solid 2px;
-}
-
-.reservarP{
-    background-color: rgba(255, 255, 0, 0.66);
-    color: black;
-}
-
-.tabla-pista {
-    width: 90%;
-    /*border-collapse: collapse;*/
-}
-
-
-
-.tabla-pista button.reservarP {
-    background-color: white;
-    color: black;
-    border: none;
+.reservarP {
+    background-color: rgba(255, 255, 255, 0.84);
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
+    width: 90%; /* El botón ocupa el 80% del ancho del contenedor de horas*/
 }
 
-.tabla-pista button.reservarP:hover {
-    background-color: #45a049;
+.reservarP:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
 }
 
+.horasP > form{
+    width: 24%;
+    margin-bottom: 1%;
+}
+
+.reservarP:hover {
+    transform: translateY(-4px);
+    transition: 200ms;
+    background-color: rgba(0, 111, 255, 0.38);
+    color: white;
+}
+
+.info-pista p {
+    margin: 5px 0; /* Margen entre los elementos de información de la pista */
+}
 
 
 /* Tabla administrador */
@@ -154,7 +178,9 @@
 
 .formulario-editar-pistas input[type="text"],
 .formulario-editar-pistas input[type="number"],
+.formulario-editar-pistas input[type="email"],
 .formulario-editar-pistas input[type="date"],
+
 .formulario-editar-pistas select,
 .formulario-editar-pistas input[type="time"] {
     width: 100%;

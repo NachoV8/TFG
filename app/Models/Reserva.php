@@ -17,9 +17,9 @@ class Reserva extends Model
     public $timestamps = false;
 
 
-    public function user()
+    public function usuario()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_usuario');
     }
 
     public function producto()

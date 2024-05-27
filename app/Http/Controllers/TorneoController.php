@@ -18,10 +18,12 @@ class TorneoController extends Controller
      */
     public function index()
     {
-            // Aquí puedes obtener los torneos desde tu modelo Torneo
-        $torneos = Torneo::whereRaw('inscritos < cant_max')->get();
 
-        return view('torneos.index', compact('torneos'));
+        $torneos = Torneo::orderBy('fecha')->get();
+
+        $torneosDisponibles = Torneo::whereRaw('inscritos < cant_max')->get();
+
+        return view('torneos.index', compact('torneos','torneosDisponibles'));
     }
 
     /**
@@ -29,11 +31,15 @@ class TorneoController extends Controller
      */
     public function create()
     {
-        $pistasLibres = Pista::where('estado', 0)
-            ->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')
-            ->get();
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            $pistasLibres = Pista::where('estado', 0)
+                ->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')
+                ->get();
 
-        return view('torneos.create', compact('pistasLibres'));
+            return view('torneos.create', compact('pistasLibres'));
+        }
     }
 
     /**
@@ -91,13 +97,17 @@ class TorneoController extends Controller
     public function show(Torneo $torneo)
     {
 
-        // Obtener todas las pistas con estado 0
-        $pistasDisponibles = Pista::where('estado', 0)
-            ->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')
-            ->get();
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            // Obtener todas las pistas con estado 0
+            $pistasDisponibles = Pista::where('estado', 0)
+                ->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')
+                ->get();
 
 
-        return view('torneos.edit', compact('torneo','pistasDisponibles'));
+            return view('torneos.edit', compact('torneo', 'pistasDisponibles'));
+        }
     }
 
     /**
@@ -184,7 +194,7 @@ class TorneoController extends Controller
             $inscripcion->id_torneo = $torneo->id_torneo;
             $inscripcion->save();
 
-            return redirect()->route('torneos');
+            return redirect()->back()->with('info','Inscripción realizada correctamente');
         }else{
             return redirect()->route('login');
         }

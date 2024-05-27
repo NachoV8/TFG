@@ -9,9 +9,13 @@
             @csrf <!--Token para asegurarnos de que el formulario que se ejecuta es nuestro y no un ataque-->
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre"/>
+            <x-input-error class="mt-2" :messages="$errors->get('nombre')"/><br>
+
 
             <label for="precio">Precio</label>
             <input type="number" name="precio"/>
+            <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
+
 
             <label for="cantidad">Cantidad</label>
             <input type="number" name="cantidad"/>
@@ -23,7 +27,10 @@
                         <option value="{{ $key }}">{{ $tipo }}</option>
                     @endforeach
                 </select>
+                <x-input-error class="mt-2" :messages="$errors->get('tipo')"/><br>
             </div>
+
+
             <button>Enviar</button>
         </form>
     </div>

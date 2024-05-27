@@ -11,6 +11,68 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservaController extends Controller
 {
+
+    public function show(Reserva $reserva)
+    {
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else{
+            return view("reservas.edit", compact("reserva"));
+        }
+    }
+
+    public function update(UpdateReservaRequest $request, Reserva $reserva)
+    {
+        // Obtener la cantidad anterior de la reserva
+        $cantidadAnterior = $reserva->cantidad;
+
+        // Validar la nueva cantidad
+        $request->validate([
+            'cantidad' => 'required|integer|min:1|max:' . $reserva->producto->cantidad
+        ]);
+
+        // Obtener la nueva cantidad
+        $nuevaCantidad = $request->input('cantidad');
+
+
+
+        $cantidadStockproducto = $reserva->producto->cantidad;
+
+        if($nuevaCantidad > $cantidadStockproducto){
+            return redirect()->back()->with('error', 'Has seleccionado una cantidad mayor a la del stock');
+        }else{
+            $diferencia = $nuevaCantidad - $cantidadAnterior;
+
+            $reserva->update(['cantidad' => $nuevaCantidad]);
+
+            $producto = $reserva->producto;
+
+            $producto->update(['cantidad' => $producto->cantidad - $diferencia]);
+
+            return redirect()->route('productos');
+        }
+
+    }
+
+    public function destroy(Reserva $reserva)
+    {
+        // Obtener la cantidad de la reserva antes de eliminarla
+        $cantidadReservada = $reserva->cantidad;
+
+        // Eliminar la reserva
+        $reserva->delete();
+
+        // Sumar la cantidad reservada a la cantidad disponible del producto
+        $producto = $reserva->producto;
+        $producto->cantidad += $cantidadReservada;
+        $producto->save();
+
+        // Redireccionar a la página de productos
+        return redirect()->route('productos');
+    }
+
+
+
     public function reservarProducto(Request $request, Producto $producto)
     {
         if (Auth::check()){
@@ -22,7 +84,7 @@ class ReservaController extends Controller
 
             // Verificar si hay suficiente stock
             if ($producto->cantidad < $cantidad) {
-                return redirect()->back()->withErrors(['cantidad' => 'No hay suficiente stock disponible.']);
+                return redirect()->back()->with('errorCant', 'No hay tanto stock disponible');
             }
 
             // Crear la reserva
@@ -36,7 +98,7 @@ class ReservaController extends Controller
             $producto->cantidad -= $cantidad;
             $producto->save();
 
-            return redirect()->route('productos');
+            return redirect()->back()->with('info', '¡Producto reservado correctamente!');
         }else{
             return redirect()->route('login');
         }

@@ -50,29 +50,63 @@
 
     @else
 
-    <div class="torneos">
-        <div class="torneosA">
-            @foreach($torneos as $torneo)
-                <div class="torneo">
-                    <h2>{{ $torneo->nombre }}</h2>
-                    <div class="texto">
-                        <p>{{ $torneo->descripcion }}</p>
-                        <p>Premios: <br>
-                            {{ $torneo->premios }} <br>
-                        </p>
-                        <p>{{ $torneo->precio }} € p.p.</p>
-                        <p>{{ $torneo->fecha }} -> {{ $torneo->hora_inicio }}</p>
-                        <p>Jugadores inscritos: {{ $torneo->inscritos }} / {{ $torneo->cant_max }}</p>
-                    </div>
-                    <form action="{{ route('torneos.reservar', $torneo->id_torneo) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="button-torneos">Inscribirme</button>
-                    </form>
+                <div class="torneos">
+                    <h1>Torneos Disponibles</h1>
+                    @foreach($torneosDisponibles->chunk(2) as $chunk)
+                        <div class="torneos-row">
+                            @foreach($chunk as $torneo)
+                                <div class="torneo">
+                                    <h2>{{ $torneo->nombre }}</h2>
+                                    <div class="texto">
+                                        <div class="left">
+                                            <p>{{ $torneo->descripcion }}</p>
+                                            <p>{{ $torneo->precio }} € p.p.</p>
+                                            <p>{{ $torneo->fecha }}</p>
+                                            <p>Hora de inicio: {{ $torneo->hora_inicio }}</p>
+                                        </div>
+                                        <div class="right">
+                                            <p class="first">{{ $torneo->premios }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="inscritos">
+                                        <p>Inscritos: {{ $torneo->inscritos }} / {{ $torneo->cant_max }}</p>
+                                    </div>
+                                    <form action="{{ route('torneos.reservar', $torneo->id_torneo) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="button-torneos">Inscribirme</button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
-    </div>
 
-    @endif
+
+            @endif
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Mostrar la alerta si hay un mensaje de sesión
+                    @if(session('error'))
+                    Swal.fire({
+                        icon: "warning",
+                        title: "¡Ya estás inscrito en el torneo!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    @elseif(session('info'))
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Inscripción realizada!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+
+                    @endif
+                });
+
+            </script>
+
+
 
 @endsection

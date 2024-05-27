@@ -78,7 +78,7 @@
                         <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
 
 
-                            <input class="botonE" type="submit" value="Enviar">
+                        <button class="botonE" type="submit">Enviar</button>
 
                         @else
 

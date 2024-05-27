@@ -9,41 +9,80 @@
             <h2>Gestión de Productos</h2>
             <a href="{{route('productos.create')}}"><button class="nuevo-producto">Nuevo Producto</button></a>
 
-            <table>
-                <thead>
-                <tr>
-                    <th>Precio</th>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Tipo</th>
-                    <th>Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach ($productosAll as $producto)
+            <div class="tablas-productos-reservas">
+                <table>
+                    <thead>
                     <tr>
-                        <td>{{ $producto->precio }}</td>
-                        <td>{{ $producto->nombre }}</td>
-                        <td>{{ $producto->cantidad }}</td>
-                        <td>{{ $producto->tipo }}</td>
-                        <td class="td-actions">
-                            <div class="left-action">
-                                <a href="{{ route('productos.show', $producto->id_producto) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
-                            </div>
-                            <div class="right-action">
-                                <form action="{{route("productos.destroy", $producto->id_producto)}}" method="POST">
-                                    @csrf
-                                    @method("DELETE")
-                                    <button type="submit" class="delete-btn">
-                                        <img src="{{ asset('imagenes/index/borrar.png') }}" alt="Eliminar">
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
+                        <th>Precio</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    @foreach ($productosAll as $producto)
+                        <tr>
+                            <td>{{ $producto->precio }}</td>
+                            <td>{{ $producto->nombre }}</td>
+                            <td>{{ $producto->cantidad }}</td>
+                            <td>{{ $producto->tipo }}</td>
+                            <td class="td-actions">
+                                <div class="left-action">
+                                    <a href="{{ route('productos.show', $producto->id_producto) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
+                                </div>
+                                <div class="right-action">
+                                    <form action="{{route("productos.destroy", $producto->id_producto)}}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit" class="delete-btn">
+                                            <img src="{{ asset('imagenes/index/borrar.png') }}" alt="Eliminar">
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Usuario</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($reservas as $reserva)
+                        <tr>
+                            <td>{{ $reserva->producto->nombre }}</td>
+                            <td>{{ $reserva->cantidad }}</td>
+                            <td>{{ $reserva->cantidad * $reserva->producto->precio }}</td>
+                            <td>{{ $reserva->usuario->name }}</td>
+                            <td class="td-actions">
+                                <div class="left-action">
+                                    <a href="{{ route('reservas.show', $reserva->id_reserva) }}"><img src="{{ asset('imagenes/index/lapiz.png') }}" alt="Logo Editar"></a>
+                                </div>
+                                <div class="right-action">
+                                    <form action="{{route("reservas.destroy", $reserva->id_reserva)}}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit" class="delete-btn">
+                                            <img src="{{ asset('imagenes/index/borrar.png') }}" alt="Eliminar">
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
     @else
@@ -116,6 +155,19 @@
                     }
                 });
             });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            @if(session('info'))
+            Swal.fire({
+                icon: "success",
+                title: "¡Producto reservado correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            @endif
         });
     </script>
 

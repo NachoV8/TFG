@@ -16,14 +16,20 @@
                     <option value="{{ $profesor->id }}">{{ $profesor->name }}</option>
                 @endforeach
             </select>
+            <x-input-error class="mt-2" :messages="$errors->get('id_profesor')"/><br>
+
 
             <!-- Campo para el precio -->
             <label for="precio">Precio:</label>
             <input type="number" name="precio" id="precio">
+            <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
+
 
             <!-- Campo para la descripción -->
             <label for="descripcion">Descripción:</label>
             <textarea name="descripcion" id="descripcion" cols="30" rows="5"></textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('descripcion')"/><br>
+
 
             <!-- Campo para seleccionar la pista -->
             <label for="pista">Pista:</label>
@@ -32,7 +38,13 @@
                     <option value="{{ $pista->id_pista }}">{{ $pista->pista }} - {{ $pista->fecha }} - {{ $pista->hora_inicio }}</option>
                 @endforeach
             </select>
+            <x-input-error class="mt-2" :messages="$errors->get('pista')"/><br>
 
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <!-- Botón de Enviar -->
             <button type="submit">Enviar</button>
         </form>

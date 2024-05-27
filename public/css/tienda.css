@@ -3,12 +3,16 @@
     height: 100%;
     display: flex;
     flex-direction: row;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/tienda.jpg");
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
+    background-position: center; /* Centra la imagen de fondo */
 }
 
 .filtros{
     width: 14%;
     margin-left: 1%;
     border-right: black solid 2px;
+    background-color: white;
 }
 
 .productos{
@@ -19,6 +23,7 @@
     margin-bottom: 3%;
     display: flex;
     flex-direction: column;
+
 }
 
 .productosL{
@@ -37,6 +42,7 @@
     align-items: center;
     border: black solid 1px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
 }
 
 .producto h2{
@@ -86,6 +92,7 @@
     cursor: pointer;
     font-size: 16px;
 }
+
 
 .admin-productos table {
     border-collapse: collapse;

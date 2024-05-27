@@ -1,61 +1,3 @@
-.login {
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column; /* Coloca los elementos uno debajo del otro */
-    justify-content: center; /* Centra verticalmente los elementos */
-    align-items: center; /* Centra horizontalmente los elementos */
-    background-color: rgb(37,40,42);
-}
-
-.logo{
-    margin-top: 5%;
-}
-
-.logo img{
-    width: 200px;
-}
-
-.form{
-    width: 20%;
-}
-
-.formulario{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    border: black solid 2px;
-    box-shadow: 5px 8px 15px rgb(42, 42, 42);
-    margin-top: 5%;
-    margin-bottom: 10%;
-    border-radius: 15px;
-    background-color: #30353C;
-
-}
-
-h2{
-    width: 100%;
-    text-align: center;
-    margin-top: 3%;
-    font-family: 'montserratbold';
-    color: white;
-}
-
-form{
-    width: 90%;
-    margin-top: 4%;
-    margin-left: 2.5%;
-    margin-bottom: 10%;
-}
-
-label {
-    color: white;
-}
-
-input{
-    width: 100%;
-}
-
 @font-face {
     font-family: 'Altone Trial-Regular';
     src: url('/font/Altone Trial-Regular.ttf');
@@ -75,51 +17,111 @@ input{
     src: url('/font/Montserrat-Regular.ttf');
 }
 
-/* ------------------------------------------------------------ */
+/* ----------------------------------- FUENTES -------------------------------------------------- */
 
 
-/* Uso de la fuente en toda la página */
-*{
-    font-family:'MontserratRegular';
+.login {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Coloca los elementos uno debajo del otro */
+    justify-content: center; /* Centra verticalmente los elementos */
+    align-items: center; /* Centra horizontalmente los elementos */
+    font-family: "Montserrat";
+}
+
+.logo{
+    margin-top: 5%;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.form{
+    width: 20%;
+}
+
+.formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: #000000 solid 2px;
+    box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    margin-top: 5%;
+    margin-bottom: 10%;
+    color: black;
+    background-color: #ffffff;
+
+}
+
+.formulario h2{
+    width: 100%;
+    text-align: center;
+    margin-top: 3%;
+    font-family: 'montserratbold';
+
+}
+
+form{
+    width: 90%;
+    margin-top: 4%;
+    margin-left: 2.5%;
+    margin-bottom: 10%;
+}
+
+.formulario label{
+    font-weight: bolder;
+}
+
+
+input{
+    width: 100%;
+    padding: 2%;
 }
 
 .botones {
     display: flex;
     justify-content: space-between; /* Distribuye los elementos a los extremos */
+    width: 104%;
 }
 
 .cancelar {
     height: 50px;
     align-self: flex-start; /* Coloca este botón en la esquina superior izquierda */
-    background-color: rgb(37, 40, 42);
+    background-color: rgb(255, 0, 0);
     font-family: 'montserratbold';
-    border-radius: 10px;
     color: white;
 
+}
+
+.botones .cancelar:hover{
+    background-color: #b10000;
 }
 
 .enviar {
     height: 50px;
     align-self: flex-end; /* Coloca este botón en la esquina inferior derecha */
-    background-color: #2a86ff;
+    background-color: #008e00;
     font-family: 'montserratbold';
-    border-radius: 10px;
     color: white;
+}
 
-
-
+.botones .enviar:hover{
+    background-color: #00da05;
 }
 
 
 .registrarse{
+    margin: 0;
     width: 98%;
     margin-left: 2%;
-    color: white;
 }
 
 .registrarse a{
     text-decoration: none;
-    color: white;
     font-family: 'montserratbold';
+    color: black;
 }
 

@@ -48,8 +48,11 @@ class PistaController extends Controller
      */
     public function create()
     {
-
-        return view("pistas.create");
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else{
+            return view("pistas.create");
+        }
 
     }
 
@@ -58,10 +61,24 @@ class PistaController extends Controller
      */
     public function store(StorePistaRequest $request)
     {
-        // Obtener los datos del formulario
-        $datos = $request->input();
+        // Obtener el correo electrónico del usuario del formulario
+        $correoUsuario = $request->input('usuario');
 
-        // Verificar si ya existe una pista con la misma fecha, hora de inicio y hora de fin
+        // Buscar al usuario basado en el correo electrónico proporcionado
+        $usuario = User::where('email', $correoUsuario)->first();
+
+        // Verificar si el usuario existe
+        if (!$usuario) {
+            return redirect()->back()->with('error', 'El correo electrónico proporcionado no corresponde a ningún usuario.');
+        }
+
+        // Obtener los datos del formulario
+        $datos = $request->validated();
+
+        // Asignar el id_usuario basado en el id del usuario encontrado
+        $datos['id_usuario'] = $usuario->id;
+
+        // Verificar si ya existe una pista con los mismos detalles
         $pistaExistente = Pista::where('fecha', $datos['fecha'])
             ->where('hora_inicio', $datos['hora_inicio'])
             ->where('hora_fin', $datos['hora_fin'])
@@ -69,16 +86,14 @@ class PistaController extends Controller
 
         // Si ya existe una pista con los mismos detalles, redirigir de vuelta con un mensaje de error
         if ($pistaExistente) {
-
-
             return redirect()->back()->with('error', 'Ya existe una pista con la misma fecha, hora de inicio y hora de fin.');
         }
 
-        // Si no existe una pista con los mismos detalles, crear y guardar la nueva pista
+        // Crear y guardar la nueva pista
         $pista = new Pista($datos);
         $pista->save();
 
-        return redirect()->route('pistas');
+        return redirect()->route('pistas.index');
     }
 
     /**
@@ -86,7 +101,11 @@ class PistaController extends Controller
      */
     public function show(Pista $pista)
     {
-        return view("pistas.edit", compact("pista"));
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            return view("pistas.edit", compact("pista"));
+        }
     }
 
     /**
@@ -127,7 +146,7 @@ class PistaController extends Controller
 
         } catch (ModelNotFoundException $exception) {
             // Si el correo electrónico proporcionado no existe, mostrar un mensaje de error
-            return back()->withErrors(['id_usuario' => 'El correo electrónico proporcionado no existe']);
+            return back()->withErrors(['error' => 'El correo electrónico proporcionado no existe']);
         }
     }
 
@@ -153,21 +172,28 @@ class PistaController extends Controller
 
     }
 
-    /*public function mostrarPista1(){
-        $Pista1 = Pista::where('pista', 1)->where('estado', 0)->get();
-        return view("pistas.index", compact("Pista1"));
-    }
-
-    public function mostrarPista2(){
-        $Pista2 = Pista::where('pista', 2)->where('estado', 0)->get();
-        return view("pistas.index", compact("Pista2"));
-    }*/
 
     public function reservarPista($id_pista) {
         // Verificar si el usuario está autenticado
         if(Auth::check()) {
             // Obtener el ID de usuario
             $id_usuario = Auth::id();
+
+            // Obtener la fecha de reserva que el usuario quiere hacer
+            $pista = Pista::find($id_pista);
+            $fecha_reserva = $pista->fecha;
+
+            // Contar las reservas del usuario para la fecha de reserva deseada
+            $reservas_usuario = Pista::where('id_usuario', $id_usuario)
+                ->where('fecha', $fecha_reserva)
+                ->count();
+
+            // Verificar si el usuario ha alcanzado el límite de reservas para esa fecha
+            $limite_reservas = 2; // Define el límite de reservas
+            if ($reservas_usuario >= $limite_reservas) {
+                // Si el usuario ha alcanzado el límite de reservas, devuelve un mensaje de error
+                return redirect()->back()->with('errorLimite', 'Has alcanzado el límite de reservas para esta fecha.');
+            }
 
             // Actualizar la pista con el estado y el ID de usuario
             Pista::where('id_pista', $id_pista)->update(['estado' => 1, 'id_usuario' => $id_usuario]);
@@ -311,8 +337,31 @@ class PistaController extends Controller
                 $pista->save();
             }
 
-            // Eliminar las clases asociadas a la pista
-            Clase::where('id_pista', $pista->id_pista)->delete();
+            // Verificar si la pista está asociada a un torneo
+            if (!is_null($pista->torneo)) {
+                // Obtener el torneo asociado
+                $torneo = $pista->torneo;
+
+                // Actualizar todas las pistas asociadas al torneo
+                $pistasTorneo = $torneo->pistas;
+                foreach ($pistasTorneo as $pistaTorneo) {
+                    $pistaTorneo->estado = 0;
+                    $pistaTorneo->id_usuario = null;
+                    $pistaTorneo->save();
+                    // Eliminar las clases asociadas a la pista
+                    Clase::where('id_pista', $pistaTorneo->id_pista)->delete();
+                    // Finalmente, eliminar la pista
+                    $pistaTorneo->delete();
+                }
+
+                // Eliminar el torneo
+                $torneo->delete();
+            } else {
+                // Eliminar las clases asociadas a la pista
+                Clase::where('id_pista', $pista->id_pista)->delete();
+                // Finalmente, eliminar la pista
+                $pista->delete();
+            }
 
             // Finalmente, eliminar la pista
             $pista->delete();

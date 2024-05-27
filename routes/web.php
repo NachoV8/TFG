@@ -15,7 +15,7 @@ use \App\Mail\ContactosMail;
 use \App\Http\Controllers\ContactanosController;
 
 
-Route::get('/', [ClaseController::class, 'mostrarClasesLibres'])->name("index");
+Route::get('/', [IndexController::class, 'index'])->name('inicio');
 
 Route::get('/sobre-nosotros', function () {
     return view('sobre-nosotros');
@@ -53,13 +53,13 @@ Route::resource('clases', ClaseController::class);
 
 Route::resource('productos', ProductoController::class);
 
+Route::resource('reservas', ReservaController::class);
+
+
+
 Route::post('productos/reservar/{producto}', [ReservaController::class, 'reservarProducto'])->name('productos.reservar');
 
 Route::post('clases/{id_clase}', [ClaseController::class, 'reservarClase'])->name('reservar.clase');
-
-
-
-//Route::post('sesiones/reservar/{id_pista}', [SesionController::class, 'reservarSesion'])->name('sesiones.reservar');
 
 Route::post('pistas/reservar/{id_pista}', [PistaController::class, 'reservarPista'])->name('pistas.reservar');
 

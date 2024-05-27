@@ -39,13 +39,17 @@ class ClaseController extends Controller
      */
     public function create()
     {
-        // Obtener todas las pistas disponibles (estado = 0)
-        $pistasDisponibles = Pista::where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else {
+            // Obtener todas las pistas disponibles (estado = 0)
+            $pistasDisponibles = Pista::where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
 
-        $profesores = User::where('rol', 2)->get();
+            $profesores = User::where('rol', 2)->get();
 
-        // Devolver la vista del formulario de creación de clase junto con las pistas disponibles
-        return view('clases.create', compact('pistasDisponibles', 'profesores'));
+            // Devolver la vista del formulario de creación de clase junto con las pistas disponibles
+            return view('clases.create', compact('pistasDisponibles', 'profesores'));
+        }
 
     }
 
@@ -83,13 +87,20 @@ class ClaseController extends Controller
      */
     public function show(Clase $clase)
     {
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else{
+            $pistaSeleccionada = $clase->pista;
+            // Obtener todas las pistas disponibles (estado = 0)
+            $pistasDisponibles = Pista::where('estado', 0)->orderBy('pista')->orderBy('fecha')->orderBy('hora_inicio')->get();
 
-        // Obtener todas las pistas disponibles (estado = 0)
-        $pistasDisponibles = Pista::where('estado', 0)->orderBy('pista')->orderBy('fecha')->orderBy('hora_inicio')->get();
+            // Agregar la pista seleccionada a la lista de pistas disponibles
+            $pistasDisponibles->push($pistaSeleccionada);
 
-        $profesores = User::where('rol', 2)->get();
+            $profesores = User::where('rol', 2)->get();
 
-        return view('clases.edit', compact('clase', 'profesores', 'pistasDisponibles'));
+            return view('clases.edit', compact('clase', 'profesores', 'pistasDisponibles'));
+        }
     }
 
     /**
@@ -167,17 +178,21 @@ class ClaseController extends Controller
      */
     public function destroy(Clase $clase)
     {
-        $pista = $clase->pista;
+        if (!(Auth::check() && Auth::user()->rol == 3)) {
+            return redirect()->route('inicio');
+        }else{
+            $pista = $clase->pista;
 
-        // Eliminar la clase
-        $clase->delete();
+            // Eliminar la clase
+            $clase->delete();
 
-        // Actualizar el estado de la pista y el id_usuario
-        $pista->estado = '0'; // Liberar la pista
-        $pista->id_usuario = null; // Eliminar el id del usuario asociado
-        $pista->save();
+            // Actualizar el estado de la pista y el id_usuario
+            $pista->estado = '0'; // Liberar la pista
+            $pista->id_usuario = null; // Eliminar el id del usuario asociado
+            $pista->save();
 
-        return redirect()->route('clases');
+            return redirect()->route('clases');
+        }
     }
 
     public function reservarClase($id_clase)
@@ -190,7 +205,7 @@ class ClaseController extends Controller
             Clase::where('id_clase', $id_clase)->update(['id_alumno' => $id_usuario]);
             // Asignar el id_alumno al id del usuario autenticado
 
-            return redirect()->route('clases');
+            return redirect()->back()->with('info','Mensaje enviado');
         } else {
             // Redirigir al login si el usuario no está autenticado
             return redirect()->route('login');
@@ -207,24 +222,6 @@ class ClaseController extends Controller
         return redirect()->route('perfil');
     }
 
-    public function mostrarClasesLibres()
-    {
-        // Obtener todos los profesores (usuarios con rol = 2)
-        $profesores = User::where('rol', 2)->get();
-
-        // Obtener las 3 clases disponibles (donde id_alumno es null) de todos los profesores,
-        // ordenadas por fecha y luego por hora_inicio
-        $clasesLibres = Clase::whereIn('id_profesor', $profesores->pluck('id'))
-            ->where('id_alumno', null)
-            ->orderBy('fecha')
-            ->orderBy('hora_inicio')
-            ->take(3)
-            ->with('alumno', 'profesor')
-            ->get();
-
-        // Pasar las clases libres a la vista
-        return view('index', compact('clasesLibres'));
-    }
 
     public function eliminarClasesAnteriores()
     {

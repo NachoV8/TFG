@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="loguearte">
-                    <a href="{{ route('login') }}">¿Ya tienes una cuenta? Inicia sesión aquí.</a>
+                    <p>¿Ya tienes una cuenta? <a href="{{ route('login') }}">Inicia sesión aquí.</a></p>
                 </div>
 
                 <div class="boton">

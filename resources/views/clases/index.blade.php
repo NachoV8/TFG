@@ -51,7 +51,7 @@
 
     @else
     <div class="usuario-clases">
-        <h2>Clases Disponibles</h2>
+        <h1>Clases Disponibles</h1>
         <div class="clases">
             @foreach($clasesDisponibles->chunk(3) as $chunk)
                 <div class="clasesF">
@@ -76,5 +76,20 @@
     </div>
 
     @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mostrar la alerta si hay un mensaje de sesión
+            @if(session('info'))
+            Swal.fire({
+                icon: "success",
+                title: "¡Clase reservada correctamente!",
+                showConfirmButton: false,
+                timer: 2000
+            });
+            @endif
+        });
+
+    </script>
 
 @endsection

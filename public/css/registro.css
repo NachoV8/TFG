@@ -1,3 +1,28 @@
+@font-face {
+    font-family: 'Altone Trial-Regular';
+    src: url('/font/Altone Trial-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RegencieLight';
+    src: url('/font/RegencieLight.ttf');
+}
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('/font/Montserrat-Bold.ttf');
+}
+@font-face {
+    font-family: 'MontserratRegular';
+    src: url('/font/Montserrat-Regular.ttf');
+}
+
+/* ----------------------------------- FUENTES -------------------------------------------------- */
+
+
+
+
+
 .formulario {
     margin: 0;
     width: 100%;
@@ -5,6 +30,7 @@
     flex-direction: column; /* Coloca los elementos uno debajo del otro */
     justify-content: center; /* Centra verticalmente los elementos */
     align-items: center; /* Centra horizontalmente los elementos */
+    font-family: "Montserrat";
 }
 
 .logo {
@@ -37,27 +63,28 @@ h2 {
     width: 100%;
     text-align: center;
     margin-top: 3%;
-    margin-left: 2%;
 }
-
 
 label{
     width: 100%;
+    font-weight: bolder;
 }
 
-input {
+input{
     width: 95%;
+    padding: 2%;
 }
 
 .loguearte {
-    width: 100%;
+    width: 95%;
     margin-top: 3%;
     margin-left: 2%;
-
 }
 
 .loguearte a {
     text-decoration: none;
+    color: black;
+    font-weight: bolder;
 }
 
 .boton {
@@ -68,16 +95,21 @@ input {
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-bottom: 5%;
+
 }
 
 .cancelar {
     height: 50px;
     align-self: flex-start; /* Coloca este botón en la esquina superior izquierda */
-    background-color: rgba(255, 0, 0, 0.572);
+    background-color: rgb(218, 0, 0);
+    color: white;
+    font-family: 'montserratbold';
 }
 
 .boton button[type="submit"] {
     height: 50px;
-    background-color: rgba(0, 128, 0, 0.457);
+    background-color: #008e00;
+    color: white;
+    font-family: 'montserratbold';
 }
 

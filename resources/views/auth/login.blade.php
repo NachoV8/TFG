@@ -25,14 +25,16 @@
                     <label for="password">Contraseña:</label><br>
                     <input type="password" id="password" name="password" required><br><br>
 
+                    <div class="registrarse">
+                        <p>No tienes cuenta? <a href="register">Registrate</a></p>
+                    </div>
+
                     <div class="botones">
                         <a href="../"><button class="cancelar" type="button">Cancelar</button></a>
                         <button class="enviar" type="submit">Enviar</button>
                     </div>
                 </form>
-                <div class="registrarse">
-                    <p>No tienes cuenta? <a href="register">Registrate</a></p>
-                </div>
+
             </div>
         </div>
     </div>
