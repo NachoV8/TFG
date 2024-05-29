@@ -14,7 +14,7 @@
                 <tr>
                     <th>Profesor</th>
                     <th>Pista</th>
-                    <th>Descripcion</th>
+                    <th class="th-descripcion">Descripcion</th>
                     <th>Precio</th>
                     <th>Hora de Inicio</th>
                     <th>fecha_clase</th>
@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{ $clase->profesor->name }}</td>
                         <td>{{ $clase->pista->pista }}</td>
-                        <td>{{ $clase->descripcion }}</td>
+                        <td class="td-descripcion">{{ $clase->descripcion }}</td>
                         <td>{{ $clase->precio }} €</td>
                         <td>{{ $clase->hora_inicio }}</td>
                         <td>{{ $clase->fecha }}</td>

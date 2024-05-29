@@ -3,7 +3,7 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
     background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
     background-position: center; /* Centra la imagen de fondo */
 }
@@ -238,7 +238,7 @@
 }
 
 .admin-productos a{
-    width: 180px;
+    width: 100%;
 }
 
 .admin-productos .nuevo-producto{
@@ -565,4 +565,100 @@
 }
 
 
+
+/* -------------------------------------------- MOVIL ----------------------------------------------------- */
+@media (max-width: 840px) {
+    .tienda{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tienda .filtros{
+        width: 100%;
+        margin: 0;
+    }
+
+    .tienda .filtros h3{
+        width: 100%;
+        text-align: center;
+    }
+
+    .tienda .filtros div{
+        width: 100%;
+        margin: 0;
+        margin-bottom: 4%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .tienda .productos{
+        width: 100%;
+    }
+
+    .tienda .productos .productosL{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tienda .productos .productosL .producto{
+        width: 95%;
+        margin: 0;
+        margin-bottom: 4%;
+    }
+
+
+    /* -------------------------------------------------- ADMINISTRADOR ----------------------------------- */
+
+
+    .admin-productos{
+        height: auto;
+    }
+    .admin-productos .tablas-productos-reservas{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-productos div{
+        width: 100%;
+        margin-bottom: 4%;
+    }
+
+    .admin-productos table {
+        margin: 0;
+        margin-top: 4%;
+        width: 100%;
+        table-layout: fixed;
+        word-wrap: break-word;
+        font-size: 10px;
+    }
+
+    .admin-productos a{
+        width: 100%;
+    }
+
+    /* ---------------------------------------------------- INSERTAR PRODUCTO ------------------------------------ */
+
+    .formulario-insertar-producto{
+        width: 80%;
+        margin-bottom: 4%;
+    }
+
+
+    /* ------------------------------------------------ EDITAR CLASE ------------------------------------------- */
+
+    .formulario-editar-productos{
+        width: 80%;
+        margin-bottom: 4%;
+    }
+
+    .formulario-editar-reserva-producto{
+        width: 80%;
+    }
+
+}
 

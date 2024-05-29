@@ -97,66 +97,70 @@
 
         <div class="tienda">
         <div class="filtros">
-            <h3>Filtrar por tipo:</h3><br>
+            <h3>Filtrar por tipo:</h3>
 
-            <div class="checkbox-wrapper-33">
-                <label for="pala" class="checkbox">
-                    <input class="checkbox__trigger visuallyhidden" type="checkbox" id="pala" name="producto" value="pala"/>
-                    <span class="checkbox__symbol">
+            <div>
+                <div class="checkbox-wrapper-33">
+                    <label for="pala" class="checkbox">
+                        <input class="checkbox__trigger visuallyhidden" type="checkbox" id="pala" name="producto" value="pala"/>
+                        <span class="checkbox__symbol">
                     <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 14l8 7L24 7"></path>
                     </svg>
                     </span>
-                    <p class="checkbox__textwrapper">Palas</p>
-                </label>
+                        <p class="checkbox__textwrapper">Palas</p>
+                    </label>
+                </div>
+
+                <div class="checkbox-wrapper-33">
+                    <label for="pelota" class="checkbox">
+                        <input class="checkbox__trigger visuallyhidden" type="checkbox" id="pelota" name="producto" value="pelota"/>
+                        <span class="checkbox__symbol">
+                    <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                    </span>
+                        <p class="checkbox__textwrapper">Pelotas</p>
+                    </label>
+                </div>
+
+                <div class="checkbox-wrapper-33">
+                    <label for="grip" class="checkbox">
+                        <input class="checkbox__trigger visuallyhidden" type="checkbox" id="grip" name="producto" value="grip"/>
+                        <span class="checkbox__symbol">
+                    <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 14l8 7L24 7"></path>
+                    </svg>
+                    </span>
+                        <p class="checkbox__textwrapper">Grips</p>
+                    </label>
+                </div>
+
             </div>
-
-            <div class="checkbox-wrapper-33">
-                <label for="pelota" class="checkbox">
-                    <input class="checkbox__trigger visuallyhidden" type="checkbox" id="pelota" name="producto" value="pelota"/>
-                    <span class="checkbox__symbol">
+            <div>
+                <div class="checkbox-wrapper-33">
+                    <label for="cinta" class="checkbox">
+                        <input class="checkbox__trigger visuallyhidden" type="checkbox" id="cinta" name="producto" value="cinta"/>
+                        <span class="checkbox__symbol">
                     <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 14l8 7L24 7"></path>
                     </svg>
                     </span>
-                    <p class="checkbox__textwrapper">Pelotas</p>
-                </label>
-            </div>
+                        <p class="checkbox__textwrapper">Cintas</p>
+                    </label>
+                </div>
 
-            <div class="checkbox-wrapper-33">
-                <label for="grip" class="checkbox">
-                    <input class="checkbox__trigger visuallyhidden" type="checkbox" id="grip" name="producto" value="grip"/>
-                    <span class="checkbox__symbol">
+                <div class="checkbox-wrapper-33">
+                    <label for="mochila" class="checkbox">
+                        <input class="checkbox__trigger visuallyhidden" type="checkbox" id="mochila" name="producto" value="mochila"/>
+                        <span class="checkbox__symbol">
                     <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
                         <path d="M4 14l8 7L24 7"></path>
                     </svg>
                     </span>
-                    <p class="checkbox__textwrapper">Grips</p>
-                </label>
-            </div>
-
-            <div class="checkbox-wrapper-33">
-                <label for="cinta" class="checkbox">
-                    <input class="checkbox__trigger visuallyhidden" type="checkbox" id="cinta" name="producto" value="cinta"/>
-                    <span class="checkbox__symbol">
-                    <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 14l8 7L24 7"></path>
-                    </svg>
-                    </span>
-                    <p class="checkbox__textwrapper">Cintas</p>
-                </label>
-            </div>
-
-            <div class="checkbox-wrapper-33">
-                <label for="mochila" class="checkbox">
-                    <input class="checkbox__trigger visuallyhidden" type="checkbox" id="mochila" name="producto" value="mochila"/>
-                    <span class="checkbox__symbol">
-                    <svg aria-hidden="true" class="icon-checkbox" width="28px" height="28px" viewBox="0 0 28 28" version="1" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M4 14l8 7L24 7"></path>
-                    </svg>
-                    </span>
-                    <p class="checkbox__textwrapper">Mochila</p>
-                </label>
+                        <p class="checkbox__textwrapper">Mochila</p>
+                    </label>
+                </div>
             </div>
 
         </div>

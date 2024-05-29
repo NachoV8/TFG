@@ -113,3 +113,19 @@ input{
     font-family: 'montserratbold';
 }
 
+
+
+
+/* ---------------------------------------------- MOVIL ------------------------------------------------ */
+
+@media (max-width: 840px) {
+
+    .form{
+        width: 90%;
+        margin: 0;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+}
+

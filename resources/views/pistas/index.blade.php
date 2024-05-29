@@ -12,21 +12,21 @@
 
             <table>
                 <tr>
-                    <th>Estado</th>
+                    <th class="th-estado">Estado</th>
                     <th>Pista</th>
                     <th>Fecha</th>
                     <th>Hora Inicio</th>
-                    <th>Hora Fin</th>
+                    <th class="th-hora-fin">Hora Fin</th>
                     <th>Usuario</th>
                     <th>Acciones</th>
                 </tr>
                 @foreach($pistas as $pista)
                     <tr>
-                        <td>{{$pista->estado == 0 ? 'Libre' : 'Ocupada'}}</td>
-                        <td>{{$pista->pista}}</td>
+                        <td class="td-estado">{{$pista->estado == 0 ? 'Libre' : 'Ocupada'}}</td>
+                        <td class="td-pista">{{$pista->pista}}</td>
                         <td>{{$pista->fecha}}</td>
                         <td>{{$pista->hora_inicio}}</td>
-                        <td>{{$pista->hora_fin}}</td>
+                        <td class="td-hora-fin">{{$pista->hora_fin}}</td>
                         <td>{{$pista->usuario ? $pista->usuario->name : 'Sin usuario'}}</td>
                         <td class="td-actions">
                             <div class="left-action">
@@ -45,11 +45,9 @@
                     </tr>
                 @endforeach
             </table>
-
         </div>
 
     @else
-
         <div class="pistas">
             <div class="pista">
                 <h2>PISTA 1</h2>
@@ -88,7 +86,6 @@
                 @endforeach
             </div>
         </div>
-
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {

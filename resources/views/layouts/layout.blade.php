@@ -23,6 +23,7 @@
         <div class="logo">
             <a href="../"><img src="{{ asset('imagenes/Logo.png') }}" alt="Logo Pade Indoor"></a>
         </div>
+        <div class="menu-toggle" onclick="toggleNav()">&#9776;</div>
         <div class="nav">
             @if(Auth::check() && Auth::user()->rol == 3)
                 <a class="pistasL" href="../pistas">PISTAS</a>
@@ -38,18 +39,18 @@
 
             @endif
 
-        @guest
-            <a href="../login"><button class="button-login" role="button">Log in</button></a>
-            @else
-            <div class="nombre">
-                <a href="../perfil"><img src="/imagenes/perfil/Pelota.png" alt="Pelota padel">
-                <p>{{ Auth::user()->name }} </p></a>
-            </div>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button class="button-logout" type="submit">Logout</button>
-            </form>
-        @endguest
+            @guest
+                <a href="../login"><button class="button-login" role="button">Log in</button></a>
+                @else
+                <div class="nombre">
+                    <a href="../perfil"><img src="/imagenes/perfil/Pelota.png" alt="Pelota padel">
+                    <p>{{ Auth::user()->name }} </p></a>
+                </div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="button-logout" type="submit">Logout</button>
+                </form>
+            @endguest
         </div>
     </div>
 
@@ -59,6 +60,14 @@
     <footer>
         <p>padelindoorturiaso</p>
     </footer>
+
+    <script>
+        function toggleNav() {
+            const nav = document.querySelector('.header .nav');
+            nav.classList.toggle('show');
+        }
+    </script>
+
 
 </body>
 

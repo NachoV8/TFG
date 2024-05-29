@@ -1,9 +1,8 @@
 .perfil{
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
     background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
     background-position: center; /* Centra la imagen de fondo */
 }
@@ -188,7 +187,7 @@ table th {
 }
 
 .admin-usuarios a{
-    width: 180px;
+    width: 100%;
 }
 
 .admin-usuarios .nuevo-usuario{
@@ -252,18 +251,20 @@ table th {
     border: none;
 }
 
+.lista table td {
+    padding: 8px;
+    border: none;
+    text-align: left;
+}
 
-.td-actions {
+
+.lista .td-actions {
     width: 60%;
     display: flex;
     justify-content: space-between; /* Alinea los elementos a los extremos */
     align-items: center; /* Alinea los elementos verticalmente */
 }
 
-.left-action,
-.right-action {
-    flex: 1; /* Ocupa el espacio disponible */
-}
 
 .left-action {
     text-align: left; /* Alinea el contenido a la izquierda */
@@ -275,10 +276,17 @@ table th {
 
 .right-action {
     text-align: right; /* Alinea el contenido a la derecha */
+    justify-content: center;
+    align-content: center;
+}
+
+.lista .right-action form{
+    margin: 0;
 }
 
 .right-action button img{
     width: 20px;
+    justify-content: center;
 }
 
 /* Estilo para el botón de eliminar */
@@ -468,3 +476,98 @@ table th {
     background-color: #0056b3;
 }
 
+
+
+
+/* ------------------------------------------------- MOVIL --------------------------------------------- */
+
+@media (max-width: 840px) {
+    .perfil{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 4%;
+    }
+
+    .perfil .info-perfil img{
+        width: 10%;
+    }
+
+    .perfil .infoP-1, .perfil .infoP-2{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .perfil .infoP-1 .info-personal{
+        width: 95%;
+        margin: 0;
+        margin-bottom: 10%;
+    }
+
+    .perfil .infoP-1 .info-partidos{
+        width: 95%;
+        margin: 0;
+        margin-bottom: 10%;
+    }
+
+    .perfil .infoP-2 .info-torneos{
+        width: 95%;
+        margin: 0;
+        margin-bottom: 10%;
+    }
+
+    .perfil .infoP-2 .info-clases{
+        width: 95%;
+        margin: 0;
+        margin-bottom: 10%;
+    }
+
+
+    /* --------------------------------------------- ADMINIDTRADOR -----------------------------------------*/
+
+    .admin-usuarios{
+        height: auto;
+    }
+    .admin-usuarios .lista{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .admin-usuarios div{
+        width: 100%;
+        margin-bottom: 4%;
+    }
+
+    .admin-usuarios table {
+        margin: 0;
+        margin-top: 4%;
+        width: 100%;
+        table-layout: fixed;
+        word-wrap: break-word;
+        font-size: 14px;
+    }
+
+    .admin-usuarios a{
+        width: 100%;
+    }
+
+    /* ---------------------------------------------------- CREAR USUARIO ------------------------------------ */
+
+    .formulario-insertar-usuario{
+        width: 80%;
+        margin-bottom: 4%;
+    }
+
+
+    /* ------------------------------------------------ EDITAR CLASE ------------------------------------------- */
+
+    .formulario-editar-usuario{
+        width: 80%;
+        margin-bottom: 4%;
+    }
+
+}

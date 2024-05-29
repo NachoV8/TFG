@@ -1,7 +1,7 @@
 .usuario-clases{
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
     background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
     background-position: center; /* Centra la imagen de fondo */
 }
@@ -347,6 +347,88 @@
     background-color: #f44336;
     color: white;
     border-radius: 5px;
+}
+
+
+
+
+/* --------------------------------------------------- MOVIL -------------------------------------------- */
+
+@media (max-width: 840px) {
+
+    .th-descripcion, .td-descripcion {
+        display: none;
+    }
+
+    .usuario-clases{
+        width: 100%;
+        height: 100%;
+    }
+
+    .admin-clases table {
+        margin: 0;
+        margin-top: 4%;
+        width: 100%;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+
+    .admin-clases a{
+        width: 100%;
+    }
+
+    .tablas-productos-reservas div table{
+        font-size: 14px;
+    }
+
+    .tablas-productos-reservas .td-actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Allows actions to wrap if necessary */
+        width: 10%;
+    }
+
+    .tablas-productos-reservas .td-actions a{
+        width: 100%;
+    }
+
+    .clases{
+        width: 100%;
+    }
+
+    .clases .clasesF{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .clases .clasesF .clase{
+        width: 95%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+
+    .torneos .torneos-row .torneo .inscritos{
+        width: 50%;
+    }
+
+
+    /* -------------------------------------------- CREAR CLASE ------------------------------------------- */
+
+    .formulario-crear-clase{
+        width: 80%;
+        margin-bottom: 4%;
+    }
+
+
+/* ------------------------------------------------ EDITAR CLASE ------------------------------------------- */
+
+    .formulario-editar-clase{
+        width: 80%;
+        margin-bottom: 4%;
+    }
 }
 
 

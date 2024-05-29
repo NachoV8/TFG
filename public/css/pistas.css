@@ -1,12 +1,9 @@
-body{
-    margin: 0;
-}
-
 .pistas {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
     background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
     background-position: center; /* Centra la imagen de fondo */
 }
@@ -65,8 +62,6 @@ h2{
 
 
 
-
-
 /* --------------------------------------- Tabla administrador ---------------------------------------------------- */
 .admin-pistas {
     width: 100%;
@@ -83,7 +78,7 @@ h2{
 }
 
 .admin-pistas a{
-    width: 120px;
+    width: 100%;
 }
 
 .admin-pistas .nueva-pista{
@@ -303,5 +298,110 @@ h2{
     color: white;
     border-radius: 5px;
 }
+
+
+
+
+
+
+/* ----------------------------------------------- MOVIL --------------------------------------------- */
+
+@media (max-width: 840px) {
+
+    .pistas {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pistas .pista {
+        width: 95%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+
+
+    /* ---------------------------------------- Admin ----------------------------------------- */
+
+    .th-estado, .td-estado, .th-hora-fin, .td-hora-fin {
+        display: none;
+    }
+
+
+    .admin-pistas {
+        width: 100%;
+        background-color: white;
+        box-sizing: border-box;
+    }
+
+    .admin-pistas table {
+        width: 100%;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+
+
+
+    .admin-pistas th, .admin-pistas td {
+        padding: 8px;
+        border: none;
+        text-align: left;
+        font-size: 12px;
+        overflow: hidden; /* Hides overflowed content */
+    }
+
+    .admin-pistas th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .admin-pistas tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .admin-pistas tr:hover {
+        background-color: #ddd;
+    }
+
+    .admin-pistas td {
+        width: 100%;
+    }
+
+
+    .td-actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Allows actions to wrap if necessary */
+        width: 100%;
+    }
+
+    .left-action, .right-action {
+        flex: 1 1 50%; /* Allow actions to take up to 50% of the row each */
+        text-align: start; /* Center the actions */
+    }
+
+    .left-action a img, .right-action button img {
+        width: 15px;
+    }
+
+
+    /* -------------------------------------- CREAR ------------------------------------------------ */
+
+    .formulario-crear-pista{
+        width: 80%;
+    }
+
+    /* ---------------------------------------- EDITAR -------------------------------------------- */
+
+    .formulario-editar-pistas{
+        width: 80%;
+    }
+
+}
+
+
 
 

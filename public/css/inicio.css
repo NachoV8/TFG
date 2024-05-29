@@ -1,11 +1,10 @@
 .cuerpo {
-    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 2%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
     background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
     background-position: center; /* Centra la imagen de fondo */
 }
@@ -141,6 +140,8 @@ h1{
 
 /* Clases */
 
+.clases
+
 .button-clases{
     font-size: 16px;
     letter-spacing: 1px;
@@ -201,6 +202,8 @@ h1{
 }
 
 .info-I2 h2 {
+    width: 100%;
+    text-align: center;
     color: white;
     font-size: 30px;
 }
@@ -254,6 +257,78 @@ h1{
 /* ----------------------------------------------------- ADMIN ------------------------------------------------ */
 
 .titulo-admin{
+    width: 100%;
+    text-align: center;
     color: black;
+    font-family: montserratbold;
 }
 
+
+
+/* --------------------------------------------------- MOVIL ------------------------------------------ */
+
+@media (max-width: 840px) {
+    .cuerpo{
+        width: 100%;
+    }
+
+    .cuerpo h1{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .cuerpo .info-I1{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .cuerpo .info-I1 .info-Ia{
+        width: 93%;
+    }
+
+    .cuerpo .info-Ia button{
+        margin-bottom: 4%;
+    }
+
+    .info-I2{
+        width: 94%;
+        height: 100%;
+    }
+
+    .info-I2 h2{
+        width: 100%;
+        text-align: center;
+    }
+    .info-I2 .clasesI{
+        width: 95%;
+        height: 100%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .info-I2 .clasesI .clase-I1{
+        width: 95%;
+    }
+
+    .info-I2 .clasesI .clase-I1 h3{
+        width: 100%;
+        text-align: center;
+        margin-top: 2%;
+    }
+
+
+    .titulo-admin{
+        width: 100%;
+        text-align: center;
+    }
+
+
+
+
+}
