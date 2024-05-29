@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    @yield('contenido') @section('contenido')
+    @yield('contenido')
 
 
     <footer>
@@ -61,6 +61,7 @@
     </footer>
 
 </body>
+
 </html>
 
 

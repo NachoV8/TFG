@@ -3,7 +3,7 @@
 @section('contenido')
     <div class="todo">
         <div class="info-1">
-            <h2>Quienes Somos</h2>
+            <h2>Quiénes Somos</h2>
             <div class="info-a">
                 <h4>Inicios</h4>
                 <p>
@@ -50,7 +50,7 @@
         </div>
         <div class="info-2">
             <div class="info-d">
-                <h2>Donde estamos</h2>
+                <h2>Dónde estamos</h2>
                 <div class="mapouter">
                     <div class="gmap_canvas">
                         <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=Padel+Indoor+Turiaso&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>

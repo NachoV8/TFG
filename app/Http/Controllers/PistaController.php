@@ -64,19 +64,27 @@ class PistaController extends Controller
         // Obtener el correo electrónico del usuario del formulario
         $correoUsuario = $request->input('usuario');
 
-        // Buscar al usuario basado en el correo electrónico proporcionado
-        $usuario = User::where('email', $correoUsuario)->first();
+        // Inicializar id_usuario como null
+        $idUsuario = null;
 
-        // Verificar si el usuario existe
-        if (!$usuario) {
-            return redirect()->back()->with('error', 'El correo electrónico proporcionado no corresponde a ningún usuario.');
+        // Si el correo de usuario no está vacío, buscar al usuario basado en el correo electrónico proporcionado
+        if (!empty($correoUsuario)) {
+            $usuario = User::where('email', $correoUsuario)->first();
+
+            // Verificar si el usuario existe
+            if (!$usuario) {
+                return redirect()->back()->with('error', 'El correo electrónico proporcionado no corresponde a ningún usuario.');
+            }
+
+            // Asignar el id del usuario encontrado a idUsuario
+            $idUsuario = $usuario->id;
         }
 
         // Obtener los datos del formulario
         $datos = $request->validated();
 
-        // Asignar el id_usuario basado en el id del usuario encontrado
-        $datos['id_usuario'] = $usuario->id;
+        // Asignar el id_usuario basado en el correo proporcionado o null si está vacío
+        $datos['id_usuario'] = $idUsuario;
 
         // Verificar si ya existe una pista con los mismos detalles
         $pistaExistente = Pista::where('fecha', $datos['fecha'])
@@ -93,7 +101,7 @@ class PistaController extends Controller
         $pista = new Pista($datos);
         $pista->save();
 
-        return redirect()->route('pistas.index');
+        return redirect()->route('pistas');
     }
 
     /**

@@ -2,10 +2,11 @@
 
 @section('contenido')
 
-    <div>
-        <h3>Modificar Reserva</h3>
-        <div class="formulario-editar-productos">
+    <div class="editar-reserva-producto">
 
+        <h2>Modificar Reserva</h2>
+
+        <div class="formulario-editar-reserva-producto">
             <form action="{{route('reservas.update', $reserva->id_reserva)}}" method="POST">
                 @csrf
                 <!--PATCH se utiliza para los update (php artisan route:list --name=alumno)-->

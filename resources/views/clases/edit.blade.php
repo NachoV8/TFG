@@ -1,8 +1,8 @@
 @extends("layouts.layout")
 
 @section("contenido")
-    <div>
-        <h3>Modificar Clase</h3>
+    <div class="editar-clase">
+        <h2>Modificar Clase</h2>
         <div class="formulario-editar-clase">
             <form action="{{ route('clases.update', $clase->id_clase) }}" method="POST">
                 @csrf

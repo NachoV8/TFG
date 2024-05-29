@@ -50,6 +50,7 @@
         </div>
 
     @else
+
     <div class="usuario-clases">
         <h1>Clases Disponibles</h1>
         <div class="clases">

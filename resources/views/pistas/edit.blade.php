@@ -1,7 +1,7 @@
 @extends("layouts.layout")
 
 @section("contenido")
-    <div>
+    <div class="editar-pista">
         <h2>Modificar Pista</h2>
         <div class="formulario-editar-pistas">
             <!--Los campos van con la información del alumno que recibe-->

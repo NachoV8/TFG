@@ -62,7 +62,12 @@ h2{
 }
 
 
-/* Tabla administrador */
+
+
+
+
+
+/* --------------------------------------- Tabla administrador ---------------------------------------------------- */
 .admin-pistas {
     width: 100%;
     display: flex;
@@ -74,6 +79,7 @@ h2{
     margin: 0;
     margin-top: 1%;
     margin-bottom: 1%;
+    color: black;
 }
 
 .admin-pistas a{
@@ -97,7 +103,6 @@ h2{
     border-collapse: collapse;
     border: none;
     width: 95%;
-    margin-left: 2.5%;
     margin-top: 2%;
     margin-bottom: 5%;
 }
@@ -161,8 +166,19 @@ h2{
 
 /* Formulario editar */
 
+.editar-pista{
+    height: 100%;
+}
+
+.editar-pista h2{
+    color: black;
+    font-family: montserratbold;
+    width: 100%;
+    text-align: center;
+}
+
 .formulario-editar-pistas {
-    max-width: 400px;
+    width: 40%;
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
@@ -180,7 +196,6 @@ h2{
 .formulario-editar-pistas input[type="number"],
 .formulario-editar-pistas input[type="email"],
 .formulario-editar-pistas input[type="date"],
-
 .formulario-editar-pistas select,
 .formulario-editar-pistas input[type="time"] {
     width: 100%;
@@ -216,14 +231,26 @@ h2{
 }
 
 
-/* Formulario CREAR */
 
-.formulario-crear-pista {
-    margin-left: 30%;
-    width: 40%;
+
+/* Formulario CREAR */
+.crear-pista{
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+ .crear-pista h2{
+    color: black;
+    font-family: montserratbold;
+     width: 100%;
+     text-align: center;
+}
+
+.formulario-crear-pista {
+    width: 40%;
+    margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
     border-radius: 8px;
@@ -232,13 +259,16 @@ h2{
 
 
 .formulario-crear-pista label {
+    width: 100%;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
 .formulario-crear-pista input[type="number"],
 .formulario-crear-pista input[type="date"],
+.formulario-crear-pista select,
 .formulario-crear-pista input[type="time"],
+.formulario-crear-pista input[type="email"],
 .formulario-crear-pista input[type="text"]{
     width: 100%;
     padding: 10px;

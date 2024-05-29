@@ -3,6 +3,9 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
+    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
+    background-position: center; /* Centra la imagen de fondo */
 }
 
 .info-perfil{
@@ -16,10 +19,16 @@
 
 .info-perfil h1{
     margin-left: 2%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    color: white;
 }
 
 .info-perfil img{
     width: 4%;
+}
+
+.infoP-1 .part-jugados{
+    font-family: montserratbold;
 }
 
 .infoP-1, .infoP-2{
@@ -34,6 +43,7 @@
     margin-right: 2%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
 }
 
 .info-partidos, .info-clases{
@@ -41,6 +51,7 @@
     margin-left: 2%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
 }
 
 h3, p{
@@ -55,6 +66,7 @@ h3, p{
     margin-bottom: 1%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
+    background-color: white;
 }
 
 
@@ -69,42 +81,45 @@ h3, p{
 .info-partidos table, .info-clases table, .info-productos table, .info-torneos table {
     width: 80%;
     margin: 0 auto;
+    margin-bottom: 3%;
     border-collapse: collapse;
 }
 
 
 
 .info-partidos table thead th {
-    background-color: rgba(255, 0, 0, 0.5); /* Rojo con mitad de transparencia */
+    background-color: rgb(0, 119, 255);
     color: white;
     padding: 10px;
     text-align: left;
 }
 
 .info-clases table thead th {
-    background-color: rgba(255, 255, 0, 0.5); /* Amarillo con mitad de transparencia */
-    color: black;
+    background-color: rgb(0, 119, 255);
     padding: 10px;
     text-align: left;
 }
 
 .info-productos table thead th {
-    background-color: rgba(0, 0, 255, 0.5); /* Azul con mitad de transparencia */
+    background-color: rgb(0, 119, 255);
     color: white;
     padding: 10px;
     text-align: left;
 }
 
 .info-torneos table thead th {
-    background-color: rgba(0, 128, 0, 0.5); /* Verde con mitad de transparencia */
+    background-color: rgb(0, 119, 255);
     color: white;
     padding: 10px;
     text-align: left;
 }
 
-table th, table td {
+table tr, table td {
     border: 1px solid #ddd;
     padding: 8px;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
 }
 
 table tbody tr:nth-child(even) {
@@ -119,12 +134,12 @@ table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
     color: white;
 }
 
 .cancelar-form {
     display: inline;
+    align-items: center;
 }
 
 .cancelar-btn {
@@ -136,7 +151,6 @@ table th {
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    margin: 2px 1px;
     cursor: pointer;
     border-radius: 4px;
 }
@@ -158,69 +172,113 @@ table th {
 
 
 /* Estilo para el contenedor principal */
-.lista {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    height: 100%;
-}
-
-/* Estilo para cada lista (profesores y usuarios) */
-.lista-profesores, .lista-usuarios {
-    width: 48%; /* Cada una ocupa casi la mitad del ancho */
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para el título de cada lista */
-.lista-profesores h2, .lista-usuarios h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Estilo para las tablas */
-.table {
+.admin-usuarios {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.table thead {
+.admin-usuarios h2{
+    margin: 0;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: black;
+}
+
+.admin-usuarios a{
+    width: 180px;
+}
+
+.admin-usuarios .nuevo-usuario{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    height: 40px;
     background-color: #007bff;
     color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.table th, .table td {
-    padding: 12px 15px;
+
+.lista{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.lista div{
+    width: 100%;
+    text-align: center;
+}
+
+
+.admin-usuarios table {
+    border-collapse: collapse;
+    border: none;
+    width: 95%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.admin-usuarios th, .admin-usuarios td {
+    padding: 8px;
+    border: none;
     text-align: left;
 }
 
-.table tbody tr:nth-child(even) {
+.admin-usuarios th {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.admin-usuarios tr:nth-child(even) {
     background-color: #f2f2f2;
+    border: none;
 }
 
-.table tbody:hover {
-    background-color: #e9e9e9;
+
+.admin-usuarios tr:hover {
+    background-color: #ddd;
+    border: none;
 }
 
-/* Estilo para las acciones */
+
 .td-actions {
+    width: 60%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Alinea los elementos verticalmente */
 }
 
-.left-action, .right-action {
-    display: flex;
-    align-items: center;
+.left-action,
+.right-action {
+    flex: 1; /* Ocupa el espacio disponible */
 }
 
-.left-action img, .right-action img {
-    width: 30px;
-    cursor: pointer;
+.left-action {
+    text-align: left; /* Alinea el contenido a la izquierda */
+}
+
+.left-action a img{
+    width: 20px;
+}
+
+.right-action {
+    text-align: right; /* Alinea el contenido a la derecha */
+}
+
+.right-action button img{
+    width: 20px;
 }
 
 /* Estilo para el botón de eliminar */
@@ -234,3 +292,179 @@ table th {
 .delete-btn img {
     width: 30px;
 }
+
+
+
+
+
+/* CREAR USUARIO */
+.crear-usuario{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.crear-usuario h2{
+    color: black;
+    font-family: montserratbold;
+    width: 100%;
+    text-align: center;
+}
+
+
+.formulario-insertar-usuario {
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-insertar-usuario h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formulario-insertar-usuario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formulario-insertar-usuario input[type="text"],
+.formulario-insertar-usuario input[type="email"],
+.formulario-insertar-usuario input[type="password"],
+.formulario-insertar-usuario select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilo para los campos de entrada al hacer foco */
+.formulario-insertar-usuario input[type="text"]:focus,
+.formulario-insertar-usuario input[type="email"]:focus,
+.formulario-insertar-usuario input[type="password"]:focus,
+.formulario-insertar-usuario select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo para el grupo de formulario */
+.formulario-insertar-usuario .form-group {
+    margin-bottom: 15px;
+}
+
+/* Estilo para el botón de envío */
+.formulario-insertar-usuario button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón de envío al pasar el ratón */
+.formulario-insertar-usuario button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+/* EDITAR USUARIO */
+.editar-usuario{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editar-usuario h2{
+    color: black;
+    font-family: montserratbold;
+    width: 100%;
+    text-align: center;
+}
+
+
+.formulario-editar-usuario {
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-editar-usuario h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.formulario-editar-usuario label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.formulario-editar-usuario input[type="text"],
+.formulario-editar-usuario input[type="email"],
+.formulario-editar-usuario input[type="password"],
+.formulario-editar-usuario select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilo para los campos de entrada al hacer foco */
+.formulario-editar-usuario input[type="text"]:focus,
+.formulario-editar-usuario input[type="email"]:focus,
+.formulario-editar-usuario input[type="password"]:focus,
+.formulario-editar-usuario select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo para el grupo de formulario */
+.formulario-editar-usuario .form-group {
+    margin-bottom: 15px;
+}
+
+/* Estilo para el botón de envío */
+.formulario-editar-usuario button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo para el botón de envío al pasar el ratón */
+.formulario-editar-usuario button:hover {
+    background-color: #0056b3;
+}
+

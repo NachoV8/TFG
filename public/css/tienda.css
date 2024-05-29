@@ -3,20 +3,26 @@
     height: 100%;
     display: flex;
     flex-direction: row;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/tienda.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg");
     background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
     background-position: center; /* Centra la imagen de fondo */
 }
 
 .filtros{
-    width: 14%;
-    margin-left: 1%;
+    width: 11%;
+    padding-left: 1%;
     border-right: black solid 2px;
     background-color: white;
 }
 
+.filtros h3{
+    margin-top: 10%;
+    margin-bottom: 4%;
+    font-family: montserratbold;
+}
+
 .productos{
-    width: 80%;
+    width: 82%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-top: 2%;
@@ -45,19 +51,173 @@
     background-color: white;
 }
 
-.producto h2{
-    width: 90%;
+.producto h4{
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 4%;
     font-size: 20px;
+    text-align: center;
+    font-family: montserratbold;
+}
+
+.producto p{
+    width: 100%;
     text-align: center;
 }
 
+.producto form{
+    width: 100%;
+}
+
+.producto input{
+    width: 30%;
+    margin-right: 35%;
+    margin-left: 35%;
+    border: 1px solid black;
+}
+
 .producto button{
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 6%;
     margin-bottom: 4%;
+    background-color: transparent;
+    border: 1px solid #00c5ff;
+    font-weight: bolder;
+    height: 30px;
+}
+
+.producto button:hover{
+    transition: 400ms;
+    background-color: #00c5ff;
+
 }
 
 .producto img{
     width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
+
+
+/* BOTON FILTRO */
+
+ .checkbox-wrapper-33 {
+     --s-xsmall: 0.625em;
+     --s-small: 1.2em;
+     --border-width: 1px;
+     --c-primary: #1167e8;
+     --c-primary-20-percent-opacity: rgba(17, 142, 232, 0.2);
+     --c-primary-10-percent-opacity: rgba(17, 103, 232, 0.1);
+     --t-base: 0.4s;
+     --t-fast: 0.2s;
+     --e-in: ease-in;
+     --e-out: cubic-bezier(.11,.29,.18,.98);
+     margin-bottom: 3%;
+ }
+
+.checkbox-wrapper-33 .visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.checkbox-wrapper-33 .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.checkbox-wrapper-33 .checkbox + .checkbox {
+    margin-top: var(--s-small);
+}
+.checkbox-wrapper-33 .checkbox__symbol {
+    display: inline-block;
+    display: flex;
+    margin-right: calc(var(--s-small) * 0.7);
+    border: var(--border-width) solid var(--c-primary);
+    position: relative;
+    border-radius: 0.1em;
+    width: 1.5em;
+    height: 1.5em;
+    transition: box-shadow var(--t-base) var(--e-out), background-color var(--t-base);
+    box-shadow: 0 0 0 0 var(--c-primary-10-percent-opacity);
+}
+.checkbox-wrapper-33 .checkbox__symbol:after {
+    content: "";
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    width: 0.25em;
+    height: 0.25em;
+    background-color: var(--c-primary-20-percent-opacity);
+    opacity: 0;
+    border-radius: 3em;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+}
+.checkbox-wrapper-33 .checkbox .icon-checkbox {
+    width: 1em;
+    height: 1em;
+    margin: auto;
+    fill: none;
+    stroke-width: 3;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    color: var(--c-primary);
+    display: inline-block;
+}
+.checkbox-wrapper-33 .checkbox .icon-checkbox path {
+    transition: stroke-dashoffset var(--t-fast) var(--e-in);
+    stroke-dasharray: 30px, 31px;
+    stroke-dashoffset: 31px;
+}
+.checkbox-wrapper-33 .checkbox__textwrapper {
+    margin: 0;
+}
+.checkbox-wrapper-33 .checkbox__trigger:checked + .checkbox__symbol:after {
+    -webkit-animation: ripple-33 1.5s var(--e-out);
+    animation: ripple-33 1.5s var(--e-out);
+}
+.checkbox-wrapper-33 .checkbox__trigger:checked + .checkbox__symbol .icon-checkbox path {
+    transition: stroke-dashoffset var(--t-base) var(--e-out);
+    stroke-dashoffset: 0px;
+}
+.checkbox-wrapper-33 .checkbox__trigger:focus + .checkbox__symbol {
+    box-shadow: 0 0 0 0.25em var(--c-primary-20-percent-opacity);
+}
+
+@-webkit-keyframes ripple-33 {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(20);
+    }
+}
+
+@keyframes ripple-33 {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: scale(20);
+    }
+}
+
+
+
 
 /* Administrador */
 
@@ -74,16 +234,16 @@
     margin: 0;
     margin-top: 1%;
     margin-bottom: 1%;
+    color: black;
 }
 
 .admin-productos a{
-    width: 120px;
+    width: 180px;
 }
 
 .admin-productos .nuevo-producto{
     margin-top: 2%;
     margin-bottom: 1%;
-    width: 130px;
     height: 40px;
     background-color: #007bff;
     color: #fff;
@@ -94,11 +254,30 @@
 }
 
 
+.tablas-productos-reservas{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    margin-top: 1%;
+}
+
+.tablas-productos-reservas div{
+    width: 100%;
+}
+
+.tablas-productos-reservas h2{
+    width: 100%;
+    text-align: center;
+}
+
 .admin-productos table {
     border-collapse: collapse;
     border: none;
     width: 95%;
     margin-left: 2.5%;
+    margin-right: 2.5%;
     margin-top: 2%;
     margin-bottom: 5%;
 }
@@ -156,10 +335,24 @@
 }
 
 
-/* Formulario editar producto */
+/* EDITAR PRODUCTO */
+
+.editar-producto{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editar-producto h2{
+    color: black;
+    font-family: montserratbold;
+    width: 100%;
+    text-align: center;
+}
 
 .formulario-editar-productos {
-    max-width: 400px;
+    width: 40%;
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
@@ -214,15 +407,28 @@
 }
 
 
-/* Contenedor del formulario insertar producto */
 
-h2{
+
+
+/* INSERTAR PRODUCTO */
+
+.insertar-producto{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.insertar-producto h2{
+    color: black;
+    font-family: montserratbold;
     width: 100%;
     text-align: center;
 }
 
+
 .formulario-insertar-producto {
-    max-width: 600px;
+    width: 40%;
     margin: 20px auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -286,5 +492,77 @@ h2{
 .formulario-insertar-producto button:hover {
     background-color: #0056b3;
 }
+
+
+
+/* MODIFICAR RESERVA */
+.editar-reserva-producto{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editar-reserva-producto h2{
+    color: black;
+    font-family: montserratbold;
+    width: 100%;
+    text-align: center;
+}
+
+.formulario-editar-reserva-producto {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.editar-reserva-producto h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.editar-reserva-producto label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 90%;
+}
+
+.editar-reserva-producto input[type="number"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.editar-reserva-producto button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.editar-reserva-producto button:hover {
+    background-color: #0056b3;
+}
+
+.x-input-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 
 

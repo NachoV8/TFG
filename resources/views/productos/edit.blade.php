@@ -2,8 +2,8 @@
 
 @section('contenido')
 
-    <div>
-        <h3>Modificar Pista</h3>
+    <div class="editar-producto">
+        <h2>Modificar Producto</h2>
         <div class="formulario-editar-productos">
 
             <form action="{{route('productos.update', $producto->id_producto)}}" method="POST">

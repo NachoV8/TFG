@@ -3,7 +3,7 @@
 @section('contenido')
 
     @if(Auth::check() && Auth::user()->rol == 3)
-        <h2>Hola de nuevo! {{ Auth::user()->name }}</h2>
+        <h2 class="titulo-admin">Hola de nuevo! {{ Auth::user()->name }}</h2>
     @else
         <div class="cuerpo">
             <h1>PADEL INDOOR TURIASO</h1>
@@ -41,7 +41,7 @@
                                 <p>{{ $clase->fecha }}</p>
                                 <p>{{ $clase->hora_inicio }}</p>
                             </div>
-                            <button class="button-clases" role="button" onclick="location.href='/pistas'">Apúntate</button>
+                            <button class="button-clases" role="button" onclick="location.href='/clases'">Apúntate</button>
                         </div>
                     @endforeach
                 </div>

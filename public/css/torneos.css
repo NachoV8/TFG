@@ -32,6 +32,8 @@
 .torneo h2{
     color: black;
     font-family: "montserratbold";
+    width: 100%;
+    text-align: center;
 }
 
 .torneo p{
@@ -128,7 +130,7 @@ table a {
 }
 
 
- /* ADMIN */
+ /* ----------------------------------------------- ADMIN ------------------------------------------------------ */
 
 /* Reset de estilos */
 
@@ -177,4 +179,222 @@ table a {
 
 .form_torneo button[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+
+
+/* ----------------------------------------------- TABLA TORNEOS ------------------------------------------------- */
+
+.admin-torneos{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-torneos h2{
+    margin: 0;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    color: black;
+}
+
+.admin-torneos .nuevo-torneo{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    width: 150px;
+    height: 40px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.admin-torneos table {
+    border-collapse: collapse;
+    border: none;
+    width: 95%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.admin-torneos th, .admin-torneos td {
+    padding: 8px;
+    border: none;
+    text-align: left;
+}
+
+.admin-torneos th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.admin-torneos tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.admin-torneos tr:hover {
+    background-color: #ddd;
+}
+
+
+.td-actions {
+    width: 60%;
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos a los extremos */
+    align-items: center; /* Alinea los elementos verticalmente */
+}
+
+
+
+
+
+
+/* ------------------------------------------ FORMULARIO CREAR ------------------------------------------------------------ */
+
+.crear-torneo{
+    height: 100%;
+}
+
+
+.crear-torneo h2{
+    color: black;
+    font-family: montserratbold;
+}
+
+.crear-torneo form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 30%;
+    margin-bottom: 2%;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.crear-torneo form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    width: 100%;
+    text-align: start;
+}
+
+.crear-torneo form input[type="number"],
+.crear-torneo form input[type="date"],
+.crear-torneo form input[type="time"],
+.crear-torneo form textarea,
+.crear-torneo form select,
+.crear-torneo form input[type="email"],
+.crear-torneo form input[type="text"]{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.crear-torneo form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.crear-torneo form button:hover {
+    background-color: #0056b3;
+}
+
+.x-input-error {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 5px;
+}
+
+
+/* ------------------------------------------------------- FORMULARIO EDITAR -------------------------------------- */
+
+.editar-torneo{
+    height: 100%;
+    margin-bottom: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editar-torneo h2{
+    color: black;
+    font-family: montserratbold;
+    width: 100%;
+    text-align: center;
+}
+
+.form_torneo {
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form_torneo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form_torneo input[type="text"],
+.form_torneo input[type="number"],
+.form_torneo input[type="email"],
+.form_torneo input[type="date"],
+.form_torneo select,
+.form_torneo input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form_torneo button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form_torneo button:hover {
+    background-color: #0056b3;
+}
+
+.x-input-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
 }

@@ -96,7 +96,7 @@
                 @if(session('info'))
                 Swal.fire({
                     icon: "success",
-                    title: "¡Sesión reservada correctamente!",
+                    html: "<h2 style='text-align: center; color: black'>¡Sesión reservada correctamente!</h2>",
                     showConfirmButton: false,
                     timer: 2000
                 });
@@ -104,7 +104,7 @@
                 @elseif(session('errorLimite'))
                 Swal.fire({
                     icon: "warning",
-                    title: "¡Has alcanzado el limite de reservas para ese día!",
+                    html: "<h2 style='text-align: center; color: black'>¡Has alcanzado el limite de reservas para ese día!</h2>",
                     showConfirmButton: false,
                     timer: 3000
                 });

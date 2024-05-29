@@ -21,9 +21,13 @@
                     @csrf
                     <label for="email">Correo Electrónico:</label><br>
                     <input type="email" id="email" name="email" required><br><br>
+                    <x-input-error class="mt-2" :messages="$errors->get('email')"/><br>
+
 
                     <label for="password">Contraseña:</label><br>
                     <input type="password" id="password" name="password" required><br><br>
+                    <x-input-error class="mt-2" :messages="$errors->get('password')"/><br>
+
 
                     <div class="registrarse">
                         <p>No tienes cuenta? <a href="register">Registrate</a></p>
