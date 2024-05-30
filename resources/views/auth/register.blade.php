@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
 
-    <title>Registro</title>
-</head>
+    <link rel="shortcut icon" href="/imagenes/Logo.png" />
+
+    <title>Padel Indoor Turiaso</title></head>
 <body>
 
     <div class="formulario">

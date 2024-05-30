@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
-    <title>Log In</title>
+    <link rel="shortcut icon" href="/imagenes/Logo.png"/>
+
+    <title>Padel Indoor Turiaso</title>
 </head>
 <body>
     <div class="login">
