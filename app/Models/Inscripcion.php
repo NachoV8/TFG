@@ -10,7 +10,7 @@ class Inscripcion extends Model
     use HasFactory;
 
     protected $table="inscripciones"; // Tabla de base de datos
-    protected $primaryKey = 'id_inscripción';
+    protected $primaryKey = 'id_inscripcion';
     protected $fillable=['id_usuario','id_torneo']; // Sirve para mandar un array para no ir
 
     public $timestamps = false;

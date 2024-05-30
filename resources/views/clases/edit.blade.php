@@ -29,7 +29,7 @@
                 <x-input-error class="mt-2" :messages="$errors->get('id_pista')"/><br>
 
                 <label for="id_alumno">Correo Alumno</label>
-                <input type="email" name="id_alumno" value="{{ $clase->usuario->email ?? '' }}" placeholder="Si no tiene ningun alumno se deja vacio"/>
+                <input type="email" name="id_alumno" value="{{ $clase->id_alumno ? $clase->alumno->email : '' }}" placeholder="Si no tiene ningún alumno, se deja vacío"/>
                 <x-input-error class="mt-2" :messages="$errors->get('id_alumno')"/><br>
 
                 <label for="descripcion">Descripción:</label>
@@ -37,7 +37,7 @@
                 <x-input-error class="mt-2" :messages="$errors->get('descripcion')"/><br>
 
                 <label for="precio">Precio</label>
-                <input type="number" name="precio" value="{{ $clase->precio }}"/>
+                <input type="number" name="precio" value="{{ $clase->precio }}" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
 
                 @if(session('error'))

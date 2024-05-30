@@ -27,27 +27,17 @@ class ProfileController extends Controller
         if (Auth::check() && Auth::user()->rol == 3)
         {
             $profesores = User::where('rol', 2)->get();
-
             $usuarios = User::where('rol', 1)->get();
 
             return view('perfil', compact('profesores','usuarios'));
-
-        }
-        else
-        {
+        } else {
             $this->actualizarReservasPasadas();
 
-
             $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
-
             $reservasTorneo = Inscripcion::where('id_usuario', Auth::id())->get();
-
             $reservasClases = Clase::where('id_alumno', Auth::id())->get();
-
             $reservasProductos = Reserva::where('id_usuario', Auth::id())->get();
 
-
-            // Devolver la vista con los datos obtenidos
             return view('perfil', compact('reservasPistas','reservasTorneo', 'reservasClases','reservasProductos'));
         }
     }
@@ -58,12 +48,14 @@ class ProfileController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             return view('profile.edit', [
                 'user' => $request->user(),
             ]);
         }
     }
+
+
 
     /**
      * Update the user's profile information.
@@ -102,21 +94,11 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function mostrarPerfil()
-    {
-        // Obtener las sesiones de pistas reservadas por el usuario
-        $reservasPistas = Pista::where('id_usuario', Auth::id())->get();
 
-        // Obtener las clases reservadas por el usuario
-        $reservasClases = Clase::where('id_alumno', Auth::id())->get();
 
-        // Devolver la vista con los datos obtenidos
-        return view('perfil', compact('reservasPistas', 'reservasClases'));
-    }
-
+    // Funcion para cancelar Pista y/o Clase de un usuario
     public function cancelar($id)
     {
-        // Verificar si el ID pertenece a una pista o a una clase
         $esPista = Pista::where('id_pista', $id)->exists();
         $esClase = Clase::where('id_clase', $id)->exists();
 
@@ -132,6 +114,25 @@ class ProfileController extends Controller
         }
     }
 
+
+    // Cancelar inscripcion a Torneo
+    public function cancelarInscripcionTorneo(Inscripcion $inscripcion)
+    {
+        $torneo = Torneo::find($inscripcion->id_torneo);
+
+        if ($torneo) {
+            $torneo->inscritos -= 1;
+            $torneo->save();
+        }
+
+        $inscripcion->delete();
+
+        return redirect()->route('perfil');
+    }
+
+
+
+    // Actualizar las reservas para eliminar las anteriores a la fecha actual
     public function actualizarReservasPasadas()
     {
         // Obtener el usuario logueado
@@ -152,23 +153,28 @@ class ProfileController extends Controller
             })
             ->get();
 
-        // Contar el número de reservas pasadas
         $numPartidosPasados = $reservasPasadas->count();
 
         if ($numPartidosPasados > 0) {
-            // Sumar el número de partidos pasados al contador del usuario
             $user->num_partidos += $numPartidosPasados;
             $user->save();
 
             // Eliminar las reservas y las sesiones correspondientes
             foreach ($reservasPasadas as $reserva) {
-                // Aquí asumimos que hay un método delete() en el modelo Reserva para eliminar la reserva
+                // Obtener todas las clases que referencian esta reserva de pista
+                $clases = Clase::where('id_pista', $reserva->id_pista)->get();
 
+                // Eliminar todas las clases que referencian esta reserva de pista
+                foreach ($clases as $clase) {
+                    $clase->delete();
+                }
+
+                // Actualizar el estado de la reserva de pista
                 $reserva->id_usuario = null;
                 $reserva->estado = 0;
 
+                // Eliminar la reserva de pista
                 $reserva->delete();
-
             }
         }
     }

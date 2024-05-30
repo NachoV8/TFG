@@ -6,7 +6,6 @@
         <h2>CREAR PISTA</h2>
 
         <div class="formulario-crear-pista">
-            <!--Formulario que al aceptar creas un alumno (a través de la ruta alumnos.store)-->
             <form action="{{route('pistas.store')}}" method="POST">
                 @csrf <!--Token para asegurarnos de que el formulario que se ejecuta es nuestro y no un ataque-->
                 <label for="estado">Estado</label>
@@ -26,17 +25,17 @@
 
 
                 <label for="fecha">Fecha</label>
-                <input type="date" name="fecha"/>
+                <input type="date" name="fecha" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('fecha')"/><br>
 
 
                 <label for="hora_inicio">Hora Inicio</label>
-                <input type="time" name="hora_inicio"/>
+                <input type="time" name="hora_inicio" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('hora_inicio')"/><br>
 
 
                 <label for="hora_fin">Hora Fin</label>
-                <input type="time" name="hora_fin"/>
+                <input type="time" name="hora_fin" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('hora_fin')"/><br>
 
 

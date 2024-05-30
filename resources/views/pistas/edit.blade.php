@@ -4,8 +4,7 @@
     <div class="editar-pista">
         <h2>Modificar Pista</h2>
         <div class="formulario-editar-pistas">
-            <!--Los campos van con la información del alumno que recibe-->
-            <!--Cuando se acepte el form se pasa a la ruta de update-->
+
             <form action="{{ route('pistas.update', $pista->id_pista) }}" method="POST">
                 @csrf
                 <!--PATCH se utiliza para los update (php artisan route:list --name=alumno)-->

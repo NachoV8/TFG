@@ -20,10 +20,9 @@
     src: url('/font/Montserrat-Regular.ttf');
 }
 
-/* ------------------------------------------------------------ */
+/* ---------------------------------------------------------------------------------------- CSS USUARIO PC ----------------------------------------------------------- */
 
 
-/* Uso de la fuente en toda la página */
 *{
     font-family:'MontserratRegular';
 }
@@ -44,17 +43,16 @@ body {
 .header {
     position: sticky;
     display: flex;
-    align-items: center; /* Centra verticalmente el contenido */
+    align-items: center;
     width: 100%;
     top: 0;
     left: 0;
     background-color: rgb(255, 255, 255);
     height: 10vh;
     padding: 20px 0;
-    z-index: 1000; /* Asegura que el encabezado esté por encima de otros elementos */
+    z-index: 1000;
     border-bottom: black solid 2px;
 }
-
 
 .logo {
     width: 10%;
@@ -64,7 +62,6 @@ body {
 }
 
 .logo img{
-    /*width: 80%;*/
     height: 10vh;
 }
 
@@ -74,7 +71,7 @@ body {
     font-size: 24px;
     text-align: center;
     padding: 10px;
-    background-color: #ccc; /* Cambia el color de fondo según tus preferencias */
+    background-color: #ccc;
 }
 
 
@@ -83,39 +80,39 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center; /* Centrar verticalmente los elementos hijos */
+    align-items: center;
 }
 
 a {
     display: flex;
     justify-content: center;
-    align-items: center; /* Centrar verticalmente el contenido dentro del ancla */
+    align-items: center;
     text-decoration: none;
     color: black;
     font-size: 18px;
     font-weight: bolder;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    height: 40px; /* Ajusta la altura según tus necesidades */
+    height: 40px;
 }
 
 
 .nombre a {
     display: flex;
-    flex-direction: column; /* Coloca los hijos (imagen y párrafo) en una columna */
-    align-items: center;    /* Centra horizontalmente los hijos */
-    text-decoration: none;  /* Elimina el subrayado del enlace */
-    color: black;           /* Color del texto */
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
 }
 
 .nombre img {
-    max-width: 40px; /* Ajusta este valor según tus necesidades */
-    height: auto;     /* Mantiene la proporción de la imagen */
+    max-width: 40px;
+    height: auto;
 }
 
 .nombre p {
-    margin: 10px 0 0; /* Margen superior para separar el texto de la imagen */
-    font-size: 18px;  /* Ajusta el tamaño de la fuente según tus necesidades */
-    font-weight: bolder; /* Aplica negrita al texto */
+    margin: 10px 0 0;
+    font-size: 18px;
+    font-weight: bolder;
 }
 
 
@@ -211,15 +208,6 @@ a {
 }
 
 
-
-
-/*@media (min-width: 768px) {
-    .button-50 {
-        padding: 12px 50px;
-    }
-}*/
-
-
 footer {
     background-color: #333;
     text-align: center;
@@ -228,6 +216,7 @@ footer {
     flex-shrink: 0;
 }
 
+/* ----------------------------------------------------------------------------------------------------------------- MOVIL --------------------------------------------------------------------------------------------------------- */
 
 
 @media (max-width: 840px) {

@@ -18,9 +18,7 @@ class TorneoController extends Controller
      */
     public function index()
     {
-
         $torneos = Torneo::orderBy('fecha')->get();
-
         $torneosDisponibles = Torneo::whereRaw('inscritos < cant_max')->get();
 
         return view('torneos.index', compact('torneos','torneosDisponibles'));
@@ -33,7 +31,7 @@ class TorneoController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             $pistasLibres = Pista::where('estado', 0)
                 ->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')
                 ->get();
@@ -65,7 +63,7 @@ class TorneoController extends Controller
         $torneo->premios = $request->premios;
         $torneo->precio = $request->precio;
         $torneo->cant_max = $request->cant_max;
-        // Otros campos del torneo...
+
 
         // Obtener la hora de inicio más temprana entre las pistas seleccionadas
         $pistasSeleccionadas = Pista::whereIn('id_pista', $request->pistas)->get();
@@ -77,14 +75,13 @@ class TorneoController extends Controller
         $torneo->hora_inicio = $horaInicioMasTemprana;
         $torneo->fecha = $fechaInicioMasTemprana;
 
-        // Guardar el torneo
         $torneo->save();
 
         // Actualizar las pistas seleccionadas
         foreach ($pistasSeleccionadas as $pista) {
             // Actualizar el estado y el id_usuario de la pista
             $pista->estado = 1;
-            $pista->id_usuario = Auth::id(); // Id del usuario logueado
+            $pista->id_usuario = Auth::id();
             $pista->save();
         }
 
@@ -96,15 +93,13 @@ class TorneoController extends Controller
      */
     public function show(Torneo $torneo)
     {
-
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             // Obtener todas las pistas con estado 0
             $pistasDisponibles = Pista::where('estado', 0)
                 ->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')
                 ->get();
-
 
             return view('torneos.edit', compact('torneo', 'pistasDisponibles'));
         }
@@ -123,13 +118,10 @@ class TorneoController extends Controller
      */
     public function update(UpdateTorneoRequest $request, Torneo $torneo)
     {
-        // Obtener las pistas asociadas antes de la actualización
         $pistasAntes = $torneo->pistas()->get();
 
-        // Actualizar los datos del torneo
         $torneo->update($request->all());
 
-        // Obtener las pistas asociadas después de la actualización
         $pistasDespues = $torneo->pistas()->get();
 
         // Identificar las pistas eliminadas
@@ -163,17 +155,25 @@ class TorneoController extends Controller
      */
     public function destroy(Torneo $torneo)
     {
-        $torneo->delete();
+        // Obtener todas las pistas asociadas al torneo
+        $pistas = Torneo::where('id_pista', $torneo->id_torneo)->get();
 
+
+        // Iterar sobre las pistas y actualizar su estado e id_usuario
+        foreach ($pistas as $pista) {
+            $pista->estado = 0;
+            $pista->id_usuario = null;
+            $pista->save();
+        }
+
+        $torneo->delete();
 
         return redirect()->route('torneos');
     }
 
     public function reservarTorneo($id)
     {
-
         if(Auth::check()) {
-
             // Buscar el torneo por su ID
             $torneo = Torneo::findOrFail($id);
 
@@ -186,6 +186,7 @@ class TorneoController extends Controller
 
             // Incrementar el contador de inscritos del torneo
             $torneo->inscritos += 1;
+
             $torneo->save();
 
             // Crear una nueva inscripción para el usuario en el torneo
@@ -195,8 +196,10 @@ class TorneoController extends Controller
             $inscripcion->save();
 
             return redirect()->back()->with('info','Inscripción realizada correctamente');
-        }else{
+        } else {
             return redirect()->route('login');
         }
     }
+
+
 }

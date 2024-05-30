@@ -10,17 +10,17 @@
             <form action="{{route('users.store')}}" method="POST">
                 @csrf <!--Token para asegurarnos de que el formulario que se ejecuta es nuestro y no un ataque-->
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre"/>
+                <input type="text" name="nombre" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('nombre')"/><br>
 
 
                 <label for="email">Correo</label>
-                <input type="email" name="email"/>
+                <input type="email" name="email" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('email')"/><br>
 
 
                 <label for="password">Contraseña</label>
-                <input type="password" name="password"/>
+                <input type="password" name="password" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('password')"/><br>
 
                 <label for="rol">Rol</label>

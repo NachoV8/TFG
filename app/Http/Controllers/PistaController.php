@@ -27,20 +27,12 @@ class PistaController extends Controller
         // Eliminar las pistas anteriores
         $this->eliminarPistasAnteriores();
 
-        // Obtener todas las pistas ordenadas por fecha
-        // Obtener todas las pistas ordenadas por fecha, hora de inicio y número de pista
         $pistas = Pista::with('usuario')->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-        // Obtener las pistas de la pista 1 ordenadas por fecha, hora de inicio y número de pista
         $pistasPista1 = Pista::where('pista', 1)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
-        // Obtener las pistas de la pista 2 ordenadas por fecha, hora de inicio y número de pista
         $pistasPista2 = Pista::where('pista', 2)->where('estado', 0)->orderBy('fecha')->orderBy('hora_inicio')->orderBy('pista')->get();
-
 
         return view("pistas.index", compact("pistas", "pistasPista1", "pistasPista2"));
     }
-
 
 
     /**
@@ -50,10 +42,9 @@ class PistaController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else{
+        } else {
             return view("pistas.create");
         }
-
     }
 
     /**
@@ -61,29 +52,22 @@ class PistaController extends Controller
      */
     public function store(StorePistaRequest $request)
     {
-        // Obtener el correo electrónico del usuario del formulario
         $correoUsuario = $request->input('usuario');
 
-        // Inicializar id_usuario como null
         $idUsuario = null;
 
-        // Si el correo de usuario no está vacío, buscar al usuario basado en el correo electrónico proporcionado
         if (!empty($correoUsuario)) {
             $usuario = User::where('email', $correoUsuario)->first();
 
-            // Verificar si el usuario existe
             if (!$usuario) {
                 return redirect()->back()->with('error', 'El correo electrónico proporcionado no corresponde a ningún usuario.');
             }
 
-            // Asignar el id del usuario encontrado a idUsuario
             $idUsuario = $usuario->id;
         }
 
-        // Obtener los datos del formulario
         $datos = $request->validated();
 
-        // Asignar el id_usuario basado en el correo proporcionado o null si está vacío
         $datos['id_usuario'] = $idUsuario;
 
         // Verificar si ya existe una pista con los mismos detalles
@@ -111,7 +95,7 @@ class PistaController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             return view("pistas.edit", compact("pista"));
         }
     }
@@ -130,18 +114,13 @@ class PistaController extends Controller
     public function update(UpdatePistaRequest $request, Pista $pista)
     {
         try {
-            // Verificar si el campo id_usuario está vacío
             if (empty($request->input('id_usuario'))) {
-                // Si está vacío, establecer el valor de id_usuario como null
                 $pista->id_usuario = null;
             } else {
-                // Obtener el ID del usuario asociado al correo electrónico proporcionado en el formulario
                 $usuario = User::where('email', $request->input('id_usuario'))->firstOrFail();
-                // Actualizar el id_usuario de la pista con el ID del usuario obtenido
                 $pista->id_usuario = $usuario->id;
             }
 
-            // Actualizar otros campos de la pista
             $pista->update([
                 'estado' => $request->input('estado'),
                 'pista' => $request->input('pista'),
@@ -166,55 +145,47 @@ class PistaController extends Controller
     {
 
         if ($pista->clase) {
-            // Eliminar la clase asociada
             $pista->clase->delete();
         }
-        // Establecer el id_usuario como null
         $pista->id_usuario = null;
         $pista->estado = 0;
-        $pista->save(); // Guardar los cambios en la pista
+
+        $pista->save();
 
         $pista->delete();
 
         return redirect()->route('pistas');
-
     }
 
 
+
+    // Funcion para que un usuario reserve pista
     public function reservarPista($id_pista) {
-        // Verificar si el usuario está autenticado
         if(Auth::check()) {
-            // Obtener el ID de usuario
             $id_usuario = Auth::id();
 
-            // Obtener la fecha de reserva que el usuario quiere hacer
             $pista = Pista::find($id_pista);
             $fecha_reserva = $pista->fecha;
 
-            // Contar las reservas del usuario para la fecha de reserva deseada
             $reservas_usuario = Pista::where('id_usuario', $id_usuario)
                 ->where('fecha', $fecha_reserva)
                 ->count();
 
-            // Verificar si el usuario ha alcanzado el límite de reservas para esa fecha
-            $limite_reservas = 2; // Define el límite de reservas
+            $limite_reservas = 2; // Define el límite de reservas por dia
             if ($reservas_usuario >= $limite_reservas) {
-                // Si el usuario ha alcanzado el límite de reservas, devuelve un mensaje de error
                 return redirect()->back()->with('errorLimite', 'Has alcanzado el límite de reservas para esta fecha.');
             }
 
-            // Actualizar la pista con el estado y el ID de usuario
             Pista::where('id_pista', $id_pista)->update(['estado' => 1, 'id_usuario' => $id_usuario]);
 
-            // Redireccionar o realizar cualquier otra acción necesaria
             return redirect()->back()->with('info','Mensaje enviado');
         } else {
-            // Si el usuario no está autenticado, redirigir a la página de inicio de sesión
             return redirect()->route('login')->with('error', 'Debes iniciar sesión para reservar una pista.');
         }
     }
 
 
+    // Funcion para que un usuario cancele una reserva de pista
     public function cancelarReserva($id)
     {
         $pista = Pista::findOrFail($id);
@@ -223,9 +194,10 @@ class PistaController extends Controller
         $pista->save();
 
         return redirect()->route('perfil');
-
     }
 
+
+    // Funcion para generar pistas automaticas para los próximos 5 días
     public function generarPista1Automatico()
     {
         // Obtener la fecha actual
@@ -234,16 +206,12 @@ class PistaController extends Controller
 
         // Iterar para los próximos 5 días
         for ($i = 0; $i < 5; $i++) {
-            // Clonar la fecha actual para evitar modificarla
             $fechaActualIteracion = $fechaActual->copy();
 
-            // Obtener la fecha para el día actual más $i días
             $fecha = $fechaActualIteracion->addDays($i)->format('Y-m-d');
 
-            // Generar las horas de inicio y fin para cada pista
             $horaInicioPista1 = Carbon::parse('09:00');
 
-            // Iterar para cada pista
             for ($horaInicioPista1; $horaInicioPista1->lessThanOrEqualTo(Carbon::parse('21:00')); $horaInicioPista1->addHours(1)->addMinutes(30)) {
                 $horaFinPista1 = $horaInicioPista1->copy()->addHours(1)->addMinutes(30);
 
@@ -267,23 +235,19 @@ class PistaController extends Controller
     }
 
 
+    // Funcion para generar pistas automaticas para los próximos 5 días
     public function generarPista2Automaticas()
     {
         // Obtener la fecha actual
         $fechaActual = Carbon::now();
 
-        // Iterar para los próximos 5 días
         for ($i = 0; $i < 5; $i++) {
-            // Clonar la fecha actual para evitar modificarla
             $fechaActualIteracion = $fechaActual->copy();
 
-            // Obtener la fecha para el día actual más $i días
             $fecha = $fechaActualIteracion->addDays($i)->format('Y-m-d');
 
-            // Generar las horas de inicio y fin para cada pista
             $horaInicioPista2 = Carbon::parse('09:00');
 
-            // Iterar para cada pista
             for ($horaInicioPista2; $horaInicioPista2->lessThanOrEqualTo(Carbon::parse('21:00')); $horaInicioPista2->addHours(1)->addMinutes(30)) {
 
                 $horaFinPista2 = $horaInicioPista2->copy()->addHours(1)->addMinutes(30);
@@ -309,6 +273,7 @@ class PistaController extends Controller
 
 
 
+    // Funcion para eliminar las pistas anteriores a la fecha actual de manera automatica
     public function eliminarPistasAnteriores()
     {
         // Obtener la fecha actual del sistema
@@ -326,7 +291,6 @@ class PistaController extends Controller
             })
             ->get();
 
-        // Procesar cada pista encontrada
         foreach ($pistas as $pista) {
             // Si la pista está reservada por un usuario
             if (!is_null($pista->id_usuario)) {
@@ -336,12 +300,13 @@ class PistaController extends Controller
                 if ($usuario) {
                     // Incrementar el número de partidos
                     $usuario->num_partidos += 1;
+
                     $usuario->save();
                 }
 
-                // Cambiar el estado de la pista a 0 y el id_usuario a null
                 $pista->estado = 0;
                 $pista->id_usuario = null;
+
                 $pista->save();
             }
 
@@ -362,16 +327,14 @@ class PistaController extends Controller
                     $pistaTorneo->delete();
                 }
 
-                // Eliminar el torneo
                 $torneo->delete();
             } else {
                 // Eliminar las clases asociadas a la pista
                 Clase::where('id_pista', $pista->id_pista)->delete();
-                // Finalmente, eliminar la pista
+
                 $pista->delete();
             }
 
-            // Finalmente, eliminar la pista
             $pista->delete();
         }
     }

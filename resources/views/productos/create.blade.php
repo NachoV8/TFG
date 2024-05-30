@@ -8,17 +8,17 @@
             <form action="{{route('productos.store')}}" method="POST">
                 @csrf <!--Token para asegurarnos de que el formulario que se ejecuta es nuestro y no un ataque-->
                 <label for="nombre">Nombre</label>
-                <input type="text" name="nombre"/>
+                <input type="text" name="nombre" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('nombre')"/><br>
 
 
                 <label for="precio">Precio</label>
-                <input type="number" name="precio"/>
+                <input type="number" name="precio" min="0" required/>
                 <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
 
 
                 <label for="cantidad">Cantidad</label>
-                <input type="number" name="cantidad"/>
+                <input type="number" name="cantidad" min="0" required/>
 
                 <div class="form-group">
                     <label for="tipo">Tipo de producto:</label>

@@ -15,11 +15,11 @@
                 <x-input-error class="mt-2" :messages="$errors->get('nombre')"/><br>
 
                 <label for="cantidad">Cantidad</label>
-                <input type="number" name="cantidad" value="{{$producto->cantidad}}"/>
+                <input type="number" name="cantidad" min="0" value="{{$producto->cantidad}}"/>
                 <x-input-error class="mt-2" :messages="$errors->get('cantidad')"/><br>
 
                 <label for="precio">Precio</label>
-                <input type="number" name="precio" value="{{$producto->precio}}"/>
+                <input type="number" name="precio" min="0" value="{{$producto->precio}}"/>
                 <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
 
                 <div class="form-group">

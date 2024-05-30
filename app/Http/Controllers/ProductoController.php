@@ -32,7 +32,7 @@ class ProductoController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             $tiposProductos = [
                 'pala' => 'palas',
                 'pelota' => 'pelotas',
@@ -52,6 +52,7 @@ class ProductoController extends Controller
     {
         $datos = $request->input();
         $producto = new Producto($datos);
+
         $producto->save();
 
         return redirect()->route('productos');
@@ -64,7 +65,7 @@ class ProductoController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             $tiposProductos = [
                 'pala' => 'palas',
                 'pelota' => 'pelotas',
@@ -90,7 +91,7 @@ class ProductoController extends Controller
      */
     public function update(UpdateProductoRequest $request, Producto $producto)
     {
-        $producto->update($request->input());//se ejecuta el update
+        $producto->update($request->input());
 
         return redirect()->route('productos');
     }
@@ -100,10 +101,17 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
+
+        $reservasProductos = Reserva::where('id_producto', $producto->id_producto)->get();
+
+        // Eliminar todas las reservas de este producto
+        foreach ($reservasProductos as $reservaProducto) {
+            app(ReservaController::class)->cancelarReservaProducto($reservaProducto);
+        }
+
         $producto->delete();
 
         return redirect()->route('productos');
-
     }
 
 

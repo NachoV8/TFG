@@ -10,14 +10,14 @@
 
             <div>
                 <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" value="{{ $user->name }}">
+                <input type="text" id="name" name="name" value="{{ $user->name }}" required>
                 <x-input-error class="mt-2" :messages="$errors->get('name')"/><br>
             </div>
 
 
             <div>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ $user->email }}">
+                <input type="email" id="email" name="email" value="{{ $user->email }}" required>
                 <x-input-error class="mt-2" :messages="$errors->get('email')"/><br>
             </div>
 

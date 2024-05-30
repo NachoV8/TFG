@@ -77,9 +77,6 @@ Route::get('/torneos', [TorneoController::class, 'index'])->name('torneos');
 
 
 
-
-//Route::get('/perfil', [ProfileController::class, 'index'])->name('perfil.mostrar');
-
 Route::get('/perfil', [ProfileController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('perfil');
@@ -87,22 +84,14 @@ Route::get('/perfil', [ProfileController::class, 'index'])
 
 Route::patch('/perfil/{id}', [ProfileController::class, 'cancelar'])->name('perfil.cancelar');
 
+
+
+Route::delete('perfil/reserva/cancelar/{inscripcion}', [ProfileController::class, 'cancelarInscripcionTorneo'])->name('inscripcion.torneo.cancelar');
+
 Route::delete('productos/reserva/cancelar/{reserva}', [ReservaController::class, 'cancelarReservaProducto'])->name('reserva.producto.cancelar');
 
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-
-
-
-
-//Prueba envio correo laravel
-
-/*Route::get('contactos', function (){
-    Mail::to('nachotrzn8@gmail.com')
-        ->send(new ContactosMail);
-
-    return "mensaje enviado";
-
-})->name('contactos');*/
 
 
 Route::get('contactos', [ContactanosController::class, 'index'])->name('sobre-nosotros');
@@ -110,14 +99,12 @@ Route::get('contactos', [ContactanosController::class, 'index'])->name('sobre-no
 Route::post('contactos', [ContactanosController::class, 'store'])->name('contactos.store');
 
 
-/*Route::get('/', function () {
-    return view('main');
-})->middleware(['auth', 'verified'])->name('main');*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Ruta para eliminar un usuario específico
 });
 
 

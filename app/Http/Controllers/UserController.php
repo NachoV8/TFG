@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Clase;
+use App\Models\Inscripcion;
+use App\Models\Pista;
+use App\Models\Reserva;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +27,7 @@ class UserController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             return view('users.create');
         }
     }
@@ -69,7 +73,7 @@ class UserController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else {
+        } else {
             return view('users.edit', compact('user'));
         }
     }
@@ -91,17 +95,82 @@ class UserController extends Controller
         $user->rol = $request->input('rol');
         $user->save();
 
-
         return redirect()->route('perfil');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(User $user)
     {
-        $user->delete();
 
-        return redirect()->route('perfil');
+        if ($user->rol == 1) {
+            // Eliminar reservas de pistas
+            $reservasPistas = Pista::where('id_usuario', $user->id)->get();
+            foreach ($reservasPistas as $reservaPista) {
+                app(PistaController::class)->cancelarReserva($reservaPista->id_pista);
+            }
+
+            // Eliminar reservas de clases
+            $reservasClases = Clase::where('id_alumno', $user->id)->get();
+            foreach ($reservasClases as $reservaClase) {
+                app(ClaseController::class)->cancelarClase($reservaClase->id_clase);
+            }
+
+            // Eliminar inscripciones a torneos
+            $inscripcionesTorneos = Inscripcion::where('id_usuario', $user->id)->get();
+            foreach ($inscripcionesTorneos as $inscripcionTorneo) {
+                app(ProfileController::class)->cancelarInscripcionTorneo($inscripcionTorneo);
+            }
+
+            // Eliminar reservas de productos
+            $reservasProductos = Reserva::where('id_usuario', $user->id)->get();
+            foreach ($reservasProductos as $reservaProducto) {
+                app(ReservaController::class)->cancelarReservaProducto($reservaProducto);
+            }
+
+            // Eliminar el usuario
+            $user->delete();
+
+            return redirect()->route('perfil');
+        } else {
+
+            // Eliminar reservas de pistas
+            $reservasPistas = Pista::where('id_usuario', $user->id)->get();
+            foreach ($reservasPistas as $reservaPista) {
+                app(PistaController::class)->cancelarReserva($reservaPista->id_pista);
+            }
+
+            //Eliminar las clases que tenga el profesor
+            $clasesProfesor = Clase::where('id_profesor', $user->id)->get();
+            foreach ($clasesProfesor as $clase) {
+                app(ClaseController::class)->destroy($clase);
+            }
+
+            // Eliminar reservas de clases
+            $reservasClases = Clase::where('id_alumno', $user->id)->get();
+            foreach ($reservasClases as $reservaClase) {
+                app(ClaseController::class)->cancelarClase($reservaClase->id_clase);
+            }
+
+            // Eliminar inscripciones a torneos
+            $inscripcionesTorneos = Inscripcion::where('id_usuario', $user->id)->get();
+            foreach ($inscripcionesTorneos as $inscripcionTorneo) {
+                app(ProfileController::class)->cancelarInscripcionTorneo($inscripcionTorneo);
+            }
+
+            // Eliminar reservas de productos
+            $reservasProductos = Reserva::where('id_usuario', $user->id)->get();
+            foreach ($reservasProductos as $reservaProducto) {
+                app(ReservaController::class)->cancelarReservaProducto($reservaProducto);
+            }
+
+            $user->delete();
+
+            return redirect()->route('perfil');
+        }
     }
 }
+
+

@@ -16,25 +16,20 @@ class ReservaController extends Controller
     {
         if (!(Auth::check() && Auth::user()->rol == 3)) {
             return redirect()->route('inicio');
-        }else{
+        } else {
             return view("reservas.edit", compact("reserva"));
         }
     }
 
     public function update(UpdateReservaRequest $request, Reserva $reserva)
     {
-        // Obtener la cantidad anterior de la reserva
         $cantidadAnterior = $reserva->cantidad;
 
-        // Validar la nueva cantidad
         $request->validate([
             'cantidad' => 'required|integer|min:1|max:' . $reserva->producto->cantidad
         ]);
 
-        // Obtener la nueva cantidad
         $nuevaCantidad = $request->input('cantidad');
-
-
 
         $cantidadStockproducto = $reserva->producto->cantidad;
 
@@ -56,23 +51,21 @@ class ReservaController extends Controller
 
     public function destroy(Reserva $reserva)
     {
-        // Obtener la cantidad de la reserva antes de eliminarla
         $cantidadReservada = $reserva->cantidad;
 
-        // Eliminar la reserva
         $reserva->delete();
 
-        // Sumar la cantidad reservada a la cantidad disponible del producto
         $producto = $reserva->producto;
         $producto->cantidad += $cantidadReservada;
+
         $producto->save();
 
-        // Redireccionar a la página de productos
         return redirect()->route('productos');
     }
 
 
 
+    // Funcion para reservar un producto
     public function reservarProducto(Request $request, Producto $producto)
     {
         if (Auth::check()){
@@ -99,24 +92,19 @@ class ReservaController extends Controller
             $producto->save();
 
             return redirect()->back()->with('info', '¡Producto reservado correctamente!');
-        }else{
+        } else {
             return redirect()->route('login');
         }
     }
 
+
+    // Funcion para cancelar una reserva de un producto
     public function cancelarReservaProducto(Reserva $reserva)
     {
-        // Verificar si el usuario autenticado es el propietario de la reserva
-        if ($reserva->id_usuario !== Auth::id()) {
-            return redirect()->route('productos');
-        }
-
-        // Incrementar la cantidad del producto
         $producto = $reserva->producto;
         $producto->cantidad += $reserva->cantidad;
         $producto->save();
 
-        // Eliminar la reserva
         $reserva->delete();
 
         return redirect()->route('perfil');

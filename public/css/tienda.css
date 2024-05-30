@@ -1,11 +1,14 @@
+
+/* ------------------------------------------------------------------------------------------------------------ CSS USUARIO PC ------------------------------------------------------------------------------------------------------ */
+
 .tienda{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: row;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
-    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
-    background-position: center; /* Centra la imagen de fondo */
+    background-size: cover;
+    background-position: center;
 }
 
 .filtros{
@@ -99,9 +102,6 @@
     margin-left: 10%;
     margin-right: 10%;
 }
-
-
-/* BOTON FILTRO */
 
  .checkbox-wrapper-33 {
      --s-xsmall: 0.625em;
@@ -219,9 +219,8 @@
 
 
 
-/* Administrador */
+/* -------------------------------------------------------------------------------------------------------------- ADMINISTRADOR ---------------------------------------------------------------------------------------------------- */
 
-/* Tabla mostrar todas los productos */
 .admin-productos {
     width: 100%;
     height: 100%;
@@ -309,17 +308,17 @@
 .td-actions {
     width: 60%;
     display: flex;
-    justify-content: space-between; /* Alinea los elementos a los extremos */
-    align-items: center; /* Alinea los elementos verticalmente */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .left-action,
 .right-action {
-    flex: 1; /* Ocupa el espacio disponible */
+    flex: 1;
 }
 
 .left-action {
-    text-align: left; /* Alinea el contenido a la izquierda */
+    text-align: left;
 }
 
 .left-action a img{
@@ -327,7 +326,7 @@
 }
 
 .right-action {
-    text-align: right; /* Alinea el contenido a la derecha */
+    text-align: right;
 }
 
 .right-action button img{
@@ -335,7 +334,7 @@
 }
 
 
-/* EDITAR PRODUCTO */
+/* -------------------------------------------------------------------------------------------------------------- EDITAR PRODUCTO --------------------------------------------------------------------------------------------------- */
 
 .editar-producto{
     height: 100%;
@@ -410,7 +409,7 @@
 
 
 
-/* INSERTAR PRODUCTO */
+/* ------------------------------------------------------------------------------------------------------------- INSERTAR PRODUCTO --------------------------------------------------------------------------------------------------- */
 
 .insertar-producto{
     height: 100%;
@@ -470,12 +469,10 @@
     outline: none;
 }
 
-/* Estilo para el grupo de formulario */
 .formulario-insertar-producto .form-group {
     margin-bottom: 15px;
 }
 
-/* Estilo para el botón de envío */
 .formulario-insertar-producto button {
     width: 100%;
     padding: 10px;
@@ -488,14 +485,13 @@
     transition: background-color 0.3s ease;
 }
 
-/* Estilo para el botón de envío al pasar el ratón */
 .formulario-insertar-producto button:hover {
     background-color: #0056b3;
 }
 
 
 
-/* MODIFICAR RESERVA */
+/* ----------------------------------------------------------------------------------------------------------- MODIFICAR RESERVA ---------------------------------------------------------------------------------------------------- */
 .editar-reserva-producto{
     height: 100%;
     display: flex;
@@ -566,7 +562,7 @@
 
 
 
-/* -------------------------------------------- MOVIL ----------------------------------------------------- */
+/* ------------------------------------------------------------------------------------------------------------------ MOVIL --------------------------------------------------------------------------------------------------------- */
 @media (max-width: 840px) {
     .tienda{
         width: 100%;
@@ -576,18 +572,17 @@
     }
 
     .tienda .filtros{
-        width: 100%;
+        width: 98%;
         margin: 0;
     }
 
     .tienda .filtros h3{
-        width: 100%;
+        width: 99%;
         text-align: center;
     }
 
     .tienda .filtros div{
-        width: 100%;
-        margin: 0;
+        width: 98%;
         margin-bottom: 4%;
         display: flex;
         flex-direction: row;
@@ -595,7 +590,7 @@
     }
 
     .tienda .productos{
-        width: 100%;
+        width: 98%;
     }
 
     .tienda .productos .productosL{
@@ -611,7 +606,7 @@
     }
 
 
-    /* -------------------------------------------------- ADMINISTRADOR ----------------------------------- */
+    /* ------------------------------------------------------------------------------------------------------------ ADMINISTRADOR ------------------------------------------------------------------------------------------------- */
 
 
     .admin-productos{
@@ -641,7 +636,7 @@
         width: 100%;
     }
 
-    /* ---------------------------------------------------- INSERTAR PRODUCTO ------------------------------------ */
+    /* --------------------------------------------------------------------------------------------------------- INSERTAR PRODUCTO -------------------------------------------------------------------------------------------------- */
 
     .formulario-insertar-producto{
         width: 80%;
@@ -649,7 +644,7 @@
     }
 
 
-    /* ------------------------------------------------ EDITAR CLASE ------------------------------------------- */
+    /* ---------------------------------------------------------------------------------------------------------- EDITAR CLASE ------------------------------------------------------------------------------------------------------ */
 
     .formulario-editar-productos{
         width: 80%;

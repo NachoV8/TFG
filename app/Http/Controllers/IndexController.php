@@ -13,8 +13,6 @@ class IndexController extends Controller
     {
         $profesores = User::where('rol', 2)->get();
 
-        // Obtener las 3 clases disponibles (donde id_alumno es null) de todos los profesores,
-        // ordenadas por fecha y luego por hora_inicio
         $clasesLibres = Clase::whereIn('id_profesor', $profesores->pluck('id'))
             ->where('id_alumno', null)
             ->orderBy('fecha')
@@ -33,8 +31,4 @@ class IndexController extends Controller
 
         return view('index', compact('clasesLibres','torneosCercanos'));
     }
-
-
-
-
 }

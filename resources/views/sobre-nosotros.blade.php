@@ -85,15 +85,26 @@
                             <p>Necesitas estar autenticado</p>
 
                         @endif
-                        @if(session('info'))
-                            <script>
-                                alert("{{session('info')}}")
-                            </script>
-                        @endif
                     </form>
 
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mostrar la alerta si hay un mensaje de sesión
+            @if(session('info'))
+            Swal.fire({
+                icon: "success",
+                html: "<h2 style='text-align: center; color: black'>¡Mensaje enviado correctamente!</h2>",
+                showConfirmButton: false,
+                timer: 2000
+            });
+
+            @endif
+        });
+
+    </script>
 @endsection

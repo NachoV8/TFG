@@ -98,6 +98,7 @@
                     <table>
                         <thead>
                             <tr>
+                                <th>Pista</th>
                                 <th>Fecha</th>
                                 <th>Hora inicio</th>
                             </tr>
@@ -105,6 +106,7 @@
                         <tbody>
                         @foreach ($reservasPistas as $pista)
                             <tr>
+                                <td>{{ $pista->pista }}</td>
                                 <td>{{ $pista->fecha }}</td>
                                 <td>{{ $pista->hora_inicio }}</td>
                                 <td>
@@ -138,9 +140,9 @@
                                 <td>{{ $inscripcion->torneo->fecha }}</td>
                                 <td>{{ $inscripcion->torneo->hora_inicio }}</td>
                                 <td>
-                                    <form action="{{ route('perfil.cancelar', $inscripcion->id_torneo) }}" method="POST" class="cancelar-form">
+                                    <form action="{{ route('inscripcion.torneo.cancelar', $inscripcion->id_inscripcion) }}" method="POST" class="cancelar-form">
                                         @csrf
-                                        @method("PATCH")
+                                        @method("DELETE")
                                         <button type="button" class="cancelar-btn">Cancelar</button>
                                     </form>
                                 </td>

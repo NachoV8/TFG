@@ -17,7 +17,7 @@
     src: url('/font/Montserrat-Regular.ttf');
 }
 
-/* ----------------------------------- FUENTES -------------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- FUENTES ------------------------------------------------------------------------------------------------------- */
 
 
 
@@ -27,9 +27,9 @@
     margin: 0;
     width: 100%;
     display: flex;
-    flex-direction: column; /* Coloca los elementos uno debajo del otro */
-    justify-content: center; /* Centra verticalmente los elementos */
-    align-items: center; /* Centra horizontalmente los elementos */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: "Montserrat";
 }
 
@@ -42,7 +42,7 @@
 }
 
 form {
-    width: 100%; /* Utiliza todo el ancho disponible */
+    width: 100%;
 }
 
 .form{
@@ -53,8 +53,8 @@ form {
 }
 
 .datos {
-    width: 96%; /* Cambia el ancho según sea necesario */
-    margin-top: 3%; /* Espacio entre cada campo */
+    width: 96%;
+    margin-top: 3%;
     margin-left: 2%;
     margin-right: 2%;
 }
@@ -89,9 +89,9 @@ input{
 
 .boton {
     display: flex;
-    justify-content: space-between; /* Distribuye los elementos a los extremos */
-    width: 95%; /* Cambia el ancho según sea necesario */
-    margin-top: 5%; /* Espacio entre el formulario y los botones */
+    justify-content: space-between;
+    width: 95%;
+    margin-top: 5%;
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-bottom: 5%;
@@ -100,7 +100,7 @@ input{
 
 .cancelar {
     height: 50px;
-    align-self: flex-start; /* Coloca este botón en la esquina superior izquierda */
+    align-self: flex-start;
     background-color: rgb(218, 0, 0);
     color: white;
     font-family: 'montserratbold';
@@ -116,7 +116,7 @@ input{
 
 
 
-/* ---------------------------------------------- MOVIL ------------------------------------------------ */
+/* ----------------------------------------------------------------------------------------------------------------- MOVIL ------------------------------------------------------------------------------------------------------------ */
 
 @media (max-width: 840px) {
 

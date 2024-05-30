@@ -1,3 +1,7 @@
+
+/* ---------------------------------------------------------------------------------------- CSS USUARIO PC ----------------------------------------------------------- */
+
+
 .cuerpo {
     width: 100%;
     display: flex;
@@ -5,8 +9,8 @@
     align-items: center;
     padding-top: 2%;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
-    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
-    background-position: center; /* Centra la imagen de fondo */
+    background-size: cover;
+    background-position: center;
 }
 
 h1{
@@ -44,15 +48,15 @@ h1{
 .info-Ia .texto {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Alinea los elementos al inicio */
+    align-items: flex-start;
 }
 
 .info-Ia .left {
-    width: 70%; /* Ajusta el ancho de cada columna */
+    width: 70%;
 }
 
 .info-Ia .right {
-    width: 30%; /* Ajusta el ancho de cada columna */
+    width: 30%;
 }
 
 .info-Ia .left {
@@ -70,11 +74,11 @@ h1{
     text-align: right;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Alinea los items al final */
+    align-items: flex-end;
 }
 
 .info-Ia .right .first {
-    margin-bottom: 20px; /* Ajusta este valor para la altura del pódium */
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -90,10 +94,6 @@ h1{
     padding: 1%;
     margin-bottom: 1.5%;
 }
-
-
-
-/* Boton Torneo */
 
 .button-torneo {
     margin-left: 35%;
@@ -136,12 +136,7 @@ h1{
 }
 
 
-
-
 /* Clases */
-
-.clases
-
 .button-clases{
     font-size: 16px;
     letter-spacing: 1px;
@@ -216,8 +211,8 @@ h1{
 }
 
 .clase-I1 {
-    width: 32%; /* Ajuste para asegurar que caben dentro del contenedor padre */
-    margin: 1%; /* Espaciado entre los contenedores */
+    width: 32%;
+    margin: 1%;
     border: black solid 2px;
     box-shadow: 5px 8px 15px rgb(42, 42, 42);
     background-color: rgb(255, 255, 255);
@@ -254,7 +249,7 @@ h1{
 
 
 
-/* ----------------------------------------------------- ADMIN ------------------------------------------------ */
+/* ------------------------------------------------------------------------------------------------------------------ ADMIN -------------------------------------------------------------------------------------------------------- */
 
 .titulo-admin{
     width: 100%;
@@ -265,7 +260,7 @@ h1{
 
 
 
-/* --------------------------------------------------- MOVIL ------------------------------------------ */
+/* ----------------------------------------------------------------------------------------------------------------- MOVIL --------------------------------------------------------------------------------------------------------- */
 
 @media (max-width: 840px) {
     .cuerpo{
@@ -327,7 +322,6 @@ h1{
         width: 100%;
         text-align: center;
     }
-
 
 
 

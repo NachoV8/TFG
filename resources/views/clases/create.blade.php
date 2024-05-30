@@ -23,7 +23,7 @@
 
                 <!-- Campo para el precio -->
                 <label for="precio">Precio:</label>
-                <input type="number" name="precio" id="precio">
+                <input type="number" name="precio" id="precio" required>
                 <x-input-error class="mt-2" :messages="$errors->get('precio')"/><br>
 
 

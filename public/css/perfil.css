@@ -1,10 +1,15 @@
+
+/* ------------------------------------------------------------------------------------------------------------ CSS USUARIO PC ------------------------------------------------------------------------------------------------------ */
+
+
 .perfil{
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../imagenes/fondos/pista-azul.jpg") no-repeat center center fixed;
-    background-size: cover; /* Asegura que la imagen de fondo cubra todo el área */
-    background-position: center; /* Centra la imagen de fondo */
+    background-size: cover;
+    background-position: center;
 }
 
 .info-perfil{
@@ -68,9 +73,6 @@ h3, p{
     background-color: white;
 }
 
-
-
-/* Estilo tablas */
 
 .info-personal, .info-partidos, .info-torneos, .info-clases, .info-productos {
     text-align: center;
@@ -167,10 +169,8 @@ table th {
 
 
 
-/* Admin */
+/* ---------------------------------------------------------------------------------------------------------------- ADMINISTRADOR ---------------------------------------------------------------------------------------------------- */
 
-
-/* Estilo para el contenedor principal */
 .admin-usuarios {
     width: 100%;
     height: 100%;
@@ -261,13 +261,13 @@ table th {
 .lista .td-actions {
     width: 60%;
     display: flex;
-    justify-content: space-between; /* Alinea los elementos a los extremos */
-    align-items: center; /* Alinea los elementos verticalmente */
+    justify-content: space-between;
+    align-items: center;
 }
 
 
 .left-action {
-    text-align: left; /* Alinea el contenido a la izquierda */
+    text-align: left;
 }
 
 .left-action a img{
@@ -275,7 +275,7 @@ table th {
 }
 
 .right-action {
-    text-align: right; /* Alinea el contenido a la derecha */
+    text-align: right;
     justify-content: center;
     align-content: center;
 }
@@ -289,7 +289,7 @@ table th {
     justify-content: center;
 }
 
-/* Estilo para el botón de eliminar */
+
 .delete-btn {
     background: none;
     border: none;
@@ -303,9 +303,7 @@ table th {
 
 
 
-
-
-/* CREAR USUARIO */
+/* ------------------------------------------------------------------------------------------------------------- CREAR USUARIO ------------------------------------------------------------------------------------------------------*/
 .crear-usuario{
     height: 100%;
     display: flex;
@@ -357,7 +355,6 @@ table th {
     transition: border-color 0.3s ease;
 }
 
-/* Estilo para los campos de entrada al hacer foco */
 .formulario-insertar-usuario input[type="text"]:focus,
 .formulario-insertar-usuario input[type="email"]:focus,
 .formulario-insertar-usuario input[type="password"]:focus,
@@ -366,12 +363,10 @@ table th {
     outline: none;
 }
 
-/* Estilo para el grupo de formulario */
 .formulario-insertar-usuario .form-group {
     margin-bottom: 15px;
 }
 
-/* Estilo para el botón de envío */
 .formulario-insertar-usuario button {
     width: 100%;
     padding: 10px;
@@ -384,7 +379,6 @@ table th {
     transition: background-color 0.3s ease;
 }
 
-/* Estilo para el botón de envío al pasar el ratón */
 .formulario-insertar-usuario button:hover {
     background-color: #0056b3;
 }
@@ -392,7 +386,7 @@ table th {
 
 
 
-/* EDITAR USUARIO */
+/* -------------------------------------------------------------------------------------------------------------- EDITAR USUARIO --------------------------------------------------------------------------------------------------- */
 .editar-usuario{
     height: 100%;
     display: flex;
@@ -444,7 +438,6 @@ table th {
     transition: border-color 0.3s ease;
 }
 
-/* Estilo para los campos de entrada al hacer foco */
 .formulario-editar-usuario input[type="text"]:focus,
 .formulario-editar-usuario input[type="email"]:focus,
 .formulario-editar-usuario input[type="password"]:focus,
@@ -453,12 +446,10 @@ table th {
     outline: none;
 }
 
-/* Estilo para el grupo de formulario */
 .formulario-editar-usuario .form-group {
     margin-bottom: 15px;
 }
 
-/* Estilo para el botón de envío */
 .formulario-editar-usuario button {
     width: 100%;
     padding: 10px;
@@ -471,7 +462,6 @@ table th {
     transition: background-color 0.3s ease;
 }
 
-/* Estilo para el botón de envío al pasar el ratón */
 .formulario-editar-usuario button:hover {
     background-color: #0056b3;
 }
@@ -479,7 +469,7 @@ table th {
 
 
 
-/* ------------------------------------------------- MOVIL --------------------------------------------- */
+/* ----------------------------------------------------------------------------------------------------------------- MOVIL --------------------------------------------------------------------------------------------------------- */
 
 @media (max-width: 840px) {
     .perfil{
@@ -498,12 +488,14 @@ table th {
         width: 100%;
         display: flex;
         flex-direction: column;
-        margin-bottom: 0;
+
+        align-items: center;
+        margin: 0;
     }
 
     .perfil .infoP-1 .info-personal{
-        width: 95%;
-        margin: 0;
+        width: 96%;
+        margin-left: 2%;
         margin-bottom: 10%;
     }
 
@@ -526,7 +518,7 @@ table th {
     }
 
 
-    /* --------------------------------------------- ADMINIDTRADOR -----------------------------------------*/
+    /* ----------------------------------------------------------------------------------------------------------- ADMINIDTRADOR --------------------------------------------------------------------------------------------------*/
 
     .admin-usuarios{
         height: auto;
@@ -555,7 +547,7 @@ table th {
         width: 100%;
     }
 
-    /* ---------------------------------------------------- CREAR USUARIO ------------------------------------ */
+    /* ---------------------------------------------------------------------------------------------------------- CREAR USUARIO ------------------------------------------------------------------------------------------------ */
 
     .formulario-insertar-usuario{
         width: 80%;
@@ -563,11 +555,10 @@ table th {
     }
 
 
-    /* ------------------------------------------------ EDITAR CLASE ------------------------------------------- */
+    /* ----------------------------------------------------------------------------------------------------------- EDITAR CLASE ------------------------------------------------------------------------------------------------- */
 
     .formulario-editar-usuario{
         width: 80%;
         margin-bottom: 4%;
     }
-
 }
